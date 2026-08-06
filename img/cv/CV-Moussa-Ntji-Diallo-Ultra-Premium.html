@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>CV Moussa N'tji Diallo - Ultra Premium A4</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Cormorant+Garamond:wght@700&display=swap');
+  @page { size: A4; margin: 0; }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#0f172a;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .page{width:210mm;height:297mm;display:flex;flex-direction:column;overflow:hidden}
+  /* HERO */
+  .hero{height:50mm;background:linear-gradient(135deg,#070f1f 0%,#0f2340 60%,#14365f 100%);color:#eef2ff;padding:6mm 5mm 4.5mm 6mm;display:flex;justify-content:space-between;gap:4mm;position:relative}
+  .hero::after{content:"";position:absolute;left:7mm;right:7mm;bottom:0;height:0.4mm;background:linear-gradient(90deg,transparent,#d4af37,transparent);opacity:.6}
+  .hero-left{flex:1}
+  .eyebrow{font-size:6.5pt;letter-spacing:2.2pt;text-transform:uppercase;color:#d4af37;font-weight:800}
+  .hero h1{font-family:'Cormorant Garamond',serif;font-size:22pt;line-height:1;font-weight:700;margin-top:2mm}
+  .hero h1 span{color:#d4af37}
+  .hero h2{font-size:6.8pt;letter-spacing:2.2pt;text-transform:uppercase;color:#7dd3fc;font-weight:700;margin-top:1.5mm}
+  .hero p{margin-top:2.5mm;font-size:7.5pt;color:#cbd5e1;line-height:1.5;max-width:118mm}
+  .hero p b{color:#fff}
+  .hero-right{width:38mm;min-width:38mm;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:3.5mm;padding:2.5mm;margin-right:0;max-width:38mm;flex-shrink:0;display:flex;flex-direction:column;gap:2mm;align-items:center;justify-content:center;overflow:hidden}
+  .qr{width:22mm;height:22mm;background:#fff;border-radius:2mm;display:flex;align-items:center;justify-content:center;flex-direction:column}
+  .qr-grid{display:grid;grid-template-columns:repeat(5,2.4mm);gap:0.7mm}
+  .qr-grid span{width:2.4mm;height:2.4mm;background:#0f172a;border-radius:0.3mm}
+  .qr-grid span.off{background:#e2e8f0}
+  .hero-contacts{width:100%;display:grid;gap:1.2mm;font-size:5.8pt;color:#e2e8f0}
+  .hero-contacts div{display:flex;gap:1.5mm;align-items:flex-start;word-break:break-all;line-height:1.3}
+  .hero-contacts a{color:#e2e8f0;text-decoration:none;word-break:break-all;font-size:5.6pt}
+  .ic{width:4mm;height:4mm;border-radius:50%;background:rgba(212,175,55,.2);border:0.3mm solid rgba(212,175,55,.4);display:flex;align-items:center;justify-content:center;font-size:5pt}
+  /* BODY */
+  .body{flex:1;display:flex;overflow:hidden}
+  .sidebar{width:68mm;background:#f8fafc;border-right:0.4mm solid #e2e8f0;padding:4mm 4mm 3mm;display:flex;flex-direction:column;gap:3mm;overflow:hidden}
+  .main{flex:1;padding:4mm 5mm 3mm;overflow:hidden;display:flex;flex-direction:column;gap:3mm}
+  .side-title{font-size:5.5pt;letter-spacing:1.6pt;text-transform:uppercase;color:#0f2340;font-weight:800;display:flex;align-items:center;gap:1.8mm}
+  .side-title i{width:4.5mm;height:4.5mm;border-radius:50%;background:#0f2340;color:#d4af37;display:flex;align-items:center;justify-content:center;font-size:5pt;font-style:normal}
+  .side-title::after{content:"";flex:1;height:0.3mm;background:linear-gradient(90deg,#d4af37,transparent)}
+  .pill-grid{display:flex;flex-wrap:wrap;gap:1.2mm}
+  .pill{font-size:5.8pt;font-weight:700;padding:1mm 1.8mm;border-radius:10mm;border:0.3mm solid #e2e8f0;background:#fff;color:#0f172a}
+  .pill.dark{background:#0f172a;color:#fff;border-color:#0f172a}
+  .pill.gold{background:#fffbeb;border-color:#facc15;color:#713f12}
+  .card{background:#fff;border:0.3mm solid #e2e8f0;border-radius:3mm;padding:2mm}
+  .card.soft{background:linear-gradient(180deg,#fff,#f8fafc)}
+  .stack{font-size:6.2pt;color:#475569;line-height:1.5;margin-top:2mm}
+  .stack b{color:#0f172a}
+  .bar-row{display:flex;justify-content:space-between;font-size:6pt;font-weight:700;margin-bottom:0.7mm}
+  .bar-row span:last-child{color:#64748b;font-weight:600}
+  .bar{height:1.4mm;background:#e2e8f0;border-radius:10mm;overflow:hidden;margin-bottom:2mm}
+  .fill{height:100%;background:linear-gradient(90deg,#0f2340,#1d4ed8);border-radius:10mm}
+  .fill.gold{background:linear-gradient(90deg,#d4af37,#b8941f)}
+  .lang{font-size:6.2pt;display:flex;justify-content:space-between;align-items:center;padding:1.2mm 0;border-bottom:0.2mm solid #f1f5f9}
+  .list{list-style:none;display:grid;gap:1.2mm}
+  .list li{font-size:6.2pt;color:#334155;display:flex;gap:1.5mm;align-items:flex-start;line-height:1.4}
+  .list li::before{content:"◆";color:#d4af37;font-size:4pt;margin-top:0.8mm}
+  .section-head{display:flex;align-items:center;gap:2mm}
+  .num{width:5mm;height:5mm;min-width:5mm;border-radius:50%;background:#0f2340;color:#d4af37;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:6pt}
+  .section-head h3{font-size:5.8pt;letter-spacing:1.4pt;text-transform:uppercase;color:#0f2340;font-weight:800;white-space:nowrap}
+  .section-head::after{content:"";flex:1;height:0.3mm;background:#e2e8f0}
+  .profile-box{background:linear-gradient(135deg,#f8fafc,#eef6ff);border:0.3mm solid #dbeafe;border-radius:3mm;padding:2mm 3mm;position:relative;overflow:hidden}
+  .profile-box::before{content:"";position:absolute;left:0;top:0;bottom:0;width:0.7mm;background:linear-gradient(180deg,#d4af37,#0f2340)}
+  .profile-box p{font-size:6.3pt;color:#334155;line-height:1.5;text-align:justify;word-break:break-word}
+  .profile-box b{color:#0f172a}
+  .timeline{margin-left:2mm;padding-left:3.5mm;border-left:0.4mm solid #e2e8f0;display:grid;gap:2mm}
+  .t-item{position:relative;background:#fff;border:0.3mm solid #e2e8f0;border-radius:3mm;padding:2.2mm 2.5mm}
+  .t-item::before{content:"";position:absolute;left:-5.2mm;top:3mm;width:2.2mm;height:2.2mm;background:#fff;border:0.6mm solid #0f2340;border-radius:50%}
+  .t-item.featured{border-color:#fde68a;background:linear-gradient(180deg,#fffbeb,#fff)}
+  .t-item.featured::before{background:#d4af37;border-color:#d4af37}
+  .t-head{display:flex;justify-content:space-between;gap:2mm;align-items:flex-start}
+  .t-title{font-size:6.8pt;font-weight:800;color:#0f172a}
+  .t-sub{font-size:6pt;color:#1d4ed8;font-weight:700}
+  .t-meta{font-size:5.5pt;background:#0f172a;color:#fff;padding:0.8mm 1.8mm;border-radius:10mm;white-space:nowrap;font-weight:700}
+  .t-meta.light{background:#f1f5f9;color:#475569;border:0.3mm solid #e2e8f0}
+  .t-desc{font-size:6pt;color:#475569;margin-top:1mm;line-height:1.45}
+  .t-desc ul{margin-left:3mm;margin-top:1mm}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:2mm}
+  .proj{border:0.3mm solid #e2e8f0;border-radius:3mm;overflow:hidden;background:#fff;display:flex;flex-direction:column}
+  .proj-top{height:0.7mm;background:linear-gradient(90deg,#0f2340,#d4af37)}
+  .proj-body{padding:2mm 2.2mm;flex:1}
+  .proj-head{display:flex;justify-content:space-between;align-items:center;gap:1.5mm;margin-bottom:1mm}
+  .proj-name{font-size:6.2pt;font-weight:800;color:#0f172a}
+  .proj-tag{font-size:4.8pt;letter-spacing:0.4pt;text-transform:uppercase;font-weight:800;padding:0.6mm 1.4mm;border-radius:10mm;background:#0f172a;color:#d4af37;white-space:nowrap}
+  .proj-tag.blue{background:#eff6ff;color:#1d4ed8;border:0.3mm solid #dbeafe}
+  .proj-desc{font-size:5.8pt;color:#475569;line-height:1.45}
+  .proj-foot{padding:1.4mm 2.2mm;background:#f8fafc;border-top:0.2mm solid #f1f5f9;display:flex;justify-content:space-between;align-items:center;font-size:5.2pt;color:#64748b}
+  .proj-foot a{color:#0f2340;font-weight:800;text-decoration:none}
+  .featured-proj{grid-column:span 2;border-color:#fde68a;background:linear-gradient(135deg,#fff,#fffbeb)}
+  .footer{margin-top:auto;background:#0f172a;color:#cbd5e1;border-radius:3mm;padding:2mm 3.5mm;display:flex;justify-content:space-between;align-items:center}
+  .seal{width:11mm;height:11mm;min-width:11mm;border-radius:50%;border:0.4mm solid rgba(212,175,55,.5);display:flex;align-items:center;justify-content:center;flex-direction:column;color:#d4af37;font-size:4pt;letter-spacing:0.5pt;text-transform:uppercase;font-weight:800;line-height:1}
+  .seal b{font-family:'Cormorant Garamond',serif;font-size:8pt;color:#fff}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-left">
+      <div class="eyebrow">Disponible immédiatement — Bamako & Remote</div>
+      <h1>MOUSSA N'TJI <span>DIALLO</span></h1>
+      <h2>Développeur Web Full Stack • MIAGE • React • Laravel</h2>
+      <p>Licence MIAGE <b>Technolab-ISTA</b> • Je conçois des <b>sites dynamiques ultra-performants</b> et des <b>apps multiplateformes</b> (Web + Mobile) avec React, Laravel & WordPress avancé. <b>Objectif :</b> transformer vos besoins en produits digitaux élégants, rapides et scalables.</p>
+    </div>
+    <div class="hero-right">
+      <div class="qr" style="padding:2mm 2mm 1.5mm;background:#fff;border-radius:2mm;display:flex;flex-direction:column;align-items:center;gap:1.2mm;min-height:23mm;justify-content:center"><img src="data:image/png;base64,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" style="width:18mm;height:18mm;display:block;image-rendering:pixelated;margin-bottom:1mm"/><div style="font-size:4.5pt;letter-spacing:0.6pt;text-transform:uppercase;font-weight:800;color:#0f2340">Portfolio QR</div></div>
+      <div class="hero-contacts">
+        <div><span class="ic">☎</span> <a href="tel:+22382019583">+223 82 01 95 83</a></div>
+        <div><span class="ic">✉</span> <a href="mailto:Moussantjidiallo@gmail.com">Moussantjidiallo@gmail.com</a></div>
+        <div><span class="ic">📍</span> Kalaban-Coro, Bamako</div>
+        <div><span class="ic">🔗</span> <a href="https://moussantji.github.io/portfolio/">moussantji.github.io/portfolio</a></div>
+      </div>
+    </div>
+  </div>
+  <div class="body">
+    <div class="sidebar">
+      <div class="side-title"><i>◈</i> STACK SIGNATURE</div>
+      <div class="card soft">
+        <div class="pill-grid"><span class="pill dark">React</span><span class="pill gold">Laravel</span><span class="pill dark">WordPress Avancé</span><span class="pill">React Native</span><span class="pill">PHP</span><span class="pill">JavaScript</span><span class="pill">Tailwind</span><span class="pill">MySQL</span></div>
+        <div class="stack"><b>Frontend :</b> HTML5, CSS3, JS, React, Bootstrap, Figma<br><b>Backend :</b> PHP, Laravel, Python, Node<br><b>Mobile :</b> React Native (Android/iOS/Huawei)<br><b>Data :</b> MySQL, Access — <b>Outils :</b> Git, SEO</div>
+      </div>
+      <div class="side-title"><i>▣</i> NIVEAU D'EXPERTISE</div>
+      <div class="card">
+        <div class="bar-row"><span>Laravel</span><span>95% — Expert</span></div><div class="bar"><div class="fill" style="width:95%"></div></div>
+        <div class="bar-row"><span>WordPress (thèmes custom)</span><span>85%</span></div><div class="bar"><div class="fill gold" style="width:85%"></div></div>
+        <div class="bar-row"><span>React / React Native</span><span>75%</span></div><div class="bar"><div class="fill" style="width:75%"></div></div>
+        <div class="bar-row"><span>UI/UX & SEO</span><span>80%</span></div><div class="bar"><div class="fill gold" style="width:80%"></div></div>
+      </div>
+      <div class="side-title"><i>⬢</i> LANGUES</div>
+      <div class="card">
+        <div class="lang"><span><b>Bambara</b> — Maternelle</span><span style="color:#d4af37;letter-spacing:0.5mm">●●●●●</span></div>
+        <div class="lang"><span><b>Français</b> — Courant</span><span style="color:#0f2340;letter-spacing:0.5mm">●●●●●</span></div>
+        <div class="lang" style="border:none"><span><b>Anglais</b> — Avancé 90%</span><span style="color:#0f2340;letter-spacing:0.5mm">●●●●○</span></div>
+      </div>
+      <div class="side-title"><i>✦</i> ATOUTS & SERVICES</div>
+      <div class="card soft">
+        <ul class="list">
+          <li><b>Creative Design</b> — Figma, design system</li>
+          <li><b>Web Development</b> — HTML/PHP/WP/Laravel & React</li>
+          <li><b>Mobile Application</b> — Android, iOS, Huawei</li>
+          <li>Esprit d'équipe • Adaptation • Ponctualité</li>
+        </ul>
+      </div>
+      <div class="pill-grid"><span class="pill">Lecture</span><span class="pill">Sport</span><span class="pill">Musique</span></div>
+    </div>
+    <div class="main">
+      <div style="display:flex;flex-direction:column;gap:2.5mm">
+        <div class="section-head"><span class="num">01</span><h3>PROFIL — VALEUR AJOUTÉE</h3></div>
+        <div class="profile-box"><p>Développeur <b>Full Stack diplômé MIAGE</b>, je conçois des <b>produits web & mobiles haut de gamme</b> — performants, scalables et orientés business. Spécialiste <b>Laravel • React • WordPress sur-mesure</b>, je transforme une vision en solution digitale élégante, rapide et rentable : <b>UX Figma → architecture propre → déploiement & SEO</b>. Disponible pour <b>stage, CDI ou mission freelance</b> à forte valeur ajoutée.</p></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:2mm">
+        <div class="section-head"><span class="num">02</span><h3>FORMATION — PARCOURS CONSERVÉ</h3></div>
+        <div class="timeline">
+          <div class="t-item featured"><div class="t-head"><div><div class="t-title">Licence en MIAGE</div><div class="t-sub">Université Technolab-ISTA — Bamako</div></div><span class="t-meta">2023 – 2024</span></div><div class="t-desc">Méthodes Informatiques Appliquées à la Gestion des Entreprises. Frameworks modernes, analyse des besoins.</div></div>
+          <div class="t-item"><div class="t-head"><div><div class="t-title">DUT en Informatique de Gestion</div><div class="t-sub">Université Technolab-ISTA</div></div><span class="t-meta light">2022 – 2023</span></div><div class="t-desc">Java, C, C++, C#, Python, PHP, MySQL / Access, sites web dynamiques.</div></div>
+          <div class="t-item"><div class="t-head"><div><div class="t-title">Baccalauréat Sciences Exactes</div><div class="t-sub">Lycée Privé Soundjata Keïta — Bamako</div></div><span class="t-meta light">2018 – 2019</span></div><div class="t-desc">Parcours scientifique — Fondamentale : École Privée Aly Dem (2006–2015)</div></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:2mm">
+        <div class="section-head"><span class="num">03</span><h3>EXPÉRIENCE</h3></div>
+        <div class="timeline">
+          <div class="t-item featured"><div class="t-head"><div><div class="t-title">Développeur Full Stack — Immobilio</div><div class="t-sub">Laravel + React + MySQL</div></div><span class="t-meta">2023 – 2024</span></div><div class="t-desc">Plateforme immobilière complète : annonces, recherche filtrée, dashboard admin, rôles & déploiement. Architecture MVC, API REST.</div></div>
+          <div class="t-item"><div class="t-head"><div><div class="t-title">Développeur Web & Mobile — Freelance</div><div class="t-sub">WordPress • React Native • SEO</div></div><span class="t-meta light">2024 – Présent</span></div><div class="t-desc">Thèmes WordPress from-scratch, apps Android/iOS, API & publication stores.</div></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:2mm;flex:1">
+        <div class="section-head"><span class="num">04</span><h3>PROJETS RÉALISÉS — GITHUB</h3></div>
+        <div class="grid">
+          <div class="proj featured-proj"><div class="proj-top"></div><div class="proj-body"><div class="proj-head"><span class="proj-name">🏢 Immobilio — Plateforme Immobilière</span><span class="proj-tag">Flagship • Public</span></div><div class="proj-desc"><b>Laravel + React + MySQL.</b> Annonces, favoris, messagerie, back-office complet, filtres avancés. Projet phare full stack.</div></div><div class="proj-foot"><span>Laravel • React • MySQL • 2023-24</span><span style="font-weight:800;color:#0f2340">Public</span></div></div>
+          <div class="proj"><div class="proj-top" style="background:linear-gradient(90deg,#0ea5e9,#06b6d4)"></div><div class="proj-body"><div class="proj-head"><span class="proj-name">📺 Crystal IPTV — Laravel</span><span class="proj-tag blue">Privé • Blade/PHP</span></div><div class="proj-desc">Site IPTV complet : live channels, abonnements, paiement, dashboard admin contenus & users.</div></div><div class="proj-foot"><span>Crystal-iptv • Laravel</span><span style="font-weight:800;color:#0ea5e9">Privé 🔒</span></div></div>
+          <div class="proj"><div class="proj-top" style="background:linear-gradient(90deg,#d4af37,#facc15)"></div><div class="proj-body"><div class="proj-head"><span class="proj-name">🏘️ Site Agence — Laravel</span><span class="proj-tag blue">Privé • Blade</span></div><div class="proj-desc">Site agence immobilière Laravel : annonces, recherche, admin, Blade/PHP/JS.</div></div><div class="proj-foot"><span>site_agence • Laravel</span><span style="font-weight:800;color:#b8941f">Privé 🔒</span></div></div>
+          <div class="proj"><div class="proj-top" style="background:linear-gradient(90deg,#ec4899,#f43f5e)"></div><div class="proj-body"><div class="proj-head"><span class="proj-name">✂️ Atelier Couture — App + API</span><span class="proj-tag blue">Privé • JS</span></div><div class="proj-desc">Suite atelier couture : app client + API, gestion commandes, mesures & livraisons.</div></div><div class="proj-foot"><span>Ateliercouture-app/api • JS</span><span style="font-weight:800;color:#ec4899">Privé 🔒</span></div></div>
+          <div class="proj"><div class="proj-top" style="background:linear-gradient(90deg,#10b981,#06b6d4)"></div><div class="proj-body"><div class="proj-head"><span class="proj-name">🏥 Cabinet Médical</span><span class="proj-tag blue">Privé</span></div><div class="proj-desc">Site cabinet médical : présentation, RDV, services, interface patient.</div></div><div class="proj-foot"><span>Cabinet • Site vitrine</span><span style="font-weight:800;color:#059669">Privé 🔒</span></div></div>
+          <div class="proj"><div class="proj-top" style="background:linear-gradient(90deg,#f59e0b,#ef4444)"></div><div class="proj-body"><div class="proj-head"><span class="proj-name">🛒 E-commerce — Laravel</span><span class="proj-tag blue">Privé • Blade</span></div><div class="proj-desc">Boutique en ligne Laravel : catalogue, panier, paiement, admin complet.</div></div><div class="proj-foot"><span>e-commerce • Blade/PHP</span><span style="font-weight:800;color:#d97706">Privé 🔒</span></div></div>
+          <div class="proj"><div class="proj-top" style="background:linear-gradient(90deg,#7c3aed,#c084fc)"></div><div class="proj-body"><div class="proj-head"><span class="proj-name">🎬 CrystalOTT — OTT</span><span class="proj-tag blue">Privé • JS</span></div><div class="proj-desc">Plateforme OTT JS : streaming, VOD, abonnements, UI premium.</div></div><div class="proj-foot"><span>crystalott • JS/CSS/PHP</span><span style="font-weight:800;color:#7c3aed">Privé 🔒</span></div></div>
+          <div class="proj"><div class="proj-top" style="background:linear-gradient(90deg,#0f172a,#475569)"></div><div class="proj-body"><div class="proj-head"><span class="proj-name">🌐 Portfolio</span><span class="proj-tag blue">Public • Live</span></div><div class="proj-desc">One-page premium + blog tech (WordPress/Laravel/React Native).</div></div><div class="proj-foot"><span>moussantji.github.io/portfolio</span><span style="font-weight:800;color:#0f172a">Live →</span></div></div>
+        </div>
+      </div>
+      <div class="footer"><div><div style="font-size:6.8pt"><strong>Prêt à rejoindre votre équipe</strong> — Stage • CDI • Freelance</div><div style="font-size:5.5pt;color:#94a3b8">Bamako (présentiel) & Remote • Réponse sous 24h</div></div><div class="seal"><span>MD</span><b>✓</b><span>2026</span></div></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
