@@ -4,6 +4,12 @@ Dossier des visuels utilisés dans `index.html` (section « Projets réalisés �
 
 ## E-commerce — 8 visuels
 
+> Les 5 visuels « produit » ci-dessous sont des **mises en scène (mockups)** réalisées
+> à partir des captures réelles : ils reprennent l'identité de l'application —
+> dégradé violet, cartes blanches, **prix en rose**, nav
+> `Accueil / Catégories / Bons Plans / Panier / Compte`, hero `#MégaSoldes` →
+> `ÉCONOMISEZ GROS`.
+
 ### Visuels produit (mise en scène PC / Mobile)
 | Fichier | Format | Usage |
 |---|---|---|
