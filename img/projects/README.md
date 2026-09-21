@@ -14,8 +14,8 @@ Dossier des visuels utilisés dans `index.html` (section « Projets réalisés �
 | Fichier | Format | Usage |
 |---|---|---|
 | `ecommerce-ultra-pc-mobile-combined.jpg` | 4:3 | Visuel principal — MacBook Pro + iPhone 15 Pro (carte « E-commerce — Site + App ») |
-| `ecommerce-pc-ultra-1.jpg` | 16:9 | Vitrine web `#MégaSoldes` |
-| `ecommerce-pc-ultra-2.jpg` | 16:9 | Dashboard vendeur |
+| `ecommerce-web-ultra.jpg` | 16:9 | **Site web desktop** — capture pleine page (header violet, hero `#MégaSoldes`, `Offres flash`) |
+| `ecommerce-pc-ultra-2.jpg` | 16:9 | Dashboard vendeur (back-office) |
 | `ecommerce-mobile-ultra-1.jpg` | 9:16 | Accueil application mobile |
 | `ecommerce-mobile-ultra-2.jpg` | 9:16 | Panier application mobile |
 
