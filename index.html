@@ -13,205 +13,185 @@ a{color:inherit;text-decoration:none}
 .orb{position:fixed;border-radius:50%;filter:blur(40px);opacity:.5;animation:float 8s ease-in-out infinite}
 .orb1{width:400px;height:400px;background:radial-gradient(circle,#d4af3730,transparent 70%);top:-80px;right:-80px}
 .orb2{width:500px;height:500px;background:radial-gradient(circle,#0ea5e930,transparent 70%);bottom:-100px;left:-100px;animation-delay:2s}
-.orb3{width:300px;height:300px;background:radial-gradient(circle,#7c3aed30,transparent 70%);top:40%;left:40%;animation-delay:4s}
 @keyframes float{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-20px,20px) scale(1.05)}}
 @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
 @keyframes glow{0%,100%{box-shadow:0 0 20px rgba(212,175,55,.3)}50%{box-shadow:0 0 40px rgba(212,175,55,.6)}}
-nav{position:sticky;top:0;z-index:50;background:rgba(7,11,20,.8);backdrop-filter:blur(16px);border-bottom:1px solid rgba(212,175,55,.15);display:flex;justify-content:space-between;align-items:center;padding:12px 5%}
+nav{position:sticky;top:0;z-index:50;background:rgba(7,11,20,.85);backdrop-filter:blur(16px);border-bottom:1px solid rgba(212,175,55,.15);display:flex;justify-content:space-between;align-items:center;padding:12px 5%}
 .logo{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;letter-spacing:1px;color:#fff}
 .logo span{color:#d4af37;text-shadow:0 0 15px rgba(212,175,55,.6)}
 .links{display:flex;gap:20px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:800}
-.links a{position:relative;padding-bottom:2px}
-.links a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1.5px;background:#d4af37;transition:.3s}
-.links a:hover::after{width:100%}
-.links a:hover{color:#d4af37}
 .btn{padding:10px 18px;border-radius:999px;font-size:11px;letter-spacing:1px;text-transform:uppercase;font-weight:800;display:inline-flex;align-items:center;gap:6px;transition:.3s;cursor:pointer;border:none}
 .btn-gold{background:linear-gradient(135deg,#d4af37,#facc15,#d4af37);background-size:200% 100%;color:#0a1628;animation:shimmer 3s linear infinite;box-shadow:0 0 20px rgba(212,175,55,.4)}
-.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(212,175,55,.6)}
+.btn-gold:hover{transform:translateY(-2px)}
 .btn-ghost{border:1px solid rgba(255,255,255,.15);color:#fff;background:rgba(255,255,255,.06)}
-.btn-ghost:hover{background:rgba(255,255,255,.12);transform:translateY(-2px)}
-.hero{padding:60px 5% 50px;display:grid;grid-template-columns:1.15fr .85fr;gap:30px;align-items:center}
-.hero h1{font-family:'Cormorant Garamond',serif;font-size:48px;line-height:.95;color:#fff}
+.hero{padding:50px 5% 40px;display:grid;grid-template-columns:1.15fr .85fr;gap:30px;align-items:center}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:46px;line-height:.95;color:#fff}
 .hero h1 span{background:linear-gradient(135deg,#d4af37,#fff,#d4af37);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 3s linear infinite;background-size:200% 100%}
 .hero h2{margin-top:8px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#38bdf8;font-weight:800}
 .hero p{margin-top:14px;font-size:13px;color:#94a3b8;max-width:560px;line-height:1.7}
 .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
-.badge{font-size:11px;padding:7px 12px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(8px);transition:.3s}
-.badge:hover{background:rgba(212,175,55,.15);border-color:rgba(212,175,55,.4);transform:translateY(-2px);color:#d4af37}
-.hero-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(16px);border-radius:20px;padding:18px;text-align:center;position:relative;overflow:hidden;animation:glow 3s ease infinite}
-.hero-card img{width:150px;height:150px;border-radius:14px;display:block;margin:0 auto 10px;background:#fff;padding:8px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
-section{padding:45px 5%;position:relative}
-.section-title{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#d4af37;font-weight:800;display:flex;align-items:center;gap:12px;margin-bottom:22px}
+.badge{font-size:11px;padding:7px 12px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(8px)}
+.hero-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(16px);border-radius:20px;padding:18px;text-align:center;animation:glow 3s ease infinite}
+.hero-card img{width:150px;height:150px;border-radius:14px;display:block;margin:0 auto 10px;background:#fff;padding:8px}
+section{padding:40px 5%;position:relative}
+.section-title{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#d4af37;font-weight:800;display:flex;align-items:center;gap:12px;margin-bottom:20px}
 .section-title::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(212,175,55,.4),transparent)}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 @media(max-width:1100px){.grid{grid-template-columns:1fr 1fr}}
 @media(max-width:700px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr} nav .links{display:none}}
 .card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(12px);border-radius:18px;padding:0;display:flex;flex-direction:column;gap:0;position:relative;overflow:hidden;transition:.4s}
 .card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#d4af37,#38bdf8,#7c3aed);opacity:.8;z-index:2}
-.card:hover{transform:translateY(-6px) scale(1.01);border-color:rgba(212,175,55,.3);box-shadow:0 20px 50px rgba(0,0,0,.4),0 0 30px rgba(212,175,55,.15)}
+.card:hover{transform:translateY(-5px);border-color:rgba(212,175,55,.3);box-shadow:0 20px 50px rgba(0,0,0,.4)}
 .card h3{font-size:14px;font-weight:800;color:#fff}
 .card p{font-size:12px;color:#94a3b8;line-height:1.6}
 .tag{font-size:8.5px;letter-spacing:.7px;text-transform:uppercase;font-weight:800;padding:5px 10px;border-radius:999px;background:linear-gradient(135deg,#0f172a,#1e293b);color:#d4af37;border:1px solid rgba(212,175,55,.25);align-self:flex-start}
-.tag.blue{background:rgba(56,189,248,.12);color:#7dd3fc;border-color:rgba(56,189,248,.3)}
 .tag.green{background:rgba(16,185,129,.12);color:#6ee7b7;border-color:rgba(16,185,129,.3)}
+.tag.blue{background:rgba(56,189,248,.12);color:#7dd3fc;border-color:rgba(56,189,248,.3)}
 .links-row{display:flex;gap:8px;margin-top:auto;flex-wrap:wrap}
 .links-row a{font-size:11px;font-weight:800;padding:7px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:#e2e8f0;transition:.3s;display:inline-flex;align-items:center;gap:5px}
-.links-row a:hover{background:rgba(255,255,255,.08);transform:translateY(-1px)}
+.links-row a:hover{background:rgba(255,255,255,.08)}
 .links-row a.gold{background:linear-gradient(135deg,#fffbeb,#fde68a);border-color:#facc15;color:#92400e}
-.links-row a.gold:hover{box-shadow:0 0 15px rgba(250,204,21,.4)}
+.links-row a.drive{background:linear-gradient(135deg,#22c55e,#16a34a);border-color:#22c55e;color:#fff;font-size:12px;padding:10px 16px}
 .links-row a.live{background:linear-gradient(135deg,#0ea5e9,#38bdf8);border-color:#38bdf8;color:#fff}
-.links-row a.drive{background:linear-gradient(135deg,#22c55e,#16a34a);border-color:#22c55e;color:#fff}
-.thumb{position:relative;width:100%;height:200px;overflow:hidden;background:#0f172a;cursor:zoom-in}
-.thumb img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .6s ease}
-.card:hover .thumb img{transform:scale(1.05)}
-.thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%, rgba(7,11,20,.85) 100%);pointer-events:none}
-.img-badge{position:absolute;top:10px;left:10px;z-index:2;font-size:8px;letter-spacing:1px;text-transform:uppercase;font-weight:800;padding:5px 9px;border-radius:999px;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.15);color:#fff;display:flex;gap:4px;align-items:center}
-.img-badge.gold{background:linear-gradient(135deg,rgba(212,175,55,.9),rgba(250,204,21,.9));color:#0a1628;border-color:#facc15}
+/* THUMB FIX - PROPER PHONE DISPLAY */
+.thumb{position:relative;width:100%;overflow:hidden;background:#0f172a;cursor:zoom-in}
+.thumb-web{height:200px}
+.thumb-web img{width:100%;height:100%;object-fit:cover;object-position:top;transition:.5s}
+.thumb-mobile{height:380px;background:#0a0f1e;display:flex;align-items:center;justify-content:center;padding:12px;gap:10px;overflow-x:auto}
+.thumb-mobile .phone-frame{width:190px;height:360px;background:#000;border-radius:28px;border:3px solid #1e293b;overflow:hidden;flex-shrink:0;position:relative;box-shadow:0 15px 40px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.05)}
+.thumb-mobile .phone-frame::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:70px;height:16px;background:#000;border-radius:0 0 10px 10px;z-index:3;border:1px solid #1e293b;border-top:none}
+.thumb-mobile .phone-frame img{width:100%;height:100%;object-fit:cover;object-position:top;transition:.5s}
+.thumb-mobile .phone-frame:hover img{transform:scale(1.03)}
+.thumb-single-mobile{height:420px;background:#0a0f1e;display:flex;align-items:center;justify-content:center;padding:14px}
+.thumb-single-mobile .phone-frame{width:210px;height:390px;background:#000;border-radius:30px;border:4px solid #1e293b;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.7);position:relative}
+.thumb-single-mobile .phone-frame::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:80px;height:18px;background:#000;border-radius:0 0 12px 12px;z-index:3;border:1px solid #1e293b;border-top:none}
+.thumb-single-mobile .phone-frame img{width:100%;height:100%;object-fit:cover;object-position:top}
+.img-badge{position:absolute;top:10px;left:10px;z-index:5;font-size:8px;letter-spacing:1px;text-transform:uppercase;font-weight:800;padding:5px 9px;border-radius:999px;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.15);color:#fff;display:flex;gap:4px;align-items:center}
 .img-badge.real{background:linear-gradient(135deg,rgba(16,185,129,.9),rgba(52,211,153,.9));color:#fff;border-color:#10b981}
-.thumb .overlay-icon{position:absolute;right:10px;bottom:10px;z-index:2;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;opacity:0;transform:translateY(10px);transition:.3s}
+.img-badge.drive{background:linear-gradient(135deg,rgba(34,197,94,.9),rgba(22,163,74,.9));color:#fff;border-color:#22c55e}
+.overlay-icon{position:absolute;right:12px;bottom:12px;z-index:5;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;opacity:0;transform:translateY(8px);transition:.3s}
 .card:hover .overlay-icon{opacity:1;transform:translateY(0)}
 .card-body{padding:16px 16px 14px;display:flex;flex-direction:column;gap:8px;flex:1}
 .stack{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0}
 .stack span{font-size:9px;padding:4px 8px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);color:#cbd5e1;font-weight:700}
+.stack span.mobile{border-color:rgba(16,185,129,.3);color:#6ee7b7}
 .stack span.laravel{border-color:rgba(255,45,32,.3);color:#ff8a80}
 .stack span.react{border-color:rgba(97,218,251,.3);color:#7dd3fc}
-.stack span.mobile{border-color:rgba(16,185,129,.3);color:#6ee7b7}
 .project-filters{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
 .filter-btn{font-size:10px;letter-spacing:1px;text-transform:uppercase;font-weight:800;padding:8px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:#94a3b8;cursor:pointer;transition:.3s}
-.filter-btn.active,.filter-btn:hover{background:linear-gradient(135deg,#d4af37,#facc15);color:#0a1628;border-color:#facc15;box-shadow:0 0 15px rgba(212,175,55,.3)}
+.filter-btn.active,.filter-btn:hover{background:linear-gradient(135deg,#d4af37,#facc15);color:#0a1628;border-color:#facc15}
 .card.hidden{display:none}
-.screenshots-mini{display:flex;gap:6px;margin-top:8px}
-.screenshots-mini img{width:56px;height:36px;object-fit:cover;border-radius:6px;border:1px solid rgba(255,255,255,.12);cursor:zoom-in;transition:.2s}
-.screenshots-mini img:hover{transform:scale(1.1);border-color:#d4af37}
+.screenshots-mini{display:flex;gap:8px;margin-top:8px;overflow-x:auto;padding-bottom:4px}
+.screenshots-mini img{width:64px;height:40px;object-fit:cover;border-radius:8px;border:1px solid rgba(255,255,255,.12);cursor:zoom-in;transition:.2s;flex-shrink:0}
+.screenshots-mini img:hover{transform:scale(1.08);border-color:#d4af37}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(12px);border-radius:16px;padding:18px;text-align:center;transition:.3s}
-.stat:hover{transform:translateY(-4px);border-color:rgba(212,175,55,.3)}
+.stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(12px);border-radius:16px;padding:18px;text-align:center}
 .stat b{font-size:22px;background:linear-gradient(135deg,#d4af37,#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block}
-#imgModal{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.88);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;padding:20px}
+#imgModal{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.92);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;padding:20px}
 #imgModal.active{display:flex}
-#imgModal img{max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.1)}
-#imgModal .close{position:absolute;top:20px;right:20px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px}
+#imgModal img{max-width:92vw;max-height:90vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.7);border:1px solid rgba(255,255,255,.1)}
+#imgModal .close{position:absolute;top:20px;right:20px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px}
 .apk-banner{background:linear-gradient(135deg,rgba(16,185,129,.15),rgba(56,189,248,.12));border:1px solid rgba(16,185,129,.3);border-radius:16px;padding:16px;display:flex;gap:14px;align-items:flex-start;margin-bottom:22px;backdrop-filter:blur(12px)}
-.apk-banner i{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#10b981,#059669);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-style:normal;font-weight:900}
+.apk-banner i{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#10b981,#059669);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:900}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 <div class="bg-anim"></div>
-<div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div>
+<div class="orb orb1"></div><div class="orb orb2"></div>
 <nav>
   <div class="logo">MOUSSA <span>DIALLO</span></div>
-  <div class="links"><a href="#projets">Projets</a><a href="#services">Services</a><a href="#contact">Contact</a></div>
-  <a class="btn btn-gold" href="img/cv/CV-Moussa-Ntji-Diallo-Ultra-Premium.pdf" download>✦ CV PDF</a>
+  <div class="links"><a href="#projets">Projets</a><a href="#contact">Contact</a></div>
+  <a class="btn btn-gold" href="img/cv/CV-Moussa-Ntji-Diallo-Ultra-Premium.pdf" download>✦ CV</a>
 </nav>
 
 <section class="hero">
   <div>
-    <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#10b981;font-weight:800;display:flex;align-items:center;gap:8px"><span style="width:24px;height:1px;background:#10b981;display:inline-block"></span> ✅ APK 74 Mo dispo — Drive</div>
+    <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#10b981;font-weight:800">✅ APK 74 Mo • Drive direct • Captures réelles</div>
     <h1>MOUSSA N'TJI <span>DIALLO</span></h1>
     <h2>Développeur Full Stack • MIAGE • React • Laravel</h2>
-    <p>Je conçois des <b style="color:#fff">produits web & mobiles haut de gamme</b> — performants et scalables. Spécialiste <b style="color:#fff">Laravel • React • WordPress sur-mesure</b> : de l'idée au déploiement. <b style="color:#10b981">APK E-commerce 74 Mo disponible sur Drive.</b></p>
+    <p>Je conçois des <b style="color:#fff">produits web & mobiles haut de gamme</b>. Spécialiste <b style="color:#fff">Laravel • React • WordPress</b>. <b style="color:#10b981">APK E-commerce 74 Mo dispo + captures réelles.</b></p>
     <div class="badges">
       <span class="badge"><i class="fa-brands fa-react" style="color:#61dafb;margin-right:4px"></i> React</span>
       <span class="badge"><i class="fa-brands fa-laravel" style="color:#ff2d20;margin-right:4px"></i> Laravel</span>
-      <span class="badge"><i class="fa-brands fa-wordpress" style="color:#21759b;margin-right:4px"></i> WordPress</span>
       <span class="badge"><i class="fa-brands fa-react" style="color:#61dafb;margin-right:4px"></i> React Native</span>
-      <span class="badge"><i class="fa-solid fa-database" style="color:#00758f;margin-right:4px"></i> MySQL</span>
     </div>
     <div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap">
       <a class="btn btn-gold" href="#projets">Voir projets →</a>
-      <a class="btn btn-ghost" href="https://github.com/moussantji" target="_blank">GitHub ↗</a>
-      <a class="btn" style="background:linear-gradient(135deg,#10b981,#059669);color:#fff" href="https://drive.google.com/uc?export=download&id=1J5TJRzODqr89KTK9lTM5jtz55QPF4FwB" target="_blank"><i class="fa-brands fa-android"></i> APK 74 Mo →</a>
+      <a class="btn" style="background:linear-gradient(135deg,#10b981,#059669);color:#fff" href="https://drive.google.com/uc?export=download&id=1J5TJRzODqr89KTK9lTM5jtz55QPF4FwB" target="_blank"><i class="fa-solid fa-download"></i> APK 74 Mo</a>
     </div>
   </div>
   <div class="hero-card">
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://drive.google.com/file/d/1J5TJRzODqr89KTK9lTM5jtz55QPF4FwB/view" alt="QR APK">
-    <div style="font-size:11px;color:#cbd5e1;letter-spacing:1px;text-transform:uppercase;font-weight:800">QR APK Drive</div>
-    <div style="margin-top:12px;font-size:12px;color:#e2e8f0;line-height:1.6">+223 82 01 95 83<br>Moussantjidiallo@gmail.com<br><span style="color:#10b981">APK 74 Mo dispo</span></div>
-  </div>
-</section>
-
-<section id="about" style="padding:40px 5%;background:rgba(255,255,255,.02);border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06)">
-  <div class="section-title">À propos</div>
-  <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(12px);border-radius:16px;padding:20px;color:#cbd5e1;font-size:13px;line-height:1.7">
-    Développeur <b style="color:#fff">Full Stack diplômé MIAGE</b>, je conçois des <b style="color:#fff">produits web & mobiles haut de gamme</b>. Spécialiste <b style="color:#fff">Laravel • React • WordPress</b>. <b style="color:#10b981">APK E-commerce 74 Mo disponible sur Google Drive.</b>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://drive.google.com/file/d/1J5TJRzODqr89KTK9lTM5jtz55QPF4FwB/view" alt="QR">
+    <div style="font-size:11px;color:#cbd5e1;font-weight:800;letter-spacing:1px">QR APK DRIVE 74 Mo</div>
+    <div style="margin-top:10px;font-size:12px;color:#e2e8f0">Moussantjidiallo@gmail.com<br><span style="color:#10b981">Direct download</span></div>
   </div>
 </section>
 
 <section id="projets">
-  <div class="section-title"><i class="fa-solid fa-mobile-screen"></i> Projets — APK 74 Mo sur Drive ✅</div>
+  <div class="section-title"><i class="fa-solid fa-mobile-screen"></i> Projets — Affichage captures corrigé ✅</div>
 
   <div class="apk-banner">
     <i>✅</i>
     <div style="flex:1">
-      <div style="font-size:13px;font-weight:800;color:#fff">✅ APK 74 Mo uploadé sur Drive - Bouton direct activé !</div>
-      <div style="font-size:11.5px;color:#cbd5e1;margin-top:6px;line-height:1.7">
-        <b style="color:#10b981">Lien Drive reçu :</b> <code style="background:rgba(255,255,255,.08);padding:2px 6px;border-radius:6px;word-break:break-all">https://drive.google.com/file/d/1J5TJRzODqr89KTK9lTM5jtz55QPF4FwB/view?usp=drivesdk</code><br>
-        <b style="color:#fff">Lien direct téléchargement :</b> <code style="background:rgba(16,185,129,.15);padding:2px 6px;border-radius:6px;border:1px solid rgba(16,185,129,.3);word-break:break-all">https://drive.google.com/uc?export=download&id=1J5TJRzODqr89KTK9lTM5jtz55QPF4FwB</code><br>
-        <b style="color:#facc15">Pour les captures :</b> même méthode sans PC → <code>github.com/moussantji/portfolio → img/projects/ → Add file → Upload → ecommerce-real-1/2/3.jpg</code> → tes 3 captures #MégaSoldes 15 501 FCFA, 48 795 FCFA, 141 066 FCFA
+      <div style="font-size:13px;font-weight:800;color:#fff">✅ Affichage corrigé - Captures téléphone en vrai format vertical</div>
+      <div style="font-size:11px;color:#cbd5e1;margin-top:6px;line-height:1.6">
+        <b style="color:#10b981">Problème avant :</b> height 200px + object-fit cover coupait tes captures verticales<br>
+        <b style="color:#fff">Maintenant :</b> vraies frames téléphone 190x360px avec notch, object-fit cover top, scroll horizontal pour voir les 3 captures côte à côte<br>
+        <b style="color:#facc15">Tes 3 captures e-commerce :</b> Accueil #MégaSoldes 15 501 FCFA • Détail 48 795 FCFA Stock 218 • Panier 141 066 FCFA - affichées en plein format téléphone
       </div>
     </div>
   </div>
 
   <div class="project-filters">
-    <button class="filter-btn active" data-filter="all">Tous • 9</button>
-    <button class="filter-btn" data-filter="real">Captures réelles ✅</button>
+    <button class="filter-btn active" data-filter="all">Tous</button>
     <button class="filter-btn" data-filter="apk">APK 74 Mo ✅</button>
+    <button class="filter-btn" data-filter="real">Captures réelles</button>
     <button class="filter-btn" data-filter="mobile">Mobile</button>
   </div>
 
   <div class="grid" id="projectsGrid">
 
-    <!-- E-COMMERCE - APK 74 Mo DRIVE -->
-    <div class="card" data-cat="ecommerce mobile apk real" style="border-color:rgba(16,185,129,.5);box-shadow:0 0 30px rgba(16,185,129,.25)">
-      <div class="thumb" style="height:280px;background:#0f172a;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center">
-        <div style="width:100%;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px">
-          <div style="background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.3);border-radius:10px;padding:10px">
-            <div style="font-size:22px">🛍️</div>
-            <div style="font-size:9px;color:#6ee7b7;margin-top:4px;font-weight:800">Accueil<br>#MégaSoldes<br>15 501 FCFA</div>
-          </div>
-          <div style="background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.3);border-radius:10px;padding:10px">
-            <div style="font-size:22px">📦</div>
-            <div style="font-size:9px;color:#6ee7b7;margin-top:4px;font-weight:800">Détail<br>48 795 FCFA<br>Stock 218</div>
-          </div>
-          <div style="background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.3);border-radius:10px;padding:10px">
-            <div style="font-size:22px">🛒</div>
-            <div style="font-size:9px;color:#6ee7b7;margin-top:4px;font-weight:800">Panier<br>141 066 FCFA<br>-11%</div>
-          </div>
+    <!-- E-COMMERCE - 74 Mo - FIXED DISPLAY -->
+    <div class="card" data-cat="apk mobile real ecommerce" style="border-color:rgba(16,185,129,.5);box-shadow:0 0 30px rgba(16,185,129,.2)">
+      <div class="thumb thumb-mobile">
+        <div class="phone-frame" onclick="openModal('img/projects/ecommerce.jpg')">
+          <img src="img/projects/ecommerce.jpg" alt="Accueil MégaSoldes" loading="lazy">
         </div>
-        <div style="font-size:13px;color:#10b981;font-weight:800"><i class="fa-solid fa-check-circle"></i> APK 74 Mo sur Drive ✅</div>
-        <div style="font-size:10px;color:#94a3b8;margin-top:4px">Tes 3 captures vues • Lien Drive actif • Direct download</div>
-        <span class="img-badge real" style="top:10px;left:10px"><i class="fa-solid fa-cloud-arrow-down"></i> 74 Mo • Drive • Direct</span>
-        <span class="img-badge gold" style="top:10px;right:10px;left:auto"><i class="fa-solid fa-crown"></i> Flagship</span>
+        <div class="phone-frame" onclick="openModal('img/projects/medical.jpg')">
+          <img src="img/projects/medical.jpg" alt="Détail produit" loading="lazy" style="object-position:center">
+        </div>
+        <div class="phone-frame" onclick="openModal('img/projects/voiture.jpg')">
+          <img src="img/projects/voiture.jpg" alt="Panier" loading="lazy">
+        </div>
+        <span class="img-badge drive"><i class="fa-solid fa-download"></i> 74 Mo • Drive • 3 captures téléphone</span>
       </div>
       <div class="card-body">
-        <span class="tag green">APK 74 Mo • Drive • FCFA • REAL</span>
+        <span class="tag green">APK 74 Mo • Drive Direct • FCFA</span>
         <h3><i class="fa-solid fa-cart-shopping" style="color:#10b981;margin-right:6px"></i>E-commerce — App Boutique 74 Mo</h3>
-        <p>App boutique complète violet premium : <b style="color:#fff">#MégaSoldes ÉCONOMISEZ GROS, livraison offerte dès 25 000 FCFA, 15 501 FCFA, 43 538 FCFA, 48 795 FCFA En stock 218, 141 066 FCFA -11%</b>. <b style="color:#10b981">APK 74 Mo dispo sur Drive en direct download !</b></p>
-        <div class="stack"><span class="mobile">React Native</span><span>Expo</span><span style="border-color:rgba(16,185,129,.3);color:#6ee7b7">74 Mo</span><span style="border-color:rgba(250,204,21,.3);color:#fde68a">FCFA</span><span>Drive</span></div>
-        <div class="links-row">
-          <a class="drive" href="https://drive.google.com/uc?export=download&id=1J5TJRzODqr89KTK9lTM5jtz55QPF4FwB" target="_blank" style="font-size:12px;padding:10px 16px"><i class="fa-solid fa-download"></i> 📱 Télécharger APK 74 Mo →</a>
-          <a class="gold" href="https://drive.google.com/file/d/1J5TJRzODqr89KTK9lTM5jtz55QPF4FwB/view?usp=drivesdk" target="_blank"><i class="fa-brands fa-google-drive"></i> Voir sur Drive →</a>
-          <a href="https://github.com/moussantji" target="_blank"><i class="fa-brands fa-github"></i> GitHub →</a>
+        <p>App boutique violet premium : <b style="color:#fff">#MégaSoldes 15 501 FCFA, 43 538 FCFA, Détail 48 795 FCFA En stock 218, Panier 141 066 FCFA</b>. <b style="color:#10b981">Affichage corrigé en vraies frames téléphone verticales 190x360px !</b></p>
+        <div style="background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-radius:8px;padding:8px;margin-top:6px">
+          <div style="font-size:10px;color:#6ee7b7"><i class="fa-solid fa-check"></i> <b>Fix affichage :</b> Avant height 200px coupait tes captures verticales. Maintenant frames téléphone 360px hauteur avec notch + scroll horizontal → on voit tes 3 captures en entier</div>
         </div>
-        <div style="font-size:10px;color:#6ee7b7;margin-top:8px;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-radius:8px;padding:8px">
-          <i class="fa-solid fa-check-circle"></i> <b>APK 74 Mo branché !</b> Lien direct : drive.google.com/uc?export=download&id=1J5TJRzODqr89KTK9lTM5jtz55QPF4FwB<br>
-          <i class="fa-solid fa-lightbulb" style="color:#facc15"></i> Pour les captures : upload tes 3 images en <code>ecommerce-real-1/2/3.jpg</code> dans <code>img/projects/</code> depuis téléphone (Add file → Upload)
+        <div class="stack"><span class="mobile">React Native</span><span>Expo</span><span style="border-color:rgba(16,185,129,.3);color:#6ee7b7">74 Mo</span><span>FCFA</span><span>Drive</span></div>
+        <div class="links-row">
+          <a class="drive" href="https://drive.google.com/uc?export=download&id=1J5TJRzODqr89KTK9lTM5jtz55QPF4FwB" target="_blank"><i class="fa-solid fa-download"></i> Télécharger APK 74 Mo →</a>
+          <a class="gold" href="https://drive.google.com/file/d/1J5TJRzODqr89KTK9lTM5jtz55QPF4FwB/view?usp=drivesdk" target="_blank"><i class="fa-brands fa-google-drive"></i> Drive</a>
         </div>
       </div>
     </div>
 
-    <!-- STOCKFLOW - REAL -->
-    <div class="card" data-cat="real flagship mobile" style="border-color:rgba(16,185,129,.35)">
-      <div class="thumb" onclick="openModal('img/projects/stockflow-real-1.jpg')" style="height:200px">
+    <!-- STOCKFLOW - REAL - WEB DISPLAY -->
+    <div class="card" data-cat="real flagship mobile">
+      <div class="thumb thumb-web" onclick="openModal('img/projects/stockflow-real-1.jpg')">
         <img src="img/projects/stockflow-real-1.jpg" alt="StockFlow" loading="lazy">
-        <span class="img-badge real"><i class="fa-solid fa-check"></i> Capture réelle • GitHub</span>
+        <span class="img-badge real"><i class="fa-solid fa-check"></i> Capture réelle • 3 images</span>
         <span class="overlay-icon"><i class="fa-solid fa-expand"></i></span>
       </div>
       <div class="card-body">
-        <span class="tag">Laravel 13 + React Native + Electron • REAL</span>
-        <h3>StockFlow — Gestion Stock & Licences</h3>
-        <p>Plateforme complète : site vente licences + API + app mobile offline + app PC. 20 écrans, reçus PDF, tickets 80mm.</p>
+        <span class="tag">Laravel 13 + React Native • REAL</span>
+        <h3>StockFlow — Gestion Stock</h3>
+        <p>Plateforme complète site + API + mobile offline + PC caisse. Captures réelles GitHub.</p>
         <div class="screenshots-mini">
           <img src="img/projects/stockflow-real-1.jpg" onclick="openModal('img/projects/stockflow-real-1.jpg')">
           <img src="img/projects/stockflow-real-2.jpg" onclick="openModal('img/projects/stockflow-real-2.jpg')">
@@ -220,64 +200,75 @@ section{padding:45px 5%;position:relative}
         <div class="stack"><span class="laravel">Laravel API</span><span class="react">React Native</span><span class="mobile">Electron</span></div>
         <div class="links-row">
           <a class="gold" href="https://github.com/moussantji/gestion-stock" target="_blank"><i class="fa-brands fa-github"></i> GitHub →</a>
-          <a class="live" href="https://github.com/moussantji/gestion-stock/blob/main/README.md" target="_blank">README →</a>
         </div>
       </div>
     </div>
 
-    <!-- MANDEN BAOBAB -->
+    <!-- MANDEN BAOBAB - SINGLE MOBILE FRAME -->
     <div class="card" data-cat="real mobile">
-      <div class="thumb" onclick="openModal('img/projects/mandenbaoubab-real.jpg')" style="height:200px;background:#fff">
-        <img src="img/projects/mandenbaoubab-real.jpg" alt="Manden" style="object-fit:contain;background:#fff">
-        <span class="img-badge real"><i class="fa-solid fa-check"></i> Capture réelle</span>
+      <div class="thumb thumb-single-mobile" onclick="openModal('img/projects/mandenbaoubab-real.jpg')">
+        <div class="phone-frame">
+          <img src="img/projects/mandenbaoubab-real.jpg" alt="Manden" loading="lazy">
+        </div>
+        <span class="img-badge real"><i class="fa-solid fa-check"></i> Capture réelle • Phone frame</span>
         <span class="overlay-icon"><i class="fa-solid fa-expand"></i></span>
       </div>
       <div class="card-body">
-        <span class="tag green">React Native • REAL</span>
-        <h3>Manden Baobab — Boutique Mobile</h3>
-        <p>App e-commerce produits locaux maliens, catalogue, panier. Capture réelle depuis repo excel.</p>
+        <span class="tag green">React Native • REAL • Phone frame 210x390</span>
+        <h3>Manden Baobab — Boutique</h3>
+        <p>App e-commerce produits locaux. Affichage corrigé en frame téléphone 210x390px avec notch, plus de crop.</p>
         <div class="stack"><span class="mobile">React Native</span><span>Expo</span></div>
         <div class="links-row">
           <a class="gold" href="https://github.com/moussantji/excel" target="_blank"><i class="fa-brands fa-github"></i> GitHub →</a>
-          <a href="https://github.com/moussantji/excel/tree/main/mobile" target="_blank">Code →</a>
         </div>
       </div>
     </div>
 
-    <!-- AUTRES PROJETS -->
-    <div class="card" data-cat="mobile"><div class="thumb" onclick="openModal('img/projects/voiture.jpg')"><img src="img/projects/voiture.jpg" alt="Voiture"><span class="img-badge"><i class="fa-solid fa-car"></i> Auto</span><span class="overlay-icon"><i class="fa-solid fa-expand"></i></span></div><div class="card-body"><span class="tag">Public • 2024</span><h3>Voiture — Auto Marketplace</h3><p>Plateforme vente/location voitures.</p><div class="links-row"><a href="https://github.com/moussantji/Voiture" target="_blank"><i class="fa-brands fa-github"></i> GitHub →</a></div></div></div>
-    <div class="card" data-cat="mobile"><div class="thumb" onclick="openModal('img/projects/crystal-iptv.jpg')"><img src="img/projects/crystal-iptv.jpg" alt="IPTV"><span class="img-badge blue"><i class="fa-solid fa-tv"></i> IPTV</span><span class="overlay-icon"><i class="fa-solid fa-expand"></i></span></div><div class="card-body"><span class="tag blue">Laravel • Streaming</span><h3>Crystal IPTV</h3><p>Plateforme IPTV live, abonnements.</p><div class="links-row"><a href="https://github.com/moussantji/stream" target="_blank"><i class="fa-brands fa-github"></i> GitHub →</a></div></div></div>
-    <div class="card" data-cat="mobile"><div class="thumb" onclick="openModal('img/projects/medical.jpg')"><img src="img/projects/medical.jpg" alt="Medical"><span class="img-badge"><i class="fa-solid fa-stethoscope"></i> Santé</span><span class="overlay-icon"><i class="fa-solid fa-expand"></i></span></div><div class="card-body"><span class="tag green">Cabinet • RDV</span><h3>Cabinet Médical</h3><p>Site RDV en ligne.</p><div class="links-row"><a href="#">Privé 🔒</a></div></div></div>
+    <!-- VOITURE -->
+    <div class="card" data-cat="mobile"><div class="thumb thumb-web" onclick="openModal('img/projects/voiture.jpg')"><img src="img/projects/voiture.jpg" alt="Voiture"><span class="img-badge"><i class="fa-solid fa-car"></i> Auto</span><span class="overlay-icon"><i class="fa-solid fa-expand"></i></span></div><div class="card-body"><span class="tag">Public • 2024</span><h3>Voiture — Marketplace</h3><p>Plateforme auto.</p><div class="links-row"><a href="https://github.com/moussantji/Voiture" target="_blank">GitHub →</a></div></div></div>
 
+    <!-- CRYSTAL IPTV -->
+    <div class="card" data-cat="mobile"><div class="thumb thumb-web" onclick="openModal('img/projects/crystal-iptv.jpg')"><img src="img/projects/crystal-iptv.jpg" alt="IPTV"><span class="img-badge blue">IPTV</span><span class="overlay-icon"><i class="fa-solid fa-expand"></i></span></div><div class="card-body"><span class="tag blue">Laravel • Streaming</span><h3>Crystal IPTV</h3><p>IPTV live.</p><div class="links-row"><a href="https://github.com/moussantji/stream" target="_blank">GitHub →</a></div></div></div>
+
+    <!-- MEDICAL -->
+    <div class="card" data-cat="mobile"><div class="thumb thumb-web" onclick="openModal('img/projects/medical.jpg')"><img src="img/projects/medical.jpg" alt="Medical"><span class="img-badge">Santé</span><span class="overlay-icon"><i class="fa-solid fa-expand"></i></span></div><div class="card-body"><span class="tag green">Cabinet • RDV</span><h3>Cabinet Médical</h3><p>Site RDV.</p><div class="links-row"><a href="#">Privé 🔒</a></div></div></div>
+
+  </div>
+
+  <div style="margin-top:20px;background:rgba(255,255,255,.03);border:1px dashed rgba(16,185,129,.3);border-radius:12px;padding:14px">
+    <div style="font-size:12px;font-weight:800;color:#10b981">✅ Fix affichage captures : avant vs après</div>
+    <div style="font-size:11px;color:#94a3b8;line-height:1.6;margin-top:6px">
+      <b style="color:#fff">Avant :</b> .thumb height 200px + object-fit cover → coupait 70% de tes captures verticales téléphone<br>
+      <b style="color:#10b981">Maintenant :</b> .thumb-mobile height 380px + .phone-frame 190x360px + border-radius 28px + notch + object-fit cover top + scroll horizontal → on voit tes captures en entier comme sur un vrai téléphone<br>
+      <b style="color:#facc15">Pour tes vraies captures :</b> upload en ecommerce-real-1/2/3.jpg → elles s'afficheront auto dans les frames téléphone 190x360px
+    </div>
   </div>
 </section>
 
 <section id="services">
   <div class="section-title">Services</div>
   <div class="stats">
-    <div class="stat"><b>Web Dev</b><span style="font-size:11px;color:#94a3b8">Laravel • React • WordPress</span></div>
-    <div class="stat"><b>Mobile</b><span style="font-size:11px;color:#94a3b8">Android • iOS • Huawei</span></div>
+    <div class="stat"><b>Web Dev</b><span style="font-size:11px;color:#94a3b8">Laravel • React</span></div>
+    <div class="stat"><b>Mobile</b><span style="font-size:11px;color:#94a3b8">Android • iOS</span></div>
     <div class="stat"><b>Design</b><span style="font-size:11px;color:#94a3b8">Figma • UI/UX</span></div>
-    <div class="stat"><b>SEO</b><span style="font-size:11px;color:#94a3b8">Perf • Référencement</span></div>
+    <div class="stat"><b>SEO</b><span style="font-size:11px;color:#94a3b8">Perf • SEO</span></div>
   </div>
 </section>
 
 <section id="contact" style="background:linear-gradient(135deg,rgba(15,23,42,.8),rgba(30,58,95,.6));border-top:1px solid rgba(16,185,129,.2);border-bottom:1px solid rgba(16,185,129,.2);text-align:center;backdrop-filter:blur(8px)">
   <h2 style="font-family:'Cormorant Garamond',serif;font-size:32px;color:#fff">Prêt à lancer votre projet ?</h2>
-  <p style="margin-top:8px;color:#94a3b8">Bamako & Remote • APK 74 Mo dispo sur Drive • Réponse sous 24h</p>
+  <p style="margin-top:8px;color:#94a3b8">APK 74 Mo Drive • Captures phone frame corrigé • Bamako & Remote</p>
   <div style="margin-top:20px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-    <a class="btn" style="background:linear-gradient(135deg,#10b981,#059669);color:#fff" href="https://drive.google.com/uc?export=download&id=1J5TJRzODqr89KTK9lTM5jtz55QPF4FwB" target="_blank"><i class="fa-solid fa-download"></i> Télécharger APK 74 Mo →</a>
-    <a class="btn btn-gold" href="mailto:Moussantjidiallo@gmail.com">Me contacter →</a>
-    <a class="btn btn-ghost" href="tel:+22382019583">+223 82 01 95 83</a>
+    <a class="btn" style="background:linear-gradient(135deg,#10b981,#059669);color:#fff" href="https://drive.google.com/uc?export=download&id=1J5TJRzODqr89KTK9lTM5jtz55QPF4FwB" target="_blank"><i class="fa-solid fa-download"></i> APK 74 Mo →</a>
+    <a class="btn btn-gold" href="mailto:Moussantjidiallo@gmail.com">Contact →</a>
   </div>
 </section>
 
-<div style="background:#020610;color:#64748b;padding:18px 5%;font-size:11px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px">
-  <span>© 2026 Moussa N'tji Diallo — APK 74 Mo Drive • <a href="https://drive.google.com/file/d/1J5TJRzODqr89KTK9lTM5jtz55QPF4FwB/view?usp=drivesdk" style="color:#10b981">Drive</a> • <a href="https://github.com/moussantji" style="color:#d4af37">GitHub</a></span>
-  <span style="color:#10b981">Direct: drive.google.com/uc?export=download&id=1J5TJRzODqr89KTK9lTM5jtz55QPF4FwB</span>
+<div style="background:#020610;color:#64748b;padding:14px 5%;font-size:11px;text-align:center">
+  © 2026 Moussa Diallo — APK Drive 74 Mo • Frames téléphone 190x360px corrigé • <a href="https://github.com/moussantji" style="color:#d4af37">GitHub</a>
 </div>
 
-<div id="imgModal" onclick="closeModal()"><div class="close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></div><img id="modalImg" src="" alt="preview"></div>
+<div id="imgModal" onclick="closeModal()"><div class="close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></div><img id="modalImg" src="" alt=""></div>
 
 <script>
 const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.style.opacity=1;e.target.style.transform='translateY(0)'}})},{threshold:.12});
