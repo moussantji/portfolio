@@ -10,29 +10,29 @@
 body{font-family:'Plus Jakarta Sans',sans-serif;background:#070b14;color:#e2e8f0;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 .bg-anim{position:fixed;inset:0;z-index:-1;background:radial-gradient(900px 600px at 15% 10%,rgba(212,175,55,.18),transparent 60%),radial-gradient(800px 500px at 85% 80%,rgba(56,189,248,.12),transparent 60%),linear-gradient(180deg,#070b14,#0a1628)}
-nav{position:sticky;top:0;z-index:50;background:rgba(7,11,20,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(212,175,55,.15);display:flex;justify-content:space-between;align-items:center;padding:14px 5%}
+nav{position:sticky;top:0;z-index:50;background:rgba(7,11,20,.9);backdrop-filter:blur(16px);border-bottom:1px solid rgba(212,175,55,.15);display:flex;justify-content:space-between;align-items:center;padding:14px 5%}
 .logo{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:#fff}
 .logo span{color:#d4af37}
 .btn{padding:10px 18px;border-radius:999px;font-size:11px;letter-spacing:1px;text-transform:uppercase;font-weight:800;display:inline-flex;align-items:center;gap:6px;cursor:pointer;border:none;transition:.2s}
 .btn-gold{background:linear-gradient(135deg,#d4af37,#facc15);color:#0a1628}
 .btn-ghost{border:1px solid rgba(255,255,255,.15);color:#fff;background:rgba(255,255,255,.06)}
-.hero{padding:50px 5%;display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center}
-.hero h1{font-family:'Cormorant Garamond',serif;font-size:46px;line-height:.95;color:#fff}
+.hero{padding:60px 5%;display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:48px;line-height:.95;color:#fff}
 .hero h1 span{color:#d4af37}
 .hero h2{margin-top:8px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#38bdf8;font-weight:800}
-.hero p{margin-top:12px;font-size:13px;color:#94a3b8;line-height:1.7;max-width:560px}
+.hero p{margin-top:14px;font-size:13px;color:#94a3b8;line-height:1.7;max-width:560px}
 .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 .badge{font-size:11px;padding:7px 12px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)}
 .hero-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:18px;text-align:center}
 .hero-card img{width:140px;height:140px;border-radius:14px;display:block;margin:0 auto 10px;background:#fff;padding:8px}
-section{padding:35px 5%}
+section{padding:40px 5%}
 .section-title{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#d4af37;font-weight:800;margin-bottom:20px;display:flex;align-items:center;gap:12px}
 .section-title::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(212,175,55,.4),transparent)}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 @media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:650px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr}}
 .card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:.3s}
-.card:hover{transform:translateY(-4px);border-color:rgba(212,175,55,.25);box-shadow:0 15px 40px rgba(0,0,0,.3)}
+.card:hover{transform:translateY(-4px);border-color:rgba(212,175,55,.25)}
 .card-body{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1}
 .card h3{font-size:14px;font-weight:800;color:#fff}
 .card p{font-size:12px;color:#94a3b8;line-height:1.6}
@@ -43,28 +43,24 @@ section{padding:35px 5%}
 .links-row a:hover{background:rgba(255,255,255,.1)}
 .links-row a.drive{background:#10b981;border-color:#10b981;color:#fff}
 .links-row a.gold{background:#facc15;border-color:#facc15;color:#000}
-/* FIXED DISPLAY - NO BLACK FRAMES */
-.thumb{position:relative;width:100%;overflow:hidden;background:#0f172a}
-.thumb-web{height:200px;background:#0f172a}
-.thumb-web img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
-.thumb-phone{height:420px;background:linear-gradient(135deg,#0a0f1e,#101a2e);display:flex;align-items:center;justify-content:center;padding:20px;position:relative}
-.phone-frame{width:210px;height:380px;background:#000;border-radius:32px;border:4px solid #1e293b;overflow:hidden;position:relative;box-shadow:0 20px 50px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.06);flex-shrink:0}
-.phone-frame::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:76px;height:16px;background:#000;border-radius:0 0 12px 12px;z-index:3;border:1px solid #1e293b;border-top:none}
-.phone-frame::after{content:"";position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:40px;height:4px;background:#334155;border-radius:999px;z-index:3}
-.phone-frame img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;background:#fff}
-.phone-frame .fallback{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,#1e293b,#0f172a);color:#94a3b8;font-size:11px;text-align:center;padding:20px}
-.badge-img{position:absolute;top:12px;left:12px;z-index:4;font-size:8px;font-weight:800;padding:6px 10px;border-radius:999px;background:rgba(0,0,0,.8);border:1px solid rgba(255,255,255,.15);color:#fff;backdrop-filter:blur(6px);letter-spacing:.5px}
+/* SIMPLE CLEAN THUMB - NO CAROUSEL */
+.thumb{position:relative;width:100%;background:#0f172a;overflow:hidden}
+.thumb-web{height:200px}
+.thumb-web img{width:100%;height:100%;object-fit:cover;object-position:top}
+.thumb-phone{height:400px;background:#0a0f1e;display:flex;align-items:center;justify-content:center;padding:20px}
+.phone-frame{width:200px;height:360px;background:#000;border-radius:28px;border:3px solid #1e293b;overflow:hidden;position:relative;box-shadow:0 12px 30px rgba(0,0,0,.5)}
+.phone-frame::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:70px;height:14px;background:#000;border-radius:0 0 10px 10px;z-index:2;border:1px solid #1e293b;border-top:none}
+.phone-frame img{width:100%;height:100%;object-fit:cover;object-position:top}
+.badge-img{position:absolute;top:10px;left:10px;z-index:3;font-size:8px;font-weight:800;padding:5px 9px;border-radius:999px;background:rgba(0,0,0,.75);border:1px solid rgba(255,255,255,.15);color:#fff}
 .badge-img.green{background:#10b981;border-color:#10b981}
 .badge-img.gold{background:#facc15;color:#000;border-color:#facc15}
-.badge-img.fix{background:#d4af37;color:#000;border-color:#facc15}
-.overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(0,0,0,.7));pointer-events:none;z-index:1}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:18px;text-align:center}
 .stat b{font-size:20px;color:#d4af37;display:block}
-#imgModal{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;padding:20px}
+#imgModal{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;padding:20px}
 #imgModal.active{display:flex}
-#imgModal img{max-width:92vw;max-height:90vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.8)}
-#imgModal .close{position:absolute;top:20px;right:20px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.15);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px}
+#imgModal img{max-width:90vw;max-height:90vh;border-radius:12px}
+#imgModal .close{position:absolute;top:20px;right:20px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.15);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -72,20 +68,20 @@ section{padding:35px 5%}
 <div class="bg-anim"></div>
 <nav>
   <div class="logo">MOUSSA <span>DIALLO</span></div>
-  <div style="display:flex;gap:10px;align-items:center">
-    <a href="#projets" style="font-size:11px;font-weight:800">Projets</a>
+  <div style="display:flex;gap:12px;align-items:center">
+    <a href="#projets" style="font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase">Projets</a>
     <a class="btn btn-gold" href="https://drive.google.com/uc?export=download&id=1J5TJRzODqr89KTK9lTM5jtz55QPF4FwB" target="_blank"><i class="fa-solid fa-download"></i> APK 74 Mo</a>
   </div>
 </nav>
 
 <section class="hero">
   <div>
-    <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#10b981;font-weight:800">✅ Fix images manquantes • Affichage corrigé • Sans carousel</div>
+    <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#10b981;font-weight:800">✅ APK 74 Mo • Drive • Portfolio clean sans carousel</div>
     <h1>MOUSSA N'TJI <span>DIALLO</span></h1>
     <h2>Développeur Full Stack • MIAGE • React • Laravel</h2>
-    <p>Je conçois des <b style="color:#fff">produits web & mobiles haut de gamme</b>. APK E-commerce 74 Mo sur Drive + captures en vraies frames téléphone 210x380px.</p>
+    <p>Je conçois des <b style="color:#fff">produits web & mobiles haut de gamme</b> — performants et scalables. Spécialiste Laravel • React • WordPress. APK E-commerce 74 Mo dispo sur Drive.</p>
     <div class="badges">
-      <span class="badge">React</span><span class="badge">Laravel</span><span class="badge">React Native</span><span class="badge">WordPress</span>
+      <span class="badge">React</span><span class="badge">Laravel</span><span class="badge">React Native</span><span class="badge">WordPress</span><span class="badge">MySQL</span>
     </div>
     <div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap">
       <a class="btn btn-gold" href="#projets">Voir projets →</a>
@@ -95,42 +91,36 @@ section{padding:35px 5%}
   </div>
   <div class="hero-card">
     <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://drive.google.com/file/d/1J5TJRzODqr89KTK9lTM5jtz55QPF4FwB/view" alt="QR">
-    <div style="font-size:11px;color:#cbd5e1;font-weight:800">QR APK 74 Mo Drive</div>
-    <div style="margin-top:8px;font-size:11px;color:#94a3b8">Scan → Download direct</div>
+    <div style="font-size:11px;color:#cbd5e1;font-weight:800">QR APK 74 Mo</div>
+    <div style="margin-top:8px;font-size:11px;color:#94a3b8">Scan → Download direct<br><span style="color:#10b981">74 Mo • Drive</span></div>
   </div>
 </section>
 
 <section id="projets">
-  <div class="section-title">Projets — Fix images noires ✅</div>
+  <div class="section-title">Projets — Affichage simple sans carousel ✅</div>
 
-  <div style="background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.3);border-radius:12px;padding:14px;margin-bottom:20px;display:flex;gap:12px">
+  <div style="background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.25);border-radius:12px;padding:14px;margin-bottom:20px;display:flex;gap:12px;align-items:center">
     <div style="width:32px;height:32px;border-radius:8px;background:#10b981;color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0">✓</div>
     <div style="font-size:11px;color:#cbd5e1;line-height:1.5">
-      <b style="color:#fff">Bug corrigé : images noires → images manquantes sur main branch</b><br>
-      J'ai push <code>img/projects/</code> sur main (14 fichiers). Déploiement GitHub Pages en cours (1-2 min). Après, tes captures s'afficheront en frames téléphone 210x380px avec notch, pas en noir.
+      <b style="color:#fff">Fix : plus de carousel, affichage simple 1 téléphone par carte</b><br>
+      Avant carousel cassait le layout. Maintenant 1 phone frame 200x360px par projet, image entière visible, pas de scroll.
     </div>
   </div>
 
   <div class="grid">
 
-    <!-- E-COMMERCE - FIXED NO BLACK -->
-    <div class="card" style="border-color:rgba(16,185,129,.45)">
+    <!-- E-COMMERCE - SIMPLE -->
+    <div class="card" style="border-color:rgba(16,185,129,.4)">
       <div class="thumb thumb-phone" onclick="openModal('img/projects/ecommerce.jpg')">
         <div class="phone-frame">
-          <img src="img/projects/ecommerce.jpg" alt="E-commerce" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="fallback" style="display:none">
-            <div style="font-size:32px">🛍️</div>
-            <div style="margin-top:10px;font-weight:800;color:#fff">#MégaSoldes<br>15 501 FCFA</div>
-            <div style="margin-top:6px;font-size:10px">Image en cours de déploiement<br>GitHub Pages 1-2 min</div>
-          </div>
+          <img src="img/projects/ecommerce.jpg" alt="E-commerce">
         </div>
-        <span class="badge-img green">74 Mo • Drive • Fix noir → image</span>
-        <div class="overlay"></div>
+        <span class="badge-img green">74 Mo • Drive • FCFA</span>
       </div>
       <div class="card-body">
-        <span class="tag green">APK 74 Mo • Drive Direct • Fix affichage noir</span>
-        <h3>E-commerce — App Boutique 74 Mo</h3>
-        <p><b style="color:#fff">#MégaSoldes 15 501 FCFA, 43 538 FCFA, 48 795 FCFA Stock 218, 141 066 FCFA</b>. Fix : images étaient noires car dossier img/projects/ pas sur main. Maintenant push, déploiement en cours.</p>
+        <span class="tag green">APK 74 Mo • Drive Direct</span>
+        <h3>E-commerce — App Boutique</h3>
+        <p><b style="color:#fff">#MégaSoldes 15 501 FCFA, 48 795 FCFA Stock 218, 141 066 FCFA</b>. App violet premium, livraison offerte 25k, vente flash.</p>
         <div class="links-row">
           <a class="drive" href="https://drive.google.com/uc?export=download&id=1J5TJRzODqr89KTK9lTM5jtz55QPF4FwB" target="_blank"><i class="fa-solid fa-download"></i> Télécharger APK 74 Mo</a>
           <a class="gold" href="https://drive.google.com/file/d/1J5TJRzODqr89KTK9lTM5jtz55QPF4FwB/view?usp=drivesdk" target="_blank">Drive</a>
@@ -141,14 +131,16 @@ section{padding:35px 5%}
     <!-- STOCKFLOW -->
     <div class="card">
       <div class="thumb thumb-web" onclick="openModal('img/projects/stockflow-real-1.jpg')">
-        <img src="img/projects/stockflow-real-1.jpg" alt="StockFlow" onerror="this.src='img/portfolio/1.jpg'">
-        <span class="badge-img green">Capture réelle • 59KB</span>
+        <img src="img/projects/stockflow-real-1.jpg" alt="StockFlow">
+        <span class="badge-img green">Capture réelle</span>
       </div>
       <div class="card-body">
         <span class="tag">Laravel 13 + RN • REAL</span>
         <h3>StockFlow — Gestion Stock</h3>
-        <p>Site + API + mobile offline + PC caisse. 3 captures réelles GitHub.</p>
-        <div class="links-row"><a class="gold" href="https://github.com/moussantji/gestion-stock" target="_blank">GitHub →</a></div>
+        <p>Site vente licences + API + app mobile offline + PC caisse. 20 écrans.</p>
+        <div class="links-row">
+          <a class="gold" href="https://github.com/moussantji/gestion-stock" target="_blank">GitHub →</a>
+        </div>
       </div>
     </div>
 
@@ -156,29 +148,30 @@ section{padding:35px 5%}
     <div class="card">
       <div class="thumb thumb-phone" onclick="openModal('img/projects/mandenbaoubab-real.jpg')">
         <div class="phone-frame">
-          <img src="img/projects/mandenbaoubab-real.jpg" alt="Manden" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="fallback" style="display:none"><div style="font-size:28px">🌿</div><div style="margin-top:8px">Manden Baobab<br>REAL</div></div>
+          <img src="img/projects/mandenbaoubab-real.jpg" alt="Manden">
         </div>
-        <span class="badge-img green">Capture réelle • Phone 210x380px</span>
+        <span class="badge-img green">Capture réelle</span>
       </div>
       <div class="card-body">
         <span class="tag green">React Native • REAL</span>
         <h3>Manden Baobab — Boutique</h3>
-        <p>App e-commerce produits locaux. Frame téléphone corrigée.</p>
-        <div class="links-row"><a class="gold" href="https://github.com/moussantji/excel" target="_blank">GitHub →</a></div>
+        <p>App e-commerce produits locaux maliens.</p>
+        <div class="links-row">
+          <a class="gold" href="https://github.com/moussantji/excel" target="_blank">GitHub →</a>
+        </div>
       </div>
     </div>
 
     <!-- VOITURE -->
     <div class="card">
       <div class="thumb thumb-web" onclick="openModal('img/projects/voiture.jpg')">
-        <img src="img/projects/voiture.jpg" alt="Voiture" onerror="this.src='img/portfolio/1.jpg'">
+        <img src="img/projects/voiture.jpg" alt="Voiture">
         <span class="badge-img">Auto</span>
       </div>
       <div class="card-body">
-        <span class="tag">Voiture • 2024</span>
+        <span class="tag">Public • 2024</span>
         <h3>Voiture — Marketplace</h3>
-        <p>Plateforme auto.</p>
+        <p>Plateforme vente/location voitures.</p>
         <div class="links-row"><a href="https://github.com/moussantji/Voiture" target="_blank">GitHub →</a></div>
       </div>
     </div>
@@ -186,13 +179,13 @@ section{padding:35px 5%}
     <!-- IMMOBILIO -->
     <div class="card">
       <div class="thumb thumb-web" onclick="openModal('img/projects/immobilio.jpg')">
-        <img src="img/projects/immobilio.jpg" alt="Immobilio" onerror="this.src='img/portfolio/3.jpg'">
+        <img src="img/projects/immobilio.jpg" alt="Immobilio">
         <span class="badge-img gold">Flagship</span>
       </div>
       <div class="card-body">
         <span class="tag">Flagship • 2023-2024</span>
         <h3>Immobilio — Immobilier</h3>
-        <p>Laravel + React + MySQL.</p>
+        <p>Laravel + React + MySQL, annonces, dashboard admin, API REST.</p>
         <div class="links-row"><a href="https://github.com/moussantji" target="_blank">GitHub →</a></div>
       </div>
     </div>
@@ -200,13 +193,13 @@ section{padding:35px 5%}
     <!-- IPTV -->
     <div class="card">
       <div class="thumb thumb-web" onclick="openModal('img/projects/crystal-iptv.jpg')">
-        <img src="img/projects/crystal-iptv.jpg" alt="IPTV" onerror="this.src='img/portfolio/1.jpg'">
+        <img src="img/projects/crystal-iptv.jpg" alt="IPTV">
         <span class="badge-img">IPTV</span>
       </div>
       <div class="card-body">
         <span class="tag blue">Streaming</span>
         <h3>Crystal IPTV</h3>
-        <p>Plateforme IPTV live.</p>
+        <p>Plateforme IPTV live, abonnements.</p>
         <div class="links-row"><a href="https://github.com/moussantji/stream" target="_blank">GitHub →</a></div>
       </div>
     </div>
@@ -214,16 +207,28 @@ section{padding:35px 5%}
   </div>
 </section>
 
-<section id="contact" style="background:rgba(16,185,129,.08);border-top:1px solid rgba(16,185,129,.2);text-align:center">
-  <h2 style="font-family:'Cormorant Garamond',serif;font-size:28px;color:#fff">Prêt à lancer votre projet ?</h2>
-  <p style="margin-top:8px;color:#94a3b8">Fix images noires → push img/projects sur main • APK 74 Mo Drive</p>
-  <div style="margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+<section id="services">
+  <div class="section-title">Services</div>
+  <div class="stats">
+    <div class="stat"><b>Web</b><div style="font-size:11px;color:#94a3b8">Laravel • React</div></div>
+    <div class="stat"><b>Mobile</b><div style="font-size:11px;color:#94a3b8">Android • iOS</div></div>
+    <div class="stat"><b>Design</b><div style="font-size:11px;color:#94a3b8">Figma • UI/UX</div></div>
+    <div class="stat"><b>SEO</b><div style="font-size:11px;color:#94a3b8">Perf • SEO</div></div>
+  </div>
+</section>
+
+<section id="contact" style="background:rgba(16,185,129,.08);border-top:1px solid rgba(16,185,129,.2);border-bottom:1px solid rgba(16,185,129,.2);text-align:center">
+  <h2 style="font-family:'Cormorant Garamond',serif;font-size:30px;color:#fff">Prêt à lancer votre projet ?</h2>
+  <p style="margin-top:8px;color:#94a3b8">APK 74 Mo Drive • Portfolio clean • Bamako & Remote</p>
+  <div style="margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
     <a class="btn" style="background:#10b981;color:#fff" href="https://drive.google.com/uc?export=download&id=1J5TJRzODqr89KTK9lTM5jtz55QPF4FwB" target="_blank"><i class="fa-solid fa-download"></i> APK 74 Mo</a>
     <a class="btn btn-gold" href="mailto:Moussantjidiallo@gmail.com">Contact →</a>
   </div>
 </section>
 
-<div style="background:#020610;color:#475569;padding:12px 5%;font-size:10px;text-align:center">© 2026 Moussa Diallo — Fix images noires push main • <a href="https://github.com/moussantji" style="color:#d4af37">GitHub</a></div>
+<div style="background:#020610;color:#475569;padding:14px 5%;font-size:10px;text-align:center">
+  © 2026 Moussa Diallo — Portfolio clean sans carousel • APK Drive 74 Mo • <a href="https://github.com/moussantji" style="color:#d4af37">GitHub</a>
+</div>
 
 <div id="imgModal" onclick="closeModal()"><div class="close" onclick="closeModal()">✕</div><img id="modalImg" src="" alt=""></div>
 
