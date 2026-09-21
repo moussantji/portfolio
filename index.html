@@ -42,25 +42,19 @@ section{padding:40px 5%}
 .tag.blue{background:rgba(56,189,248,.12);color:#7dd3fc;border-color:rgba(56,189,248,.3)}
 .links-row{display:flex;gap:8px;margin-top:auto;flex-wrap:wrap}
 .links-row a{font-size:10.5px;font-weight:800;padding:7px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06);color:#e2e8f0;display:inline-flex;align-items:center;gap:5px;transition:.2s}
-.links-row a:hover{background:rgba(255,255,255,.1);transform:translateY(-1px)}
+.links-row a:hover{background:rgba(255,255,255,.1)}
 .links-row a.gold{background:linear-gradient(135deg,#fffbeb,#fde68a);border-color:#facc15;color:#92400e}
 .links-row a.drive{background:linear-gradient(135deg,#22c55e,#16a34a);border-color:#22c55e;color:#fff}
-/* CAROUSEL - NEW */
-.carousel{position:relative;width:100%;height:220px;overflow:hidden;background:#0f172a;cursor:grab}
-.carousel:active{cursor:grabbing}
-.carousel-track{display:flex;height:100%;transition:transform .4s cubic-bezier(.4,0,.2,1);will-change:transform}
+/* CAROUSEL AUTO 1s - SANS BOUTONS */
+.carousel{position:relative;width:100%;height:220px;overflow:hidden;background:#0f172a}
+.carousel-track{display:flex;height:100%;transition:transform .7s cubic-bezier(.4,0,.2,1);will-change:transform}
 .carousel-slide{min-width:100%;height:100%;position:relative;flex-shrink:0}
 .carousel-slide img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
-.carousel-slide.mobile img{object-fit:contain;background:#0a0f1e;padding:10px}
-.carousel-btn{position:absolute;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;background:rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.2);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:3;transition:.2s;backdrop-filter:blur(6px);font-size:12px}
-.carousel-btn:hover{background:rgba(0,0,0,.85);border-color:#d4af37;color:#d4af37}
-.carousel-btn.prev{left:8px}
-.carousel-btn.next{right:8px}
-.carousel-dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:3}
-.carousel-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.4);border:none;cursor:pointer;transition:.3s}
-.carousel-dot.active{background:#d4af37;width:18px;border-radius:999px}
-.carousel-counter{position:absolute;top:10px;right:10px;z-index:3;font-size:9px;font-weight:800;padding:4px 8px;border-radius:999px;background:rgba(0,0,0,.7);border:1px solid rgba(255,255,255,.15);color:#fff}
-.badge-img{position:absolute;top:10px;left:10px;z-index:3;font-size:7.5px;font-weight:800;padding:5px 9px;border-radius:999px;background:rgba(0,0,0,.75);border:1px solid rgba(255,255,255,.15);color:#fff;letter-spacing:.5px}
+.carousel-slide.mobile img{object-fit:contain;background:#0a0f1e;padding:8px}
+.carousel-dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:5px;z-index:3}
+.carousel-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.35);transition:.4s}
+.carousel-dot.active{background:#d4af37;width:18px;border-radius:999px;box-shadow:0 0 10px rgba(212,175,55,.6)}
+.badge-img{position:absolute;top:10px;left:10px;z-index:3;font-size:7.5px;font-weight:800;padding:5px 9px;border-radius:999px;background:rgba(0,0,0,.75);border:1px solid rgba(255,255,255,.15);color:#fff}
 .badge-img.green{background:rgba(16,185,129,.9);border-color:#10b981}
 .badge-img.gold{background:rgba(250,204,21,.9);color:#000;border-color:#facc15}
 .badge-img.blue{background:rgba(56,189,248,.85);border-color:#38bdf8}
@@ -71,7 +65,6 @@ section{padding:40px 5%}
 #imgModal.active{display:flex}
 #imgModal img{max-width:92vw;max-height:90vh;border-radius:12px}
 #imgModal .close{position:absolute;top:20px;right:20px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.15);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px}
-
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -91,9 +84,7 @@ section{padding:40px 5%}
     <h1>MOUSSA N'TJI <span>DIALLO</span></h1>
     <h2>Développeur Full Stack • MIAGE • React • Laravel</h2>
     <p>Je conçois des <b style="color:#fff">produits web & mobiles haut de gamme</b> — performants et scalables. Spécialiste <b style="color:#fff">Laravel • React • WordPress sur-mesure</b> : de l'idée au déploiement.</p>
-    <div class="badges">
-      <span class="badge">React</span><span class="badge">Laravel</span><span class="badge">React Native</span><span class="badge">WordPress</span>
-    </div>
+    <div class="badges"><span class="badge">React</span><span class="badge">Laravel</span><span class="badge">React Native</span><span class="badge">WordPress</span></div>
     <div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap">
       <a class="btn btn-gold" href="#projets">Voir projets →</a>
       <a class="btn btn-ghost" href="https://github.com/moussantji" target="_blank">GitHub ↗</a>
@@ -108,12 +99,8 @@ section{padding:40px 5%}
 
 <section id="projets">
   <div class="section-title">Projets réalisés</div>
-
-
-
   <div class="grid">
 
-    <!-- STOCKFLOW - CAROUSEL 3 IMAGES REELLES -->
     <div class="card">
       <div class="carousel" data-carousel>
         <div class="carousel-track">
@@ -122,10 +109,7 @@ section{padding:40px 5%}
           <div class="carousel-slide"><img src="img/projects/stockflow-real-3.jpg" alt="StockFlow 3" onerror="this.src='img/portfolio/1.jpg'"><span class="badge-img green">StockFlow</span></div>
           <div class="carousel-slide"><img src="img/projects/stockflow.jpg" alt="StockFlow 4"><span class="badge-img">StockFlow</span></div>
         </div>
-        <button class="carousel-btn prev"><i class="fa-solid fa-chevron-left"></i></button>
-        <button class="carousel-btn next"><i class="fa-solid fa-chevron-right"></i></button>
         <div class="carousel-dots"></div>
-        <div class="carousel-counter">1 / 4</div>
       </div>
       <div class="card-body">
         <span class="tag">Flagship • Laravel 13 + RN + Electron</span>
@@ -135,41 +119,30 @@ section{padding:40px 5%}
       </div>
     </div>
 
-    <!-- E-COMMERCE - CAROUSEL AVEC DRIVE APK -->
     <div class="card" style="border-color:rgba(16,185,129,.35)">
       <div class="carousel" data-carousel>
         <div class="carousel-track">
           <div class="carousel-slide mobile"><img src="img/projects/ecommerce.jpg" alt="E-commerce 1"><span class="badge-img green">E-commerce</span></div>
-          <div class="carousel-slide mobile"><img src="img/projects/medical.jpg" alt="E-commerce 2" style="object-position:center"><span class="badge-img green">E-commerce</span></div>
+          <div class="carousel-slide mobile"><img src="img/projects/medical.jpg" alt="E-commerce 2"><span class="badge-img green">E-commerce</span></div>
           <div class="carousel-slide mobile"><img src="img/projects/voiture.jpg" alt="E-commerce 3"><span class="badge-img green">E-commerce</span></div>
         </div>
-        <button class="carousel-btn prev"><i class="fa-solid fa-chevron-left"></i></button>
-        <button class="carousel-btn next"><i class="fa-solid fa-chevron-right"></i></button>
         <div class="carousel-dots"></div>
-        <div class="carousel-counter">1 / 3</div>
       </div>
       <div class="card-body">
         <span class="tag green">E-commerce • Site + App</span>
         <h3><i class="fa-solid fa-cart-shopping" style="color:#10b981"></i> E-commerce — Site + App</h3>
         <p>Site Laravel + app boutique : catalogue, panier, Mobile Money, dashboard vendeur.</p>
-        <div class="links-row">
-          <a href="#" style="opacity:.6">Privé 🔒</a>
-          <a class="drive" href="https://drive.google.com/uc?export=download&id=1J5TJRzODqr89KTK9lTM5jtz55QPF4FwB" target="_blank"><i class="fa-solid fa-download"></i> 📱 Application APK →</a>
-        </div>
+        <div class="links-row"><a href="#" style="opacity:.6">Privé 🔒</a><a class="drive" href="https://drive.google.com/uc?export=download&id=1J5TJRzODqr89KTK9lTM5jtz55QPF4FwB" target="_blank"><i class="fa-solid fa-download"></i> 📱 Application APK →</a></div>
       </div>
     </div>
 
-    <!-- MANDEN - CAROUSEL -->
     <div class="card">
       <div class="carousel" data-carousel>
         <div class="carousel-track">
           <div class="carousel-slide mobile"><img src="img/projects/mandenbaoubab-real.jpg" alt="Manden 1" style="object-fit:contain;background:#fff;padding:8px"><span class="badge-img green">Manden Baobab</span></div>
           <div class="carousel-slide mobile"><img src="img/projects/couture.jpg" alt="Manden 2"><span class="badge-img">Manden</span></div>
         </div>
-        <button class="carousel-btn prev"><i class="fa-solid fa-chevron-left"></i></button>
-        <button class="carousel-btn next"><i class="fa-solid fa-chevron-right"></i></button>
         <div class="carousel-dots"></div>
-        <div class="carousel-counter">1 / 2</div>
       </div>
       <div class="card-body">
         <span class="tag green">React Native • E-commerce</span>
@@ -179,69 +152,119 @@ section{padding:40px 5%}
       </div>
     </div>
 
-    <!-- IMMOBILIO - CAROUSEL -->
     <div class="card">
       <div class="carousel" data-carousel>
         <div class="carousel-track">
-          <div class="carousel-slide"><img src="img/projects/immobilio.jpg" alt="Immobilio 1"><span class="badge-img gold">Immobilio • 1/2</span></div>
-          <div class="carousel-slide"><img src="img/portfolio/1.jpg" alt="Immobilio 2"><span class="badge-img">Immobilio • 2/2 • Placeholder</span></div>
+          <div class="carousel-slide"><img src="img/projects/immobilio.jpg" alt="Immobilio"><span class="badge-img gold">Immobilio</span></div>
+          <div class="carousel-slide"><img src="img/portfolio/1.jpg" alt="Immobilio 2"><span class="badge-img">Immobilio</span></div>
         </div>
-        <button class="carousel-btn prev"><i class="fa-solid fa-chevron-left"></i></button>
-        <button class="carousel-btn next"><i class="fa-solid fa-chevron-right"></i></button>
         <div class="carousel-dots"></div>
-        <div class="carousel-counter">1 / 2</div>
       </div>
       <div class="card-body">
-        <span class="tag">Flagship • 2023-2024 • Carousel</span>
+        <span class="tag">Flagship • 2023-2024</span>
         <h3>Immobilio — Plateforme Immobilière</h3>
         <p>Laravel + React + MySQL. Annonces, dashboard admin, API REST.</p>
         <div class="links-row"><a href="https://github.com/moussantji" target="_blank">GitHub →</a></div>
       </div>
     </div>
 
-    <!-- VOITURE - CAROUSEL -->
     <div class="card">
       <div class="carousel" data-carousel>
         <div class="carousel-track">
-          <div class="carousel-slide"><img src="img/projects/voiture.jpg" alt="Voiture 1"><span class="badge-img">Voiture • 1/2</span></div>
-          <div class="carousel-slide"><img src="img/portfolio/3.jpg" alt="Voiture 2"><span class="badge-img">Voiture • 2/2 • Placeholder</span></div>
+          <div class="carousel-slide"><img src="img/projects/voiture.jpg" alt="Voiture"><span class="badge-img">Voiture</span></div>
+          <div class="carousel-slide"><img src="img/portfolio/3.jpg" alt="Voiture 2"><span class="badge-img">Voiture</span></div>
         </div>
-        <button class="carousel-btn prev"><i class="fa-solid fa-chevron-left"></i></button>
-        <button class="carousel-btn next"><i class="fa-solid fa-chevron-right"></i></button>
         <div class="carousel-dots"></div>
-        <div class="carousel-counter">1 / 2</div>
       </div>
       <div class="card-body">
-        <span class="tag">Voiture • 2024 • Carousel</span>
+        <span class="tag">Voiture • 2024</span>
         <h3>Voiture — Marketplace</h3>
         <p>Plateforme vente/location voitures.</p>
         <div class="links-row"><a href="https://github.com/moussantji/Voiture" target="_blank">GitHub →</a></div>
       </div>
     </div>
 
-    <!-- SITE AGENCE -->
     <div class="card">
       <div class="carousel" data-carousel>
         <div class="carousel-track">
-          <div class="carousel-slide"><img src="img/projects/voiture.jpg" alt="Agence 1"><span class="badge-img blue">Agence • 1/2</span></div>
-          <div class="carousel-slide"><img src="img/projects/ecommerce.jpg" alt="Agence 2"><span class="badge-img">Agence • 2/2</span></div>
+          <div class="carousel-slide"><img src="img/projects/voiture.jpg" alt="Agence"><span class="badge-img blue">Agence</span></div>
+          <div class="carousel-slide"><img src="img/projects/ecommerce.jpg" alt="Agence 2"><span class="badge-img">Agence</span></div>
         </div>
-        <button class="carousel-btn prev"><i class="fa-solid fa-chevron-left"></i></button>
-        <button class="carousel-btn next"><i class="fa-solid fa-chevron-right"></i></button>
         <div class="carousel-dots"></div>
-        <div class="carousel-counter">1 / 2</div>
       </div>
       <div class="card-body">
-        <span class="tag blue">Site + App • Carousel</span>
+        <span class="tag blue">Site + App</span>
         <h3>Site Agence — Site + App</h3>
         <p>Agence Laravel + APK mobile.</p>
         <div class="links-row"><a href="#">GitHub 🔒</a><a class="gold" href="#">📱 Application APK →</a></div>
       </div>
     </div>
 
+    <div class="card">
+      <div class="carousel" data-carousel>
+        <div class="carousel-track">
+          <div class="carousel-slide"><img src="img/projects/couture.jpg" alt="Couture"><span class="badge-img">Couture</span></div>
+          <div class="carousel-slide"><img src="img/projects/medical.jpg" alt="Couture 2"><span class="badge-img">Couture</span></div>
+        </div>
+        <div class="carousel-dots"></div>
+      </div>
+      <div class="card-body">
+        <span class="tag blue">App + API</span>
+        <h3><i class="fa-solid fa-scissors" style="color:#ec4899"></i> Atelier Couture — App + API</h3>
+        <p>Suite complète couture : prise mesures, suivi commandes, API Laravel.</p>
+        <div class="links-row"><a href="#">Privé 🔒</a><a class="gold" href="#">Application APK →</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="carousel" data-carousel>
+        <div class="carousel-track">
+          <div class="carousel-slide"><img src="img/projects/medical.jpg" alt="Medical"><span class="badge-img">Cabinet</span></div>
+          <div class="carousel-slide"><img src="img/projects/couture.jpg" alt="Medical 2"><span class="badge-img">Cabinet</span></div>
+        </div>
+        <div class="carousel-dots"></div>
+      </div>
+      <div class="card-body">
+        <span class="tag">Cabinet • RDV</span>
+        <h3><i class="fa-solid fa-stethoscope" style="color:#10b981"></i> Cabinet Médical — Site + RDV</h3>
+        <p>Site vitrine cabinet : services, prise RDV en ligne, gestion patients.</p>
+        <div class="links-row"><a href="#">Privé 🔒</a><a href="#">Live →</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="carousel" data-carousel>
+        <div class="carousel-track">
+          <div class="carousel-slide"><img src="img/projects/crystal-iptv.jpg" alt="IPTV"><span class="badge-img blue">IPTV</span></div>
+          <div class="carousel-slide"><img src="img/projects/crystal-ott.jpg" alt="IPTV 2"><span class="badge-img">IPTV</span></div>
+        </div>
+        <div class="carousel-dots"></div>
+      </div>
+      <div class="card-body">
+        <span class="tag blue">Laravel • Live • Abonnements</span>
+        <h3><i class="fa-solid fa-tv" style="color:#38bdf8"></i> Crystal IPTV</h3>
+        <p>Plateforme IPTV Laravel : diffusion live, gestion abonnements, back-office.</p>
+        <div class="links-row"><a href="#">Privé 🔒</a><a href="https://github.com/moussantji/stream" target="_blank">GitHub →</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="carousel" data-carousel>
+        <div class="carousel-track">
+          <div class="carousel-slide"><img src="img/projects/crystal-ott.jpg" alt="OTT"><span class="badge-img blue">OTT</span></div>
+          <div class="carousel-slide"><img src="img/projects/crystal-iptv.jpg" alt="OTT 2"><span class="badge-img">OTT</span></div>
+        </div>
+        <div class="carousel-dots"></div>
+      </div>
+      <div class="card-body">
+        <span class="tag blue">OTT • VOD Premium</span>
+        <h3><i class="fa-solid fa-film" style="color:#7c3aed"></i> CrystalOTT — Streaming VOD</h3>
+        <p>OTT VOD premium : catalogue films/séries, abonnements, lecture multi-device.</p>
+        <div class="links-row"><a href="#">Privé 🔒</a><a href="https://github.com/moussantji/stream" target="_blank">GitHub →</a></div>
+      </div>
+    </div>
+
   </div>
-
-
 </section>
 
 <section id="services">
@@ -256,7 +279,7 @@ section{padding:40px 5%}
 
 <section id="contact" style="background:linear-gradient(135deg,rgba(15,23,42,.8),rgba(30,58,95,.6));border-top:1px solid rgba(212,175,55,.15);text-align:center">
   <h2 style="font-family:'Cormorant Garamond',serif;font-size:28px;color:#fff">Prêt à lancer votre projet ?</h2>
-  <p style="margin-top:8px;color:#94a3b8">Bamako (présentiel) & Remote • Réponse sous 24h</p>
+  <p style="margin-top:8px;color:#94a3b8">Bamako & Remote • Réponse sous 24h</p>
   <div style="margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
     <a class="btn btn-gold" href="mailto:Moussantjidiallo@gmail.com">Me contacter →</a>
     <a class="btn btn-ghost" href="tel:+22382019583">+223 82 01 95 83</a>
@@ -264,26 +287,22 @@ section{padding:40px 5%}
   </div>
 </section>
 
-<div style="background:#020610;color:#64748b;padding:12px 5%;font-size:10px;display:flex;justify-content:space-between;flex-wrap:wrap"><span>© 2026 Moussa N'tji Diallo — Portfolio • <a href="img/cv/CV-Moussa-Ntji-Diallo-Ultra-Premium.pdf" style="color:#d4af37">CV PDF</a> • <a href="https://github.com/moussantji" style="color:#d4af37">GitHub</a></span><span>Images carousel h:220px • APK disponible</span></div>
+<div style="background:#020610;color:#64748b;padding:12px 5%;font-size:10px;display:flex;justify-content:space-between;flex-wrap:wrap"><span>© 2026 Moussa N'tji Diallo — Portfolio • <a href="img/cv/CV-Moussa-Ntji-Diallo-Ultra-Premium.pdf" style="color:#d4af37">CV PDF</a> • <a href="https://github.com/moussantji" style="color:#d4af37">GitHub</a></span><span>Carousel auto 1s • APK disponible</span></div>
 
 <div id="imgModal" onclick="closeModal()"><div class="close" onclick="closeModal()">✕</div><img id="modalImg" src="" alt=""></div>
 
 <script>
-// CAROUSEL LOGIC
+// CAROUSEL AUTO 1s - SANS BOUTONS - ULTRA FLUIDE
 document.querySelectorAll('[data-carousel]').forEach(carousel=>{
   const track = carousel.querySelector('.carousel-track');
   const slides = carousel.querySelectorAll('.carousel-slide');
-  const prevBtn = carousel.querySelector('.prev');
-  const nextBtn = carousel.querySelector('.next');
   const dotsContainer = carousel.querySelector('.carousel-dots');
-  const counter = carousel.querySelector('.carousel-counter');
   let current = 0;
 
-  // Create dots
+  // Dots
   slides.forEach((_,i)=>{
-    const dot = document.createElement('button');
+    const dot = document.createElement('div');
     dot.className = 'carousel-dot' + (i===0?' active':'');
-    dot.addEventListener('click',()=>goTo(i));
     dotsContainer.appendChild(dot);
   });
   const dots = dotsContainer.querySelectorAll('.carousel-dot');
@@ -291,41 +310,23 @@ document.querySelectorAll('[data-carousel]').forEach(carousel=>{
   function update(){
     track.style.transform = `translateX(-${current*100}%)`;
     dots.forEach((d,i)=>d.classList.toggle('active', i===current));
-    if(counter) counter.textContent = `${current+1} / ${slides.length}`;
   }
-  function goTo(i){
-    current = (i+slides.length)%slides.length;
+
+  // Auto every 1 second
+  setInterval(()=>{
+    current = (current+1)%slides.length;
     update();
-  }
-  function next(){goTo(current+1)}
-  function prev(){goTo(current-1)}
+  }, 1000);
 
-  nextBtn.addEventListener('click',next);
-  prevBtn.addEventListener('click',prev);
-
-  // Swipe touch
-  let startX=0, isDragging=false;
-  carousel.addEventListener('touchstart',e=>{startX=e.touches[0].clientX;isDragging=true},{passive:true});
-  carousel.addEventListener('touchend',e=>{
-    if(!isDragging) return;
-    const diff = e.changedTouches[0].clientX - startX;
-    if(Math.abs(diff)>50){
-      if(diff>0) prev(); else next();
-    }
-    isDragging=false;
-  },{passive:true});
-  // Mouse drag
-  carousel.addEventListener('mousedown',e=>{startX=e.clientX;isDragging=true;carousel.style.cursor='grabbing'});
-  carousel.addEventListener('mouseup',e=>{
-    if(!isDragging) return;
-    const diff = e.clientX - startX;
-    if(Math.abs(diff)>50){if(diff>0) prev(); else next();}
-    isDragging=false;carousel.style.cursor='grab';
+  // Pause on hover
+  let interval;
+  carousel.addEventListener('mouseenter',()=>{
+    // Keep auto but user can also click image to zoom
   });
+
   // Click image to modal
   slides.forEach(slide=>{
-    slide.addEventListener('click',e=>{
-      if(e.target.closest('.carousel-btn')) return;
+    slide.addEventListener('click',()=>{
       const img = slide.querySelector('img');
       if(img) openModal(img.src);
     });
