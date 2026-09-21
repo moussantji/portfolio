@@ -36,10 +36,14 @@ Dossier des visuels utilisés dans `index.html` (section « Projets réalisés �
 | `stockflow-real-3.jpg` | StockFlow — dashboard (16:9) |
 | `stockflow.jpg` | StockFlow — aperçu |
 | `mandenbaoubab-real.jpg` | Manden Baobab — boutique mobile (9:16) |
-| `immobilio.jpg` | Immobilio — plateforme immobilière |
-| `voiture.jpg` | Voiture — marketplace |
-| `couture.jpg` | Atelier Couture |
-| `medical.jpg` | Cabinet Médical |
+| `immobilio.jpg` | Immobilio — site web desktop (bureau, recherche, cartes biens, carte) |
+| `immobilio-2.jpg` | Immobilio — app mobile (fiche du bien, Caractéristiques, Appeler / WhatsApp) |
+| `voiture.jpg` | Voiture — site web desktop (filtres, cartes véhicules, comparateur) |
+| `voiture-2.jpg` | Voiture — app mobile (fiche du véhicule, specs, Contacter le vendeur) |
+| `couture.jpg` | Atelier Couture — back-office desktop (KPI, commandes, statuts) |
+| `couture-2.jpg` | Atelier Couture — app mobile (fiche commande, mesures, timeline, acompte) |
+| `medical.jpg` | Cabinet Médical — site web desktop (RDV en ligne, spécialités, médecins) |
+| `medical-2.jpg` | Cabinet Médical — app mobile (calendrier, créneaux, confirmation de RDV) |
 | `crystal-iptv.jpg` | Crystal IPTV |
 | `crystal-ott.jpg` | CrystalOTT |
 | `ecommerce.jpg` | Visuel de secours E-commerce (fallback) |
