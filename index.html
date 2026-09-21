@@ -45,14 +45,14 @@ section{padding:40px 5%}
 .links-row a:hover{background:rgba(255,255,255,.1)}
 .links-row a.gold{background:linear-gradient(135deg,#fffbeb,#fde68a);border-color:#facc15;color:#92400e}
 .links-row a.drive{background:linear-gradient(135deg,#22c55e,#16a34a);border-color:#22c55e;color:#fff}
-/* CAROUSEL AUTO 1s - SANS BOUTONS */
-.carousel{position:relative;width:100%;height:220px;overflow:hidden;background:#0f172a}
-.carousel-track{display:flex;height:100%;transition:transform .7s cubic-bezier(.4,0,.2,1);will-change:transform}
-.carousel-slide{min-width:100%;height:100%;position:relative;flex-shrink:0}
-.carousel-slide img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+/* CAROUSEL AUTO 5s - SANS DECALAGE */
+.carousel{position:relative;width:100%;height:220px;overflow:hidden;background:#0f172a;isolation:isolate}
+.carousel-track{display:flex;height:100%;transition:transform .8s cubic-bezier(.25,.8,.25,1);will-change:transform;transform:translate3d(0,0,0)}
+.carousel-slide{min-width:100%;max-width:100%;width:100%;height:100%;position:relative;flex:0 0 100%;overflow:hidden}
+.carousel-slide img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transform:translateZ(0)}
 .carousel-slide.mobile img{object-fit:contain;background:#0a0f1e;padding:8px}
-.carousel-dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:5px;z-index:3}
-.carousel-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.35);transition:.4s}
+.carousel-dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:3;background:rgba(0,0,0,.4);padding:6px 10px;border-radius:999px;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.08)}
+.carousel-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.35);transition:all .4s ease}
 .carousel-dot.active{background:#d4af37;width:18px;border-radius:999px;box-shadow:0 0 10px rgba(212,175,55,.6)}
 .badge-img{position:absolute;top:10px;left:10px;z-index:3;font-size:7.5px;font-weight:800;padding:5px 9px;border-radius:999px;background:rgba(0,0,0,.75);border:1px solid rgba(255,255,255,.15);color:#fff}
 .badge-img.green{background:rgba(16,185,129,.9);border-color:#10b981}
@@ -308,15 +308,15 @@ document.querySelectorAll('[data-carousel]').forEach(carousel=>{
   const dots = dotsContainer.querySelectorAll('.carousel-dot');
 
   function update(){
-    track.style.transform = `translateX(-${current*100}%)`;
+    track.style.transform = `translate3d(-${current*100}%,0,0)`;
     dots.forEach((d,i)=>d.classList.toggle('active', i===current));
   }
 
-  // Auto every 1 second
+  // Auto every 5 seconds - FIX DECALAGE
   setInterval(()=>{
     current = (current+1)%slides.length;
     update();
-  }, 1000);
+  }, 5000);
 
   // Pause on hover
   let interval;
