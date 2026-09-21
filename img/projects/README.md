@@ -1,27 +1,48 @@
-# 📸 Captures d'écran Projets
+# 📸 Visuels des projets
 
-## ✅ Captures RÉELLES déjà présentes (depuis GitHub)
-- `stockflow-real-1.jpg` (59KB) - Showcase StockFlow - VRAIE capture depuis brand/showcase.png
-- `stockflow-real-2.jpg` (35KB) - App Mockup - VRAIE
-- `stockflow-real-3.jpg` (108KB) - Dashboard Hero - VRAIE
-- `mandenbaoubab-real.jpg` (164KB) - Manden Baobab Mobile UI - VRAIE depuis excel repo
+Dossier des visuels utilisés dans `index.html` (section « Projets réalisés »).
 
-## ⚠️ À remplacer par tes vraies captures (actuellement images IA placeholder)
-- `immobilio.jpg` → remplace par screenshot Immobilio
-- `ecommerce.jpg` → remplace par screenshots de ton APK e-commerce (ton téléphone)
-- `voiture.jpg` → remplace par screenshot Voiture
-- `crystal-iptv.jpg`, `crystal-ott.jpg`, `medical.jpg`, `couture.jpg` → à remplacer
+## E-commerce — 8 visuels
 
-## Comment faire une capture depuis ton téléphone (APK e-commerce) ?
-1. Ouvre l'app
-2. Power + Volume Bas
-3. Fais 3 écrans : Accueil, Détail produit, Panier
-4. Envoie en qualité originale via Telegram > Fichier (pas Galerie)
-5. Sur PC, renomme en `ecommerce-real-1.jpg`, `ecommerce-real-2.jpg`, `ecommerce-real-3.jpg`
-6. Mets dans ce dossier
-7. Édite `index.html` : change `src="img/projects/ecommerce.jpg"` en `src="img/projects/ecommerce-real-1.jpg"` et ajoute les miniatures comme StockFlow
+### Visuels produit (mise en scène PC / Mobile)
+| Fichier | Format | Usage |
+|---|---|---|
+| `ecommerce-ultra-pc-mobile-combined.jpg` | 4:3 | Visuel principal — MacBook Pro + iPhone 15 Pro (carte « E-commerce — Site + App ») |
+| `ecommerce-pc-ultra-1.jpg` | 16:9 | Vitrine web `#MégaSoldes` |
+| `ecommerce-pc-ultra-2.jpg` | 16:9 | Dashboard vendeur |
+| `ecommerce-mobile-ultra-1.jpg` | 9:16 | Accueil application mobile |
+| `ecommerce-mobile-ultra-2.jpg` | 9:16 | Panier application mobile |
 
-## Pour site web (Laravel)
-- Chrome > F12 > Ctrl+Shift+M (mode mobile) > Ctrl+Shift+P > tape "screenshot" > "Capture full size screenshot"
+### Captures de l'application (écrans réels)
+| Fichier | Usage |
+|---|---|
+| `ecommerce-real-1.jpg` | Accueil — `#MégaSoldes`, 15 501 FCFA |
+| `ecommerce-real-2.jpg` | Fiche produit — 48 795 FCFA (entretien auto) |
+| `ecommerce-real-3.jpg` | Panier — total 141 066 FCFA |
 
-Format : JPG, 1200px large max, <200KB
+## Autres projets
+
+| Fichier | Projet |
+|---|---|
+| `stockflow-real-1.jpg` | StockFlow — plateforme licences (16:9) |
+| `stockflow-real-2.jpg` | StockFlow — application mobile (16:9) |
+| `stockflow-real-3.jpg` | StockFlow — dashboard (16:9) |
+| `stockflow.jpg` | StockFlow — aperçu |
+| `mandenbaoubab-real.jpg` | Manden Baobab — boutique mobile (9:16) |
+| `immobilio.jpg` | Immobilio — plateforme immobilière |
+| `voiture.jpg` | Voiture — marketplace |
+| `couture.jpg` | Atelier Couture |
+| `medical.jpg` | Cabinet Médical |
+| `crystal-iptv.jpg` | Crystal IPTV |
+| `crystal-ott.jpg` | CrystalOTT |
+| `ecommerce.jpg` | Visuel de secours E-commerce (fallback) |
+
+## Formats des cadres (carrousel)
+
+| Format | Classe | Hauteur | Projets |
+|---|---|---|---|
+| Web 16:9 | `card-web` | 200 px | StockFlow, Immobilio, Voiture, Agence, Couture, Médical, IPTV, OTT |
+| Mobile 9:16 | `card-mobile` | 320 px | E-commerce Mobile, Manden Baobab |
+| Combiné 4:3 | `card-combined` | 260 px | E-commerce — Site + App |
+
+Les cadres 4:3 et 9:16 affichent l'écran **entier** (`object-fit:contain`), les cadres 16:9 recadrent légèrement (`object-fit:cover`).

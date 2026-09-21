@@ -1,1 +1,8 @@
-APK placeholder - remplace par ton vrai APK e-commerce
+# APK — Version mobile E-commerce
+
+Le binaire de l'application est distribué via le lien de téléchargement
+indiqué sur le portfolio : **E-commerce — Site + App** → bouton
+« 📱 Application APK → ».
+
+Le dossier `apk/` est conservé pour héberger l'APK directement dans le
+dépôt si nécessaire (voir `GUIDE-SANS-PC.md`).
