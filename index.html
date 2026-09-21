@@ -3,64 +3,88 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Moussa N'tji Diallo — Portfolio</title>
+<title>Moussa N'tji Diallo — Développeur Full Stack | Portfolio</title>
+<meta name="description" content="Moussa N'tji Diallo — Développeur Full Stack (Laravel, React, React Native, WordPress). Projets web & mobiles haut de gamme. Bamako & Remote.">
+<meta name="theme-color" content="#070b14">
+<meta property="og:title" content="Moussa N'tji Diallo — Développeur Full Stack">
+<meta property="og:description" content="Produits web & mobiles haut de gamme : Laravel • React • React Native • WordPress">
+<meta property="og:image" content="img/projects/ecommerce-ultra-pc-mobile-combined.jpg">
+<meta property="og:type" content="website">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Cormorant+Garamond:wght@700&display=swap');
+/* ===== PALETTE OFFICIELLE (inchangée) ===== */
+:root{
+  --gold:#d4af37; --gold-light:#facc15;
+  --dark:#070b14; --dark-2:#0a1628; --dark-3:#0f172a;
+  --blue:#38bdf8; --green:#10b981;
+}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Plus Jakarta Sans',sans-serif;background:#070b14;color:#e2e8f0;overflow-x:hidden}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--dark);color:#e2e8f0;overflow-x:hidden;scroll-behavior:smooth}
 a{color:inherit;text-decoration:none}
-.bg-anim{position:fixed;inset:0;z-index:-1;background:radial-gradient(900px 600px at 15% 10%,rgba(212,175,55,.18),transparent 60%),radial-gradient(800px 500px at 85% 80%,rgba(56,189,248,.12),transparent 60%),linear-gradient(180deg,#070b14,#0a1628)}
+.bg-anim{position:fixed;inset:0;z-index:-1;background:radial-gradient(900px 600px at 15% 10%,rgba(212,175,55,.18),transparent 60%),radial-gradient(800px 500px at 85% 80%,rgba(56,189,248,.12),transparent 60%),linear-gradient(180deg,var(--dark),var(--dark-2))}
 nav{position:sticky;top:0;z-index:50;background:rgba(7,11,20,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(212,175,55,.15);display:flex;justify-content:space-between;align-items:center;padding:14px 5%}
 .logo{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:#fff}
-.logo span{color:#d4af37}
+.logo span{color:var(--gold)}
 .btn{padding:10px 18px;border-radius:999px;font-size:11px;letter-spacing:1px;text-transform:uppercase;font-weight:800;display:inline-flex;align-items:center;gap:6px;cursor:pointer;border:none;transition:.2s}
-.btn-gold{background:linear-gradient(135deg,#d4af37,#facc15);color:#0a1628}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--dark-2)}
 .btn-ghost{border:1px solid rgba(255,255,255,.15);color:#fff;background:rgba(255,255,255,.06)}
 .hero{padding:60px 5%;display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center}
 .hero h1{font-family:'Cormorant Garamond',serif;font-size:48px;line-height:.95;color:#fff}
-.hero h1 span{color:#d4af37}
-.hero h2{margin-top:8px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#38bdf8;font-weight:800}
+.hero h1 span{color:var(--gold)}
+.hero h2{margin-top:8px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--blue);font-weight:800}
 .hero p{margin-top:14px;font-size:13px;color:#94a3b8;line-height:1.7;max-width:560px}
 .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 .badge{font-size:11px;padding:7px 12px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)}
 .hero-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:18px;text-align:center}
 .hero-card img{width:150px;height:150px;border-radius:14px;display:block;margin:0 auto 10px;background:#fff;padding:8px}
 section{padding:40px 5%}
-.section-title{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#d4af37;font-weight:800;margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.section-title{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:800;margin-bottom:20px;display:flex;align-items:center;gap:12px}
 .section-title::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(212,175,55,.4),transparent)}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start}
 @media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:650px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr}}
 .card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:.3s;position:relative}
-.card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#d4af37,#38bdf8,#7c3aed);opacity:.8;z-index:2}
+.card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--blue),#7c3aed);opacity:.8;z-index:2}
 .card:hover{transform:translateY(-4px);border-color:rgba(212,175,55,.25)}
 .card-body{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1}
 .card h3{font-size:13px;font-weight:800;color:#fff;display:flex;align-items:center;gap:6px}
 .card p{font-size:11.5px;color:#94a3b8;line-height:1.6}
-.tag{font-size:8px;letter-spacing:.7px;text-transform:uppercase;font-weight:800;padding:5px 10px;border-radius:999px;background:#0f172a;color:#d4af37;border:1px solid rgba(212,175,55,.25);align-self:flex-start}
+.tag{font-size:8px;letter-spacing:.7px;text-transform:uppercase;font-weight:800;padding:5px 10px;border-radius:999px;background:var(--dark-3);color:var(--gold);border:1px solid rgba(212,175,55,.25);align-self:flex-start}
 .tag.green{background:rgba(16,185,129,.12);color:#6ee7b7;border-color:rgba(16,185,129,.3)}
 .tag.blue{background:rgba(56,189,248,.12);color:#7dd3fc;border-color:rgba(56,189,248,.3)}
-.links-row{display:flex;gap:8px;margin-top:auto;flex-wrap:wrap}
-.links-row a{font-size:10.5px;font-weight:800;padding:7px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06);color:#e2e8f0;display:inline-flex;align-items:center;gap:5px;transition:.2s}
+.links-row{display:flex;gap:8px;margin-top:auto;padding-top:10px;flex-wrap:wrap}
+.links-row a,.links-row span.locked{font-size:10.5px;font-weight:800;padding:7px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06);color:#e2e8f0;display:inline-flex;align-items:center;gap:5px;transition:.2s}
 .links-row a:hover{background:rgba(255,255,255,.1)}
-.links-row a.gold{background:linear-gradient(135deg,#fffbeb,#fde68a);border-color:#facc15;color:#92400e}
+.links-row a.gold{background:linear-gradient(135deg,#fffbeb,#fde68a);border-color:var(--gold-light);color:#92400e}
 .links-row a.drive{background:linear-gradient(135deg,#22c55e,#16a34a);border-color:#22c55e;color:#fff}
-/* CAROUSEL AUTO 5s - SANS DECALAGE */
-.carousel{position:relative;width:100%;height:220px;overflow:hidden;background:#0f172a;isolation:isolate}
+.links-row span.locked{opacity:.55;cursor:default}
+
+/* ===== FORMATS CARDS V6 ===== */
+/* WEB 16:9 — 200px */
+.carousel{position:relative;width:100%;height:200px;overflow:hidden;background:#0a0f1e;isolation:isolate}
+.card-web .carousel{height:200px}
+/* COMBINÉ 4:3 — 260px */
+.card-combined .carousel{height:260px}
+/* MOBILE 9:16 — 320px */
+.card-mobile .carousel{height:320px}
+
+/* ===== CAROUSEL AUTO 5s — SANS DÉCALAGE ===== */
 .carousel-track{display:flex;height:100%;transition:transform .8s cubic-bezier(.25,.8,.25,1);will-change:transform;transform:translate3d(0,0,0)}
 .carousel-slide{min-width:100%;max-width:100%;width:100%;height:100%;position:relative;flex:0 0 100%;overflow:hidden}
 .carousel-slide img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transform:translateZ(0)}
-.carousel-slide.mobile img{object-fit:contain;background:#0a0f1e;padding:8px}
+/* Cadres 4:3 et 9:16 : on montre l'écran entier, jamais coupé */
+.card-combined .carousel-slide img,.card-mobile .carousel-slide img{object-fit:contain;padding:6px}
 .carousel-dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:3;background:rgba(0,0,0,.4);padding:6px 10px;border-radius:999px;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.08)}
 .carousel-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.35);transition:all .4s ease}
-.carousel-dot.active{background:#d4af37;width:18px;border-radius:999px;box-shadow:0 0 10px rgba(212,175,55,.6)}
+.carousel-dot.active{background:var(--gold);width:18px;border-radius:999px;box-shadow:0 0 10px rgba(212,175,55,.6)}
 .badge-img{position:absolute;top:10px;left:10px;z-index:3;font-size:7.5px;font-weight:800;padding:5px 9px;border-radius:999px;background:rgba(0,0,0,.75);border:1px solid rgba(255,255,255,.15);color:#fff}
-.badge-img.green{background:rgba(16,185,129,.9);border-color:#10b981}
-.badge-img.gold{background:rgba(250,204,21,.9);color:#000;border-color:#facc15}
-.badge-img.blue{background:rgba(56,189,248,.85);border-color:#38bdf8}
+.badge-img.green{background:rgba(16,185,129,.9);border-color:var(--green)}
+.badge-img.gold{background:rgba(250,204,21,.9);color:#000;border-color:var(--gold-light)}
+.badge-img.blue{background:rgba(56,189,248,.85);border-color:var(--blue)}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:18px;text-align:center}
-.stat b{font-size:20px;color:#d4af37;display:block}
+.stat b{font-size:20px;color:var(--gold);display:block}
+@media(max-width:650px){.stats{grid-template-columns:repeat(2,1fr)}}
 #imgModal{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;padding:20px}
 #imgModal.active{display:flex}
 #imgModal img{max-width:92vw;max-height:90vh;border-radius:12px}
@@ -80,18 +104,18 @@ section{padding:40px 5%}
 
 <section class="hero">
   <div>
-    <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#d4af37;font-weight:800">Disponible — Bamako & Remote</div>
+    <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:800">Disponible — Bamako &amp; Remote</div>
     <h1>MOUSSA N'TJI <span>DIALLO</span></h1>
     <h2>Développeur Full Stack • MIAGE • React • Laravel</h2>
-    <p>Je conçois des <b style="color:#fff">produits web & mobiles haut de gamme</b> — performants et scalables. Spécialiste <b style="color:#fff">Laravel • React • WordPress sur-mesure</b> : de l'idée au déploiement.</p>
+    <p>Je conçois des <b style="color:#fff">produits web &amp; mobiles haut de gamme</b> — performants et scalables. Spécialiste <b style="color:#fff">Laravel • React • WordPress sur-mesure</b> : de l'idée au déploiement.</p>
     <div class="badges"><span class="badge">React</span><span class="badge">Laravel</span><span class="badge">React Native</span><span class="badge">WordPress</span></div>
     <div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap">
       <a class="btn btn-gold" href="#projets">Voir projets →</a>
-      <a class="btn btn-ghost" href="https://github.com/moussantji" target="_blank">GitHub ↗</a>
+      <a class="btn btn-ghost" href="https://github.com/moussantji" target="_blank" rel="noopener">GitHub ↗</a>
     </div>
   </div>
   <div class="hero-card">
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://moussantji.github.io/portfolio/img/cv/CV-Moussa-Ntji-Diallo-Ultra-Premium.pdf" alt="QR CV">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&amp;data=https://moussantji.github.io/portfolio/img/cv/CV-Moussa-Ntji-Diallo-Ultra-Premium.pdf" alt="QR code du CV PDF" width="150" height="150">
     <div style="font-size:11px;color:#cbd5e1;font-weight:800">QR CV PDF</div>
     <div style="margin-top:8px;font-size:11px;color:#e2e8f0">+223 82 01 95 83<br>Moussantjidiallo@gmail.com</div>
   </div>
@@ -101,167 +125,197 @@ section{padding:40px 5%}
   <div class="section-title">Projets réalisés</div>
   <div class="grid">
 
-    <div class="card">
+    <!-- STOCKFLOW — WEB 16:9 -->
+    <div class="card card-web">
       <div class="carousel" data-carousel>
         <div class="carousel-track">
-          <div class="carousel-slide"><img src="img/projects/stockflow-real-1.jpg" alt="StockFlow 1" onerror="this.src='img/portfolio/1.jpg'"><span class="badge-img green">StockFlow</span></div>
-          <div class="carousel-slide"><img src="img/projects/stockflow-real-2.jpg" alt="StockFlow 2" onerror="this.src='img/portfolio/3.jpg'"><span class="badge-img green">StockFlow</span></div>
-          <div class="carousel-slide"><img src="img/projects/stockflow-real-3.jpg" alt="StockFlow 3" onerror="this.src='img/portfolio/1.jpg'"><span class="badge-img green">StockFlow</span></div>
-          <div class="carousel-slide"><img src="img/projects/stockflow.jpg" alt="StockFlow 4"><span class="badge-img">StockFlow</span></div>
+          <div class="carousel-slide"><img src="img/projects/stockflow-real-1.jpg" alt="StockFlow — plateforme licences" loading="lazy" decoding="async" onerror="this.src='img/portfolio/1.jpg'"><span class="badge-img green">StockFlow</span></div>
+          <div class="carousel-slide"><img src="img/projects/stockflow-real-2.jpg" alt="StockFlow — application mobile" loading="lazy" decoding="async" onerror="this.src='img/portfolio/3.jpg'"><span class="badge-img green">App Mobile</span></div>
+          <div class="carousel-slide"><img src="img/projects/stockflow-real-3.jpg" alt="StockFlow — tableau de bord" loading="lazy" decoding="async" onerror="this.src='img/portfolio/1.jpg'"><span class="badge-img green">Dashboard</span></div>
+          <div class="carousel-slide"><img src="img/projects/stockflow.jpg" alt="StockFlow — aperçu" loading="lazy" decoding="async"><span class="badge-img">Aperçu</span></div>
         </div>
         <div class="carousel-dots"></div>
       </div>
       <div class="card-body">
         <span class="tag">Flagship • Laravel 13 + RN + Electron</span>
-        <h3><i class="fa-solid fa-boxes-stacked" style="color:#d4af37"></i> StockFlow — Gestion Stock</h3>
+        <h3><i class="fa-solid fa-boxes-stacked" style="color:var(--gold)"></i> StockFlow — Gestion Stock</h3>
         <p>Plateforme complète : site licences + API + app mobile offline + PC caisse. 20 écrans, reçus PDF, tickets 80mm, multi-boutiques.</p>
-        <div class="links-row"><a href="https://github.com/moussantji/gestion-stock" target="_blank"><i class="fa-brands fa-github"></i> GitHub →</a><a href="https://github.com/moussantji/gestion-stock#readme" target="_blank">README →</a></div>
+        <div class="links-row"><a href="https://github.com/moussantji/gestion-stock" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub →</a><a href="https://github.com/moussantji/gestion-stock#readme" target="_blank" rel="noopener">README →</a></div>
       </div>
     </div>
 
-    <div class="card" style="border-color:rgba(16,185,129,.35)">
+    <!-- E-COMMERCE SITE + APP — COMBINÉ 4:3 -->
+    <div class="card card-combined" style="border-color:rgba(16,185,129,.35)">
       <div class="carousel" data-carousel>
         <div class="carousel-track">
-          <div class="carousel-slide mobile"><img src="img/projects/ecommerce-real-1.jpg" alt="E-commerce 1" onerror="this.src='img/projects/ecommerce.jpg'"><span class="badge-img green">E-commerce</span></div>
-          <div class="carousel-slide mobile"><img src="img/projects/ecommerce-real-2.jpg" alt="E-commerce 2" onerror="this.src='img/projects/ecommerce-real-1.jpg'"><span class="badge-img green">E-commerce</span></div>
-          <div class="carousel-slide mobile"><img src="img/projects/ecommerce-real-3.jpg" alt="E-commerce 3" onerror="this.src='img/projects/ecommerce.jpg'"><span class="badge-img green">E-commerce</span></div>
-          <div class="carousel-slide mobile"><img src="img/projects/ecommerce.jpg" alt="E-commerce 4"><span class="badge-img green">E-commerce</span></div>
+          <div class="carousel-slide"><img src="img/projects/ecommerce-ultra-pc-mobile-combined.jpg" alt="E-commerce — site web et application mobile" decoding="async" onerror="this.src='img/projects/ecommerce.jpg'"><span class="badge-img green">PC + Mobile</span></div>
+          <div class="carousel-slide"><img src="img/projects/ecommerce-web-ultra.jpg" alt="E-commerce — site web desktop" loading="lazy" decoding="async" onerror="this.src='img/projects/ecommerce.jpg'"><span class="badge-img green">Site Web</span></div>
+          <div class="carousel-slide"><img src="img/projects/ecommerce-web-produit-ultra.jpg" alt="E-commerce — fiche produit desktop" loading="lazy" decoding="async" onerror="this.src='img/projects/ecommerce-web-ultra.jpg'"><span class="badge-img green">Fiche produit</span></div>
+          <div class="carousel-slide"><img src="img/projects/ecommerce-pc-ultra-2.jpg" alt="E-commerce — dashboard vendeur" loading="lazy" decoding="async" onerror="this.src='img/projects/ecommerce.jpg'"><span class="badge-img green">Dashboard vendeur</span></div>
         </div>
         <div class="carousel-dots"></div>
       </div>
       <div class="card-body">
         <span class="tag green">E-commerce • Site + App</span>
-        <h3><i class="fa-solid fa-cart-shopping" style="color:#10b981"></i> E-commerce — Site + App</h3>
-        <p>Site Laravel + app boutique : catalogue, panier, Mobile Money, dashboard vendeur.</p>
-        <div class="links-row"><a href="#" style="opacity:.6">Privé 🔒</a><a class="drive" href="https://drive.google.com/uc?export=download&id=1J5TJRzODqr89KTK9lTM5jtz55QPF4FwB" target="_blank"><i class="fa-solid fa-download"></i> 📱 Application APK →</a></div>
+        <h3><i class="fa-solid fa-cart-shopping" style="color:var(--green)"></i> E-commerce — Site + App</h3>
+        <p>Plateforme complète : catalogue, panier, paiement Mobile Money, suivi des commandes et dashboard vendeur.</p>
+        <div class="links-row"><span class="locked">Privé 🔒</span><a class="drive" href="https://drive.google.com/uc?export=download&amp;id=1J5TJRzODqr89KTK9lTM5jtz55QPF4FwB" target="_blank" rel="noopener"><i class="fa-solid fa-download"></i> 📱 Application APK →</a></div>
       </div>
     </div>
 
-    <div class="card">
+    <!-- E-COMMERCE MOBILE — MOBILE 9:16 -->
+    <div class="card card-mobile" style="border-color:rgba(16,185,129,.35)">
       <div class="carousel" data-carousel>
         <div class="carousel-track">
-          <div class="carousel-slide mobile"><img src="img/projects/mandenbaoubab-real.jpg" alt="Manden 1" style="object-fit:contain;background:#fff;padding:8px"><span class="badge-img green">Manden Baobab</span></div>
-          <div class="carousel-slide mobile"><img src="img/projects/couture.jpg" alt="Manden 2"><span class="badge-img">Manden</span></div>
+          <div class="carousel-slide"><img src="img/projects/ecommerce-mobile-ultra-1.jpg" alt="E-commerce mobile — accueil #MégaSoldes" loading="lazy" decoding="async" onerror="this.src='img/projects/ecommerce-real-1.jpg'"><span class="badge-img green">Accueil</span></div>
+          <div class="carousel-slide"><img src="img/projects/ecommerce-mobile-ultra-2.jpg" alt="E-commerce mobile — panier" loading="lazy" decoding="async" onerror="this.src='img/projects/ecommerce-real-3.jpg'"><span class="badge-img green">Panier</span></div>
+          <div class="carousel-slide"><img src="img/projects/ecommerce-real-1.jpg" alt="E-commerce mobile — accueil (application)" loading="lazy" decoding="async" onerror="this.src='img/projects/ecommerce.jpg'"><span class="badge-img">Capture App</span></div>
+          <div class="carousel-slide"><img src="img/projects/ecommerce-real-2.jpg" alt="E-commerce mobile — fiche produit (application)" loading="lazy" decoding="async" onerror="this.src='img/projects/ecommerce.jpg'"><span class="badge-img">Capture App</span></div>
+          <div class="carousel-slide"><img src="img/projects/ecommerce-real-3.jpg" alt="E-commerce mobile — panier (application)" loading="lazy" decoding="async" onerror="this.src='img/projects/ecommerce.jpg'"><span class="badge-img">Capture App</span></div>
+        </div>
+        <div class="carousel-dots"></div>
+      </div>
+      <div class="card-body">
+        <span class="tag green">Application Android • React Native</span>
+        <h3><i class="fa-solid fa-mobile-screen-button" style="color:var(--green)"></i> E-commerce — Application Mobile</h3>
+        <p>App boutique : catalogue, fiche produit, panier, paiement Mobile Money et suivi des commandes.</p>
+        <div class="links-row"><span class="locked">Privé 🔒</span><a class="drive" href="https://drive.google.com/uc?export=download&amp;id=1J5TJRzODqr89KTK9lTM5jtz55QPF4FwB" target="_blank" rel="noopener"><i class="fa-solid fa-download"></i> 📱 Application APK →</a></div>
+      </div>
+    </div>
+
+    <!-- MANDEN BAOBAB — MOBILE 9:16 -->
+    <div class="card card-mobile">
+      <div class="carousel" data-carousel>
+        <div class="carousel-track">
+          <div class="carousel-slide"><img src="img/projects/mandenbaoubab-real.jpg" alt="Manden Baobab — boutique mobile" loading="lazy" decoding="async" onerror="this.src='img/projects/couture.jpg'"><span class="badge-img green">Manden Baobab</span></div>
+          <div class="carousel-slide"><img src="img/projects/couture.jpg" alt="Manden Baobab — aperçu" loading="lazy" decoding="async"><span class="badge-img">Aperçu</span></div>
         </div>
         <div class="carousel-dots"></div>
       </div>
       <div class="card-body">
         <span class="tag green">React Native • E-commerce</span>
         <h3>Manden Baobab — Boutique Mobile</h3>
-        <p>Application mobile e-commerce produits locaux maliens, catalogue, panier, commandes.</p>
-        <div class="links-row"><a href="https://github.com/moussantji/excel" target="_blank">GitHub →</a></div>
+        <p>Application mobile e-commerce produits locaux maliens : catalogue, panier, commandes.</p>
+        <div class="links-row"><a href="https://github.com/moussantji/excel" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub →</a></div>
       </div>
     </div>
 
-    <div class="card">
+    <!-- IMMOBILIO — WEB 16:9 -->
+    <div class="card card-web">
       <div class="carousel" data-carousel>
         <div class="carousel-track">
-          <div class="carousel-slide"><img src="img/projects/immobilio.jpg" alt="Immobilio"><span class="badge-img gold">Immobilio</span></div>
-          <div class="carousel-slide"><img src="img/portfolio/1.jpg" alt="Immobilio 2"><span class="badge-img">Immobilio</span></div>
+          <div class="carousel-slide"><img src="img/projects/immobilio.jpg" alt="Immobilio — plateforme immobilière" loading="lazy" decoding="async" onerror="this.src='img/portfolio/1.jpg'"><span class="badge-img gold">Immobilio</span></div>
+          <div class="carousel-slide"><img src="img/projects/immobilio-2.jpg" alt="Immobilio — application mobile, fiche du bien" loading="lazy" decoding="async" onerror="this.src='img/projects/immobilio.jpg'"><span class="badge-img gold">App Mobile</span></div>
         </div>
         <div class="carousel-dots"></div>
       </div>
       <div class="card-body">
         <span class="tag">Flagship • 2023-2024</span>
-        <h3>Immobilio — Plateforme Immobilière</h3>
+        <h3><i class="fa-solid fa-building" style="color:var(--gold)"></i> Immobilio — Plateforme Immobilière</h3>
         <p>Laravel + React + MySQL. Annonces, dashboard admin, API REST.</p>
-        <div class="links-row"><a href="https://github.com/moussantji" target="_blank">GitHub →</a></div>
+        <div class="links-row"><a href="https://github.com/moussantji" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub →</a></div>
       </div>
     </div>
 
-    <div class="card">
+    <!-- VOITURE — WEB 16:9 -->
+    <div class="card card-web">
       <div class="carousel" data-carousel>
         <div class="carousel-track">
-          <div class="carousel-slide"><img src="img/projects/voiture.jpg" alt="Voiture"><span class="badge-img">Voiture</span></div>
-          <div class="carousel-slide"><img src="img/portfolio/3.jpg" alt="Voiture 2"><span class="badge-img">Voiture</span></div>
+          <div class="carousel-slide"><img src="img/projects/voiture.jpg" alt="Voiture — marketplace" loading="lazy" decoding="async" onerror="this.src='img/portfolio/3.jpg'"><span class="badge-img">Voiture</span></div>
+          <div class="carousel-slide"><img src="img/projects/voiture-2.jpg" alt="Voiture — application mobile, fiche du véhicule" loading="lazy" decoding="async" onerror="this.src='img/projects/voiture.jpg'"><span class="badge-img">App Mobile</span></div>
         </div>
         <div class="carousel-dots"></div>
       </div>
       <div class="card-body">
-        <span class="tag">Voiture • 2024</span>
-        <h3>Voiture — Marketplace</h3>
-        <p>Plateforme vente/location voitures.</p>
-        <div class="links-row"><a href="https://github.com/moussantji/Voiture" target="_blank">GitHub →</a></div>
+        <span class="tag">Marketplace • 2024</span>
+        <h3><i class="fa-solid fa-car" style="color:var(--blue)"></i> Voiture — Marketplace</h3>
+        <p>Plateforme de vente et location de voitures : annonces, filtres, contact vendeur.</p>
+        <div class="links-row"><a href="https://github.com/moussantji/Voiture" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub →</a></div>
       </div>
     </div>
 
-    <div class="card">
+    <!-- AGENCE — WEB 16:9 -->
+    <div class="card card-web">
       <div class="carousel" data-carousel>
         <div class="carousel-track">
-          <div class="carousel-slide"><img src="img/projects/voiture.jpg" alt="Agence"><span class="badge-img blue">Agence</span></div>
-          <div class="carousel-slide"><img src="img/projects/ecommerce.jpg" alt="Agence 2"><span class="badge-img">Agence</span></div>
+          <div class="carousel-slide"><img src="img/projects/voiture.jpg" alt="Site Agence" loading="lazy" decoding="async" onerror="this.src='img/portfolio/1.jpg'"><span class="badge-img blue">Agence</span></div>
+          <div class="carousel-slide"><img src="img/projects/ecommerce.jpg" alt="Site Agence — interface" loading="lazy" decoding="async"><span class="badge-img blue">Interface</span></div>
         </div>
         <div class="carousel-dots"></div>
       </div>
       <div class="card-body">
         <span class="tag blue">Site + App</span>
-        <h3>Site Agence — Site + App</h3>
-        <p>Agence Laravel + APK mobile.</p>
-        <div class="links-row"><a href="#">GitHub 🔒</a><a class="gold" href="#">📱 Application APK →</a></div>
+        <h3><i class="fa-solid fa-briefcase" style="color:var(--blue)"></i> Site Agence — Site + App</h3>
+        <p>Site agence Laravel avec application mobile Android associée.</p>
+        <div class="links-row"><span class="locked">Privé 🔒</span><a class="gold" href="mailto:Moussantjidiallo@gmail.com?subject=Demande%20APK%20—%20Site%20Agence"><i class="fa-solid fa-download"></i> 📱 APK sur demande →</a></div>
       </div>
     </div>
 
-    <div class="card">
+    <!-- COUTURE — WEB 16:9 -->
+    <div class="card card-web">
       <div class="carousel" data-carousel>
         <div class="carousel-track">
-          <div class="carousel-slide"><img src="img/projects/couture.jpg" alt="Couture"><span class="badge-img">Couture</span></div>
-          <div class="carousel-slide"><img src="img/projects/medical.jpg" alt="Couture 2"><span class="badge-img">Couture</span></div>
+          <div class="carousel-slide"><img src="img/projects/couture.jpg" alt="Atelier Couture — application" loading="lazy" decoding="async" onerror="this.src='img/projects/medical.jpg'"><span class="badge-img">Couture</span></div>
+          <div class="carousel-slide"><img src="img/projects/couture-2.jpg" alt="Atelier Couture — application mobile, suivi de commande" loading="lazy" decoding="async" onerror="this.src='img/projects/couture.jpg'"><span class="badge-img">Suivi Commande</span></div>
         </div>
         <div class="carousel-dots"></div>
       </div>
       <div class="card-body">
         <span class="tag blue">App + API</span>
         <h3><i class="fa-solid fa-scissors" style="color:#ec4899"></i> Atelier Couture — App + API</h3>
-        <p>Suite complète couture : prise mesures, suivi commandes, API Laravel.</p>
-        <div class="links-row"><a href="#">Privé 🔒</a><a class="gold" href="#">Application APK →</a></div>
+        <p>Suite complète couture : prise de mesures, suivi des commandes, API Laravel.</p>
+        <div class="links-row"><span class="locked">Privé 🔒</span><a class="gold" href="mailto:Moussantjidiallo@gmail.com?subject=Demande%20APK%20—%20Atelier%20Couture"><i class="fa-solid fa-download"></i> 📱 APK sur demande →</a></div>
       </div>
     </div>
 
-    <div class="card">
+    <!-- CABINET MÉDICAL — WEB 16:9 -->
+    <div class="card card-web">
       <div class="carousel" data-carousel>
         <div class="carousel-track">
-          <div class="carousel-slide"><img src="img/projects/medical.jpg" alt="Medical"><span class="badge-img">Cabinet</span></div>
-          <div class="carousel-slide"><img src="img/projects/couture.jpg" alt="Medical 2"><span class="badge-img">Cabinet</span></div>
+          <div class="carousel-slide"><img src="img/projects/medical.jpg" alt="Cabinet Médical — site et RDV" loading="lazy" decoding="async" onerror="this.src='img/projects/couture.jpg'"><span class="badge-img">Cabinet</span></div>
+          <div class="carousel-slide"><img src="img/projects/medical-2.jpg" alt="Cabinet Médical — application mobile, prise de rendez-vous" loading="lazy" decoding="async" onerror="this.src='img/projects/medical.jpg'"><span class="badge-img">Prise de RDV</span></div>
         </div>
         <div class="carousel-dots"></div>
       </div>
       <div class="card-body">
-        <span class="tag">Cabinet • RDV</span>
-        <h3><i class="fa-solid fa-stethoscope" style="color:#10b981"></i> Cabinet Médical — Site + RDV</h3>
-        <p>Site vitrine cabinet : services, prise RDV en ligne, gestion patients.</p>
-        <div class="links-row"><a href="#">Privé 🔒</a><a href="#">Live →</a></div>
+        <span class="tag">Cabinet • Prise de RDV</span>
+        <h3><i class="fa-solid fa-stethoscope" style="color:var(--green)"></i> Cabinet Médical — Site + RDV</h3>
+        <p>Site vitrine cabinet : services, prise de rendez-vous en ligne, gestion des patients.</p>
+        <div class="links-row"><span class="locked">Privé 🔒</span></div>
       </div>
     </div>
 
-    <div class="card">
+    <!-- CRYSTAL IPTV — WEB 16:9 -->
+    <div class="card card-web">
       <div class="carousel" data-carousel>
         <div class="carousel-track">
-          <div class="carousel-slide"><img src="img/projects/crystal-iptv.jpg" alt="IPTV"><span class="badge-img blue">IPTV</span></div>
-          <div class="carousel-slide"><img src="img/projects/crystal-ott.jpg" alt="IPTV 2"><span class="badge-img">IPTV</span></div>
+          <div class="carousel-slide"><img src="img/projects/crystal-iptv.jpg" alt="Crystal IPTV — diffusion live" loading="lazy" decoding="async" onerror="this.src='img/projects/crystal-ott.jpg'"><span class="badge-img blue">IPTV</span></div>
+          <div class="carousel-slide"><img src="img/projects/crystal-ott.jpg" alt="Crystal IPTV — interface" loading="lazy" decoding="async"><span class="badge-img blue">Interface</span></div>
         </div>
         <div class="carousel-dots"></div>
       </div>
       <div class="card-body">
         <span class="tag blue">Laravel • Live • Abonnements</span>
-        <h3><i class="fa-solid fa-tv" style="color:#38bdf8"></i> Crystal IPTV</h3>
-        <p>Plateforme IPTV Laravel : diffusion live, gestion abonnements, back-office.</p>
-        <div class="links-row"><a href="#">Privé 🔒</a><a href="https://github.com/moussantji/stream" target="_blank">GitHub →</a></div>
+        <h3><i class="fa-solid fa-tv" style="color:var(--blue)"></i> Crystal IPTV</h3>
+        <p>Plateforme IPTV Laravel : diffusion live, gestion des abonnements, back-office.</p>
+        <div class="links-row"><span class="locked">Privé 🔒</span><a href="https://github.com/moussantji/stream" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub →</a></div>
       </div>
     </div>
 
-    <div class="card">
+    <!-- CRYSTAL OTT — WEB 16:9 -->
+    <div class="card card-web">
       <div class="carousel" data-carousel>
         <div class="carousel-track">
-          <div class="carousel-slide"><img src="img/projects/crystal-ott.jpg" alt="OTT"><span class="badge-img blue">OTT</span></div>
-          <div class="carousel-slide"><img src="img/projects/crystal-iptv.jpg" alt="OTT 2"><span class="badge-img">OTT</span></div>
+          <div class="carousel-slide"><img src="img/projects/crystal-ott.jpg" alt="Crystal OTT — streaming VOD" loading="lazy" decoding="async" onerror="this.src='img/projects/crystal-iptv.jpg'"><span class="badge-img blue">OTT</span></div>
+          <div class="carousel-slide"><img src="img/projects/crystal-iptv.jpg" alt="Crystal OTT — interface" loading="lazy" decoding="async"><span class="badge-img blue">Interface</span></div>
         </div>
         <div class="carousel-dots"></div>
       </div>
       <div class="card-body">
         <span class="tag blue">OTT • VOD Premium</span>
         <h3><i class="fa-solid fa-film" style="color:#7c3aed"></i> CrystalOTT — Streaming VOD</h3>
-        <p>OTT VOD premium : catalogue films/séries, abonnements, lecture multi-device.</p>
-        <div class="links-row"><a href="#">Privé 🔒</a><a href="https://github.com/moussantji/stream" target="_blank">GitHub →</a></div>
+        <p>OTT VOD premium : catalogue films et séries, abonnements, lecture multi-device.</p>
+        <div class="links-row"><span class="locked">Privé 🔒</span><a href="https://github.com/moussantji/stream" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub →</a></div>
       </div>
     </div>
 
@@ -280,7 +334,7 @@ section{padding:40px 5%}
 
 <section id="contact" style="background:linear-gradient(135deg,rgba(15,23,42,.8),rgba(30,58,95,.6));border-top:1px solid rgba(212,175,55,.15);text-align:center">
   <h2 style="font-family:'Cormorant Garamond',serif;font-size:28px;color:#fff">Prêt à lancer votre projet ?</h2>
-  <p style="margin-top:8px;color:#94a3b8">Bamako & Remote • Réponse sous 24h</p>
+  <p style="margin-top:8px;color:#94a3b8">Bamako &amp; Remote • Réponse sous 24h</p>
   <div style="margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
     <a class="btn btn-gold" href="mailto:Moussantjidiallo@gmail.com">Me contacter →</a>
     <a class="btn btn-ghost" href="tel:+22382019583">+223 82 01 95 83</a>
@@ -288,57 +342,71 @@ section{padding:40px 5%}
   </div>
 </section>
 
-<div style="background:#020610;color:#64748b;padding:12px 5%;font-size:10px;display:flex;justify-content:space-between;flex-wrap:wrap"><span>© 2026 Moussa N'tji Diallo — Portfolio • <a href="img/cv/CV-Moussa-Ntji-Diallo-Ultra-Premium.pdf" style="color:#d4af37">CV PDF</a> • <a href="https://github.com/moussantji" style="color:#d4af37">GitHub</a></span><span>Carousel auto 1s • APK disponible</span></div>
+<div style="background:#020610;color:#64748b;padding:12px 5%;font-size:10px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px"><span>© 2026 Moussa N'tji Diallo — Portfolio • <a href="img/cv/CV-Moussa-Ntji-Diallo-Ultra-Premium.pdf" style="color:var(--gold)">CV PDF</a> • <a href="https://github.com/moussantji" style="color:var(--gold)">GitHub</a></span><span>Bamako &amp; Remote • Disponible pour missions</span></div>
 
-<div id="imgModal" onclick="closeModal()"><div class="close" onclick="closeModal()">✕</div><img id="modalImg" src="" alt=""></div>
+<div id="imgModal" onclick="closeModal()"><div class="close" onclick="closeModal()">✕</div><img id="modalImg" src="" alt="Aperçu"></div>
 
 <script>
-// CAROUSEL AUTO 1s - SANS BOUTONS - ULTRA FLUIDE
-document.querySelectorAll('[data-carousel]').forEach(carousel=>{
-  const track = carousel.querySelector('.carousel-track');
-  const slides = carousel.querySelectorAll('.carousel-slide');
-  const dotsContainer = carousel.querySelector('.carousel-dots');
-  let current = 0;
+// CAROUSEL — AUTO 5s PAR PHOTO • SANS BOUTONS • SANS DÉCALAGE
+document.querySelectorAll('[data-carousel]').forEach(function(carousel){
+  var track = carousel.querySelector('.carousel-track');
+  var slides = carousel.querySelectorAll('.carousel-slide');
+  var dotsContainer = carousel.querySelector('.carousel-dots');
+  var DELAY = 5000;
+  var current = 0;
+  var timer = null;
 
-  // Dots
-  slides.forEach((_,i)=>{
-    const dot = document.createElement('div');
-    dot.className = 'carousel-dot' + (i===0?' active':'');
+  if(!track || slides.length === 0) return;
+
+  // Dots (or + halo doré)
+  slides.forEach(function(_, i){
+    var dot = document.createElement('div');
+    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
     dotsContainer.appendChild(dot);
   });
-  const dots = dotsContainer.querySelectorAll('.carousel-dot');
+  var dots = dotsContainer.querySelectorAll('.carousel-dot');
+  if(slides.length < 2) dotsContainer.style.display = 'none';
 
   function update(){
-    track.style.transform = `translate3d(-${current*100}%,0,0)`;
-    dots.forEach((d,i)=>d.classList.toggle('active', i===current));
+    track.style.transform = 'translate3d(-' + (current * 100) + '%,0,0)';
+    dots.forEach(function(d, i){ d.classList.toggle('active', i === current); });
   }
 
-  // Auto every 5 seconds - FIX DECALAGE
-  setInterval(()=>{
-    current = (current+1)%slides.length;
+  function next(){
+    current = (current + 1) % slides.length;
     update();
-  }, 5000);
+  }
 
-  // Pause on hover
-  let interval;
-  carousel.addEventListener('mouseenter',()=>{
-    // Keep auto but user can also click image to zoom
-  });
+  function start(){
+    if(timer) clearInterval(timer);
+    if(slides.length > 1) timer = setInterval(next, DELAY);
+  }
 
-  // Click image to modal
-  slides.forEach(slide=>{
-    slide.addEventListener('click',()=>{
-      const img = slide.querySelector('img');
-      if(img) openModal(img.src);
+  // Pause au survol, reprise ensuite
+  carousel.addEventListener('mouseenter', function(){ if(timer) clearInterval(timer); });
+  carousel.addEventListener('mouseleave', start);
+  document.addEventListener('visibilitychange', function(){ document.hidden ? clearInterval(timer) : start(); });
+
+  // Clic sur une image = plein écran
+  slides.forEach(function(slide){
+    slide.addEventListener('click', function(){
+      var img = slide.querySelector('img');
+      if(img) openModal(img.currentSrc || img.src);
     });
   });
 
   update();
+  start();
 });
 
-function openModal(src){document.getElementById('modalImg').src=src;document.getElementById('imgModal').classList.add('active');}
-function closeModal(){document.getElementById('imgModal').classList.remove('active');}
-document.addEventListener('keydown',e=>{if(e.key==='Escape') closeModal()});
+function openModal(src){
+  document.getElementById('modalImg').src = src;
+  document.getElementById('imgModal').classList.add('active');
+}
+function closeModal(){
+  document.getElementById('imgModal').classList.remove('active');
+}
+document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeModal(); });
 </script>
 </body>
 </html>
