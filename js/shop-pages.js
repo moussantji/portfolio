@@ -212,7 +212,7 @@
       fav: param('fav') === '1',
       tri: 'populaire'
     };
-    var page = 1, PAR_PAGE = 12;
+    var page = 1, PAR_PAGE = 8;
 
     function resultats() {
       var q = f.q.trim().toLowerCase();
@@ -252,9 +252,15 @@
         '<a class="btn-line" href="ecommerce-web.html">Retour à l\'accueil boutique</a></div></div>';
 
       var pager = document.getElementById('pager');
-      pager.innerHTML = max > 1 ? Array.apply(null, Array(max)).map(function (_, i) {
-        return '<button type="button" class="' + (i + 1 === page ? 'on' : '') + '" data-page="' + (i + 1) + '">' + (i + 1) + '</button>';
-      }).join('') : '';
+      pager.innerHTML = max > 1
+        ? '<button type="button" class="pg-nav" data-page="' + (page - 1) + '"' + (page <= 1 ? ' disabled' : '') + ' aria-label="Page précédente">← Précédent</button>' +
+          Array.apply(null, Array(max)).map(function (_, i) {
+            return '<button type="button" class="' + (i + 1 === page ? 'on' : '') + '" data-page="' + (i + 1) + '"' +
+              (i + 1 === page ? ' aria-current="page"' : '') + '>' + (i + 1) + '</button>';
+          }).join('') +
+          '<button type="button" class="pg-nav" data-page="' + (page + 1) + '"' + (page >= max ? ' disabled' : '') + ' aria-label="Page suivante">Suivant →</button>' +
+          '<span class="pg-info">Page ' + page + ' / ' + max + '</span>'
+        : '';
 
       chipsBox.innerHTML = ['Toutes'].concat(CATEGORIES).concat(['Promos']).map(function (c) {
         var on = (c === 'Promos' && f.promo) || (c === f.cat && !f.promo);
@@ -283,6 +289,23 @@
   }
 
   /* ═══════════════ 8. Page DÉTAIL ═══════════════ */
+  /* Barre « Produit précédent / suivant » (même catégorie, sinon tout le catalogue) */
+  function navSiblings(p) {
+    var groupe = CATALOGUE.filter(function (x) { return x.cat === p.cat; });
+    if (groupe.length < 2) groupe = CATALOGUE.slice();
+    var i = groupe.map(function (x) { return x.slug; }).indexOf(p.slug);
+    if (i < 0) return '';
+    var prec = groupe[(i - 1 + groupe.length) % groupe.length];
+    var suiv = groupe[(i + 1) % groupe.length];
+    return '<div class="siblings">' +
+      '<a class="sib" href="ecommerce-produit.html?p=' + prec.slug + '" title="' + echappe(prec.nom) + '">' +
+        '<span class="sib-k">← Précédent</span><span class="sib-n">' + echappe(prec.nom) + '</span></a>' +
+      '<span class="sib-c">' + (i + 1) + ' / ' + groupe.length + '</span>' +
+      '<a class="sib next" href="ecommerce-produit.html?p=' + suiv.slug + '" title="' + echappe(suiv.nom) + '">' +
+        '<span class="sib-k">Suivant →</span><span class="sib-n">' + echappe(suiv.nom) + '</span></a>' +
+    '</div>';
+  }
+
   function pageDetail() {
     var p = getProduit(param('p'));
     var fiches = document.getElementById('pdp');
@@ -319,6 +342,7 @@
 
       /* ── Informations ── */
       '<div class="pdp-info">' +
+        navSiblings(p) +
         '<div class="tagline">' + ic('i-b2-tag') + '<span>' + echappe(p.cat) + ' · Réf. ' + echappe(p.ref) + '</span></div>' +
         '<h1>' + echappe(p.nom) + '</h1>' +
         '<div class="rating-row">' + etoiles(p.note) +

@@ -19,7 +19,7 @@ function creerEnv(search, page){
                   contains(c){return this._s.has(c)} },
       setAttribute(k,v){this['_'+k]=v}, getAttribute(k){ return this['_'+k]!==undefined?this['_'+k]:null },
       closest(){ return null }, matches(){ return false }, remove(){}, appendChild(c){this.children.push(c);return c},
-      getBoundingClientRect(){return {top:0}}, offsetWidth:0,
+      getBoundingClientRect(){return {top:0}}, offsetWidth:0, scrollIntoView(){},
       click(){ (this._ev.click||[]).forEach(f=>f({target:this})); }
     };
     return e;
@@ -240,9 +240,10 @@ const T=(n,f)=>{ try{ const r=f(); console.log((r===false?'✗':'✓')+' '+n); r
     env.getEl('tri').value='prix-asc';
     (env.getEl('tri')._ev.change||[]).forEach(f=>f({target:env.getEl('tri')}));
     const h=env.getEl('plist').innerHTML;
-    const i1=h.indexOf('Batterie externe'), i2=h.indexOf('Machine à laver');
-    if(i1<0||i2<0) throw new Error('produits absents');
-    if(i1>i2) throw new Error('tri non appliqué');
+    const prix=(h.match(/class="price">([\d ]+)/g)||[]).map(x=>parseInt(x.replace(/\D/g,''),10));
+    if(prix.length<3) throw new Error('prix illisibles ('+prix.length+')');
+    for(let i=1;i<prix.length;i++) if(prix[i]<prix[i-1]) throw new Error('ordre croissant non respecté en position '+i);
+    if(prix[0]!==12900) throw new Error('premier prix attendu 12 900 — obtenu '+prix[0]);
     return true; });
   T('liste : case « En promotion »', ()=>{
     env.getEl('cb-promo').checked=true;
@@ -278,6 +279,52 @@ const T=(n,f)=>{ try{ const r=f(); console.log((r===false?'✗':'✓')+' '+n); r
     if(cmds.length!==1) throw new Error('commande non enregistrée');
     if(cmds[0].total!==226833) throw new Error('total commande = '+cmds[0].total);
     if(JSON.parse(env.mem['bt_panier_v1']).length!==0) throw new Error('panier non vidé');
+    return true; });
+}
+/* ─────────── Pagination & navigation produit précédent/suivant ─────────── */
+{
+  const env = creerEnv('', 'liste'); charger(env);
+  T('pagination : boutons Précédent / Suivant présents', ()=>{
+    const h = env.getEl('pager').innerHTML;
+    if(!h.includes('← Précédent')) throw new Error('bouton précédent absent');
+    if(!h.includes('Suivant →')) throw new Error('bouton suivant absent');
+    if(!h.includes('Page 1 / 2')) throw new Error('indicateur de page : '+h);
+    if(!/data-page="0"[^>]*disabled/.test(h.replace(/\s+/g,' '))) throw new Error('précédent non désactivé en page 1');
+    if(/data-page="2"[^>]*disabled/.test(h.replace(/\s+/g,' '))) throw new Error('suivant désactivé à tort en page 1');
+    return true; });
+  T('pagination : passage en page 2', ()=>{
+    const btn = { getAttribute: k => k==='data-page' ? '2' : null, closest: () => null };
+    (env.getEl('pager')._ev.click||[]).forEach(f=>f({ target:{ closest: sel => sel==='[data-page]' ? btn : null }, preventDefault(){} }));
+    const h = env.getEl('plist').innerHTML;
+    if((h.match(/class="card rv/g)||[]).length !== 2) throw new Error('page 2 = '+(h.match(/class="card rv/g)||[]).length+' produits (attendu 2)');
+    return true; });
+  T('pagination : précédent activé en page 2', ()=>{
+    const h = env.getEl('pager').innerHTML;
+    if(!h.includes('Page 2 / 2')) throw new Error('indicateur : '+h);
+    if(!/data-page="3"[^>]*disabled/.test(h.replace(/\s+/g,' '))) throw new Error('suivant devrait être désactivé en dernière page');
+    if(/data-page="1"[^>]*disabled/.test(h.replace(/\s+/g,' '))) throw new Error('précédent devrait être actif en page 2');
+    return true; });
+}
+{
+  const env = creerEnv('?p=telephone-mobile-4g', 'detail'); charger(env);
+  T('fiche : barre produit précédent / suivant (même catégorie)', ()=>{
+    const h = env.getEl('pdp').innerHTML;
+    if(!h.includes('← Précédent') || !h.includes('Suivant →')) throw new Error('barre absente');
+    if(!h.includes('class="sib-c"') || !h.includes(' / 7')) throw new Error('position absente');
+    const liens = (h.match(/ecommerce-produit\.html\?p=[a-z0-9-]+/g)||[]);
+    if(liens.length < 2) throw new Error('liens précédent/suivant absents');
+    return true; });
+  T('fiche : la barre mène à de vrais produits', ()=>{
+    const h = env.getEl('pdp').innerHTML;
+    const refs = (h.match(/ecommerce-produit\.html\?p=([a-z0-9-]+)/g)||[]).map(x=>x.split('=')[1]);
+    if(new Set(refs).size !== 2) throw new Error('slugs identiques');
+    return true; });
+}
+{
+  const env = creerEnv('?p=montre-connectee', 'detail'); charger(env);
+  T('fiche : catégorie à 1 produit → repli sur tout le catalogue', ()=>{
+    const h = env.getEl('pdp').innerHTML;
+    if(!h.includes(' / 10')) throw new Error('position : '+(h.match(/sib-c">([^<]+)/)||[])[1]);
     return true; });
 }
 console.log('\nFin des tests.');
