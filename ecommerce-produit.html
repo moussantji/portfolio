@@ -689,7 +689,7 @@ html.sm-open,html.sm-open body{overflow:hidden}
         <svg class="ic"><use href="#i-bag"/></svg>
         <span class="dot">3</span>
       </button>
-      <button type="button" aria-label="Mon compte" data-user><svg class="ic"><use href="#i-user"/></svg><span class="nm" style="font-size:11px;font-weight:700;margin-left:4px"></span></button>
+      <a class="acc" href="ecommerce-compte.html" aria-label="Mon espace client" data-user><svg class="ic"><use href="#i-user"/></svg><span class="nm" style="font-size:11px;font-weight:700;margin-left:4px"></span></a>
     </div>
   </div>
 </header>
@@ -782,15 +782,15 @@ Bamako · Ségou · Sikasso · Mopti</p>
         <ul>
           <li><a href="produits.html">Nouveautés</a></li>
           <li><a href="produits.html?promo=1">Promotions</a></li>
-          <li><a href="produits.html">Marques</a></li>
+          <li><a href="ecommerce-admin.html">Marques</a></li>
         </ul>
       </div>
       <div class="rv" style="transition-delay:.12s">
         <h3>Commandes</h3>
         <ul>
-          <li><a href="#suivi">Suivre ma commande</a></li>
-          <li><a href="#livraison">Livraison</a></li>
-          <li><a href="#retours">Retours</a></li>
+          <li><a href="ecommerce-suivi.html">Suivre ma commande</a></li>
+          <li><a href="ecommerce-suivi.html">Livraison</a></li>
+          <li><a href="ecommerce-suivi.html">Retours</a></li>
         </ul>
       </div>
       <div class="rv" style="transition-delay:.18s">
@@ -810,7 +810,7 @@ Bamako · Ségou · Sikasso · Mopti</p>
         </ul>
       </div>
     </div>
-    <div class="bot">
+    <div class="bot"><span style="display:flex;gap:14px;flex-wrap:wrap"><a href="ecommerce-suivi.html">Suivre ma commande</a><a href="ecommerce-compte.html">Mon espace client</a><a href="ecommerce-admin.html">Admin (démo)</a></span>
       <span>© 2026 Boutique — Tous droits réservés</span>
       <span>Prix en FCFA · TVA incluse</span>
     </div>
@@ -832,9 +832,6 @@ Bamako · Ségou · Sikasso · Mopti</p>
 
 <!-- ══════════════════════════ Notifications ══════════════════════════ -->
 <div class="toasts" id="toasts" aria-live="polite"></div>
-
-<!-- ══════════════════════ Connexion (démo) ══════════════════════ -->
-<div class="modal" id="modal"><div class="box"></div></div>
 
 <script src="js/shop-data.js"></script>
 <script src="js/shop-pages.js"></script>

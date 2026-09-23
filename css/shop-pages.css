@@ -378,3 +378,114 @@ select.ctrl{cursor:pointer;padding-right:34px;appearance:none;
 .sib .sib-n{font-size:11.5px;color:var(--grey);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
 .sib-c{font-size:12px;font-weight:700;color:var(--grey);white-space:nowrap}
 @media(max-width:560px){.sib{max-width:44%}.sib .sib-n{font-size:10.5px}.sib-c{display:none}}
+
+/* ═══════════════ 12. Tableaux de bord (client · admin · suivi) ═══════════════ */
+/* En-tête d'espace client */
+.dash-head{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:18px 0}
+.dash-who{display:flex;align-items:center;gap:14px}
+.av-lg{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:22px;
+  background:linear-gradient(135deg,var(--violet-700),var(--violet-400));box-shadow:var(--shadow-md);flex:none}
+.dash-head h1{font-size:clamp(21px,2.4vw,28px);font-weight:800;letter-spacing:-.5px}
+.dash-head p{font-size:13px;color:var(--grey);margin-top:3px}
+.dash-narrow{max-width:520px;margin:22px auto 10px}
+.dash-narrow .panel + .panel{margin-top:16px}
+
+/* Cartes d'indicateurs */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:16px 0 20px}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow);
+  display:flex;flex-direction:column;gap:4px;transition:transform var(--t),box-shadow var(--t)}
+.kpi:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.kpi .kpi-l{font-size:12.5px;font-weight:600;color:var(--grey)}
+.kpi b{font-size:24px;font-weight:800;color:var(--violet-900);letter-spacing:-.6px}
+.kpi .kpi-n{font-size:11.5px;color:#9ca3af}
+@media(max-width:900px){.kpis{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.kpis{grid-template-columns:1fr}}
+
+/* Grilles du tableau de bord */
+.dash-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:18px;align-items:start;margin-bottom:18px}
+@media(max-width:900px){.dash-grid{grid-template-columns:1fr}}
+.h3-mini{font-size:14px;font-weight:700;color:var(--violet-900);margin-bottom:8px}
+
+/* Pastilles de statut */
+.st{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;padding:5px 11px;border-radius:999px;white-space:nowrap}
+.st::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.st.conf{background:#ede9fe;color:#6d28d9}
+.st.prep{background:#fef3c7;color:#b45309}
+.st.exp{background:#e0f2fe;color:#0369a1}
+.st.ok{background:#d1fae5;color:#047857}
+
+/* Cartes de commande (espace client) */
+.ocmd{border:1px solid var(--line);border-radius:12px;padding:13px 15px;margin-bottom:12px;background:#fff;transition:border-color var(--t),box-shadow var(--t)}
+.ocmd:hover{border-color:#ddd6fe;box-shadow:var(--shadow)}
+.ocmd-top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.ocmd-top b{font-size:13.5px}
+.ocmd-lignes{font-size:12.5px;color:var(--grey);margin-top:7px;line-height:1.6}
+.ocmd-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:9px;padding-top:9px;border-top:1px dashed var(--line);font-size:12.5px;color:#374151}
+.ocmd-foot b{color:var(--pink);font-size:14px}
+.muted-sm{font-size:12.5px;color:var(--grey)}
+.badge-nb{background:var(--lav-2);color:var(--violet-800);font-size:12px;font-weight:700;border-radius:999px;padding:3px 10px;margin-left:6px}
+.dligne{display:grid;grid-template-columns:56px 1fr auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.dligne:last-child{border-bottom:0}
+.dligne .th{width:56px;height:56px;border-radius:10px;border:1px solid var(--line);background:var(--lav-1) center/cover no-repeat}
+.dligne b{font-size:13px;display:block}
+.dligne small{font-size:11.5px;color:var(--grey)}
+.lien{color:var(--violet-700);font-weight:700;text-decoration:underline;font-size:12.5px}
+.liste-check{list-style:none;display:grid;gap:9px}
+.liste-check li{font-size:13px;color:#374151;padding-left:22px;position:relative;line-height:1.6}
+.liste-check li::before{content:"✓";position:absolute;left:0;color:var(--violet-600);font-weight:800}
+
+/* Frise de suivi */
+.suivi-form{display:flex;gap:10px;flex-wrap:wrap}
+.suivi-form .ctrl{flex:1;min-width:220px;border-radius:12px}
+.timeline{display:flex;align-items:flex-start;gap:0;margin:20px 0 6px;overflow-x:auto;padding-bottom:6px}
+.tl-step{display:flex;align-items:center;gap:0;min-width:0;flex:1;position:relative}
+.tl-dot{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:700;flex:none;
+  background:#fff;border:2px solid var(--line);color:var(--grey);z-index:1}
+.tl-step.fait .tl-dot{background:var(--violet-600);border-color:var(--violet-600);color:#fff}
+.tl-step.actuel .tl-dot{background:#fff;border-color:var(--violet-600);color:var(--violet-700);box-shadow:var(--ring);animation:beat 2.2s var(--ease) infinite}
+.tl-step .tl-dot .ic{width:18px;height:18px}
+.tl-txt{display:flex;flex-direction:column;margin-left:10px;min-width:0}
+.tl-txt b{font-size:12.5px;font-weight:700;color:var(--violet-900);white-space:nowrap}
+.tl-txt small{font-size:11px;color:var(--grey);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:170px}
+.tl-step.a-venir .tl-txt b{color:#9ca3af;font-weight:600}
+.tl-bar{position:absolute;left:36px;right:0;top:18px;height:2px;background:var(--line)}
+.tl-step.fait .tl-bar{background:var(--violet-600)}
+@media(max-width:640px){
+  .timeline{flex-direction:column;gap:2px;overflow:visible}
+  .tl-step{width:100%;align-items:flex-start}
+  .tl-bar{left:17px;right:auto;top:36px;bottom:0;width:2px;height:auto}
+  .tl-txt{margin-bottom:14px}
+}
+
+/* Tableaux (admin) */
+.table-scroll{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:13px;min-width:620px}
+.tbl th{text-align:left;font-size:11.5px;text-transform:uppercase;letter-spacing:.7px;color:var(--grey);font-weight:700;
+  padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+.tbl td{padding:11px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+.tbl tr:last-child td{border-bottom:0}
+.tbl tr:hover td{background:var(--lav-1)}
+.ctrl-sm{padding:7px 10px;font-size:12.5px;border-radius:9px;width:auto}
+.stock-ctl{display:flex;align-items:center;gap:7px}
+.mini-btn{width:26px;height:26px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--violet-700);
+  font-weight:800;line-height:1;display:grid;place-items:center;transition:var(--t)}
+.mini-btn:hover{background:var(--lav-1);border-color:var(--violet-500)}
+.stk{min-width:34px;text-align:center;font-weight:800;border-radius:8px;padding:3px 7px;font-size:12.5px}
+.stk.ok{background:#d1fae5;color:#047857}
+.stk.low{background:#fef3c7;color:#b45309}
+.stk.out{background:#ffe4e6;color:var(--pink)}
+
+/* Top ventes */
+.top-prod{display:flex;align-items:center;gap:11px;padding:9px 0;border-bottom:1px solid var(--line)}
+.top-prod:last-of-type{border-bottom:0}
+.top-prod .rang{width:24px;height:24px;border-radius:8px;background:var(--lav-2);color:var(--violet-800);font-weight:800;font-size:12px;display:grid;place-items:center;flex:none}
+.top-prod .tp-info{flex:1;min-width:0}
+.top-prod .tp-info b{font-size:12.5px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.top-prod .bar{margin-top:5px}
+.top-prod .tp-nb{font-size:12.5px;font-weight:800;color:var(--violet-800)}
+.badge-nb{display:inline-block}
+
+/* Lien compte de l'en-tête (devient une ancre) */
+.hactions a.acc{color:#fff;position:relative;display:flex;align-items:center;gap:5px;opacity:.95;transition:transform var(--t),opacity var(--t)}
+.hactions a.acc:hover{opacity:1;transform:translateY(-2px);color:#fff}
+.hactions a.acc .nm{max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}

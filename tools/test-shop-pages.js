@@ -1,10 +1,10 @@
 const fs=require('fs'), vm=require('vm');
 const RACINE='/home/user/portfolio/';
 
-function creerEnv(search, page){
+function creerEnv(search, page, memPartagee){
   const store = { 'bt_panier_v1': localStorage0 };
   function localStorage0(){}
-  const mem = {};
+  const mem = memPartagee || {};
   const listeners = {};           // document listeners
   const els = {};                 // registry d'éléments par id
 
@@ -276,8 +276,11 @@ const T=(n,f)=>{ try{ const r=f(); console.log((r===false?'✗':'✓')+' '+n); r
     if(!h.includes('Votre commande est enregistrée')) throw new Error('pas de confirmation');
     if(!h.includes('CMD-')) throw new Error('numéro de commande absent');
     const cmds=JSON.parse(env.mem['bt_commandes_v1']||'[]');
-    if(cmds.length!==1) throw new Error('commande non enregistrée');
+    /* 5 commandes de démonstration + la nouvelle */
+    if(cmds.length!==6) throw new Error('commandes = '+cmds.length+' (6 attendues)');
     if(cmds[0].total!==226833) throw new Error('total commande = '+cmds[0].total);
+    if(!cmds[0].statut) throw new Error('statut absent sur la nouvelle commande');
+    if(!/^CMD-\d{4}-0006$/.test(cmds[0].id)) throw new Error('numérotation : '+cmds[0].id);
     if(JSON.parse(env.mem['bt_panier_v1']).length!==0) throw new Error('panier non vidé');
     return true; });
 }
@@ -327,5 +330,18 @@ const T=(n,f)=>{ try{ const r=f(); console.log((r===false?'✗':'✓')+' '+n); r
     if(!h.includes(' / 10')) throw new Error('position : '+(h.match(/sib-c">([^<]+)/)||[])[1]);
     return true; });
 }
+/* ─────────── Tableaux de bord ─────────── */
+try {
+  const testsBord = require('./tests-dashboards.js');
+  testsBord(T, (page, panier, mem) => {
+    const env = creerEnv(typeof page === 'string' && page.indexOf('?') === 0 ? page : '', page, mem);
+    charger(env);
+    env.g = env.getEl;          /* alias pratique pour les tests */
+    return env;
+  });
+} catch (e) {
+  console.log('✗ tests des tableaux de bord : ' + e.message);
+}
+
 console.log('\nFin des tests.');
 process.exit(0);

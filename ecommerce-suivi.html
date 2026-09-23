@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Panier — Boutique en ligne</title>
-<meta name="description" content="Panier et commande : quantités, code promo, livraison et paiement Mobile Money.">
+<title>Suivi de commande — Boutique en ligne</title>
+<meta name="description" content="Suivez votre commande étape par étape : confirmée, en préparation, expédiée, livrée.">
 <style>
 /* =========================================================================
    PAGE E-COMMERCE — ACCUEIL
@@ -617,7 +617,7 @@ html.sm-open,html.sm-open body{overflow:hidden}
 </style>
 <link rel="stylesheet" href="css/shop-pages.css">
 </head>
-<body class="" data-page="panier">
+<body class="" data-page="suivi">
 
 <div id="progress" aria-hidden="true"></div>
 
@@ -710,26 +710,26 @@ html.sm-open,html.sm-open body{overflow:hidden}
 
 
 
-<!-- ══════════════════════════════ Panier ══════════════════════════════ -->
+<!-- ═════════════════════════ Suivi de commande ═════════════════════════ -->
 <nav class="crumb" aria-label="Fil d'Ariane">
   <div class="wrap">
     <a href="ecommerce-web.html">Accueil</a>
     <svg class="ic"><use href="#i-chevron"/></svg>
-    <a href="produits.html">Produits</a>
+    <a href="ecommerce-compte.html">Mon espace client</a>
     <svg class="ic"><use href="#i-chevron"/></svg>
-    <span class="here">Panier</span>
+    <span class="here">Suivi de commande</span>
   </div>
 </nav>
 
 <section class="phead">
   <div class="wrap">
-    <h1>Mon panier</h1>
-    <p>Vérifiez vos articles, appliquez un code promo puis validez votre commande.</p>
+    <h1>Suivi de commande</h1>
+    <p>Confirmée → en préparation → expédiée → livrée : voyez où en est votre colis.</p>
   </div>
 </section>
 
 <section>
-  <div class="wrap" id="cart"></div>
+  <div class="wrap" id="suivi"></div>
 </section>
 
 <!-- ═══════════════════════ Bandeau de confiance ════════════════════════ -->

@@ -53,13 +53,24 @@ footer = segment("Footer", "Recherche")
 header = header.replace('<a class="brand" href="/"', '<a class="brand" href="ecommerce-web.html"')
 header = header.replace('aria-label="Mes favoris"', 'aria-label="Mes favoris" data-fav-count')
 header = header.replace('aria-label="Mon panier"', 'aria-label="Mon panier" data-bag')
-header = header.replace('aria-label="Mon compte"', 'aria-label="Mon compte" data-user')
-# le nom du client connecté s'affiche à côté de l'icône compte
+header = header.replace('aria-label="Mon compte"', 'aria-label="Mon espace client" data-user')
+# 1) on ajoute le nom du client affiché à côté de l'icône compte
 header = header.replace(
     '</svg></button>\n    </div>\n  </div>\n</header>',
     '</svg><span class="nm" style="font-size:11px;font-weight:700;margin-left:4px"></span></button>\n    </div>\n  </div>\n</header>',
 )
-
+# 2) puis on transforme ce bouton en lien vers l'espace client (ouverture ET fermeture)
+avant = header
+header = header.replace(
+    '<button type="button" aria-label="Mon espace client" data-user>',
+    '<a class="acc" href="ecommerce-compte.html" aria-label="Mon espace client" data-user>',
+)
+header = header.replace(
+    '</svg><span class="nm" style="font-size:11px;font-weight:700;margin-left:4px"></span></button>',
+    '</svg><span class="nm" style="font-size:11px;font-weight:700;margin-left:4px"></span></a>',
+)
+assert avant != header and header.count('<a class="acc"') == 1 and '</span></a>' in header \
+    and header.count('</button>') == 2, 'en-tête compte mal converti'
 # ─────────────────────────── Navigation → pages filles ───────────────────────────
 for libelle, cible in [
     ("Électronique", "produits.html?cat=%C3%89lectronique"),
@@ -79,7 +90,18 @@ for libelle, cible in [
 # Pied de page : liens vers les pages réelles
 footer = footer.replace('href="#nouveautes"', 'href="produits.html"')
 footer = footer.replace('href="#promos"', 'href="produits.html?promo=1"')
-footer = footer.replace('href="#marques"', 'href="produits.html"')
+footer = footer.replace('href="#marques"', 'href="ecommerce-admin.html"')
+footer = footer.replace('href="#suivi"', 'href="ecommerce-suivi.html"')
+footer = footer.replace('href="#livraison"', 'href="ecommerce-suivi.html"')
+footer = footer.replace('href="#retours"', 'href="ecommerce-suivi.html"')
+footer = footer.replace('href="#aide"', 'href="ecommerce-suivi.html"')
+footer = footer.replace(
+    '<div class="bot">',
+    '<div class="bot"><span style="display:flex;gap:14px;flex-wrap:wrap">'
+    '<a href="ecommerce-suivi.html">Suivre ma commande</a>'
+    '<a href="ecommerce-compte.html">Mon espace client</a>'
+    '<a href="ecommerce-admin.html">Admin (démo)</a></span>'
+)
 
 # ─────────────────────────── Icônes supplémentaires (préfixe i-b2-) ───────────────────────────
 SPRITE_BIS = """<svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -108,9 +130,6 @@ FIN = """<!-- ══════════════════════
 
 <!-- ══════════════════════════ Notifications ══════════════════════════ -->
 <div class="toasts" id="toasts" aria-live="polite"></div>
-
-<!-- ══════════════════════ Connexion (démo) ══════════════════════ -->
-<div class="modal" id="modal"><div class="box"></div></div>
 
 <script src="js/shop-data.js"></script>
 <script src="js/shop-pages.js"></script>
@@ -260,6 +279,12 @@ CONTENU_PANIER = """<!-- ══════════════════�
   <div class="wrap" id="cart"></div>
 </section>"""
 
+CONTENU_COMPTE = '<!-- ═════════════════════ Espace client (tableau de bord) ═════════════════════ -->\n<nav class="crumb" aria-label="Fil d\'Ariane">\n  <div class="wrap">\n    <a href="ecommerce-web.html">Accueil</a>\n    <svg class="ic"><use href="#i-chevron"/></svg>\n    <span class="here">Mon espace client</span>\n  </div>\n</nav>\n\n<section class="phead">\n  <div class="wrap">\n    <h1>Mon espace client</h1>\n    <p>Vos commandes, leur suivi, vos favoris et vos informations de livraison.</p>\n  </div>\n</section>\n\n<section>\n  <div class="wrap" id="compte"></div>\n</section>'
+
+CONTENU_SUIVI = '<!-- ═════════════════════════ Suivi de commande ═════════════════════════ -->\n<nav class="crumb" aria-label="Fil d\'Ariane">\n  <div class="wrap">\n    <a href="ecommerce-web.html">Accueil</a>\n    <svg class="ic"><use href="#i-chevron"/></svg>\n    <a href="ecommerce-compte.html">Mon espace client</a>\n    <svg class="ic"><use href="#i-chevron"/></svg>\n    <span class="here">Suivi de commande</span>\n  </div>\n</nav>\n\n<section class="phead">\n  <div class="wrap">\n    <h1>Suivi de commande</h1>\n    <p>Confirmée → en préparation → expédiée → livrée : voyez où en est votre colis.</p>\n  </div>\n</section>\n\n<section>\n  <div class="wrap" id="suivi"></div>\n</section>'
+
+CONTENU_ADMIN = '<!-- ══════════════════════ Administration (démo) ══════════════════════ -->\n<nav class="crumb" aria-label="Fil d\'Ariane">\n  <div class="wrap">\n    <a href="ecommerce-web.html">Accueil</a>\n    <svg class="ic"><use href="#i-chevron"/></svg>\n    <span class="here">Administration</span>\n  </div>\n</nav>\n\n<section class="phead">\n  <div class="wrap">\n    <h1>Tableau de bord — Administration</h1>\n    <p>Ventes, commandes, stocks et clients. Les statuts et les stocks sont modifiables (démo front-end).</p>\n  </div>\n</section>\n\n<section>\n  <div class="wrap" id="admin"></div>\n</section>'
+
 # ─────────────────────────── Écriture des fichiers ───────────────────────────
 cibles = [
     ("produits.html", page(
@@ -274,6 +299,18 @@ cibles = [
         "Panier — Boutique en ligne",
         "Panier et commande : quantités, code promo, livraison et paiement Mobile Money.",
         CONTENU_PANIER, page_id="panier")),
+    ("ecommerce-compte.html", page(
+        "Mon espace client — Boutique en ligne",
+        "Tableau de bord client : commandes, suivi, favoris, informations et fidélité.",
+        CONTENU_COMPTE, page_id="compte")),
+    ("ecommerce-suivi.html", page(
+        "Suivi de commande — Boutique en ligne",
+        "Suivez votre commande étape par étape : confirmée, en préparation, expédiée, livrée.",
+        CONTENU_SUIVI, page_id="suivi")),
+    ("ecommerce-admin.html", page(
+        "Administration — Boutique en ligne",
+        "Tableau de bord admin : chiffre d'affaires, commandes, statuts, stocks et clients.",
+        CONTENU_ADMIN, page_id="admin")),
 ]
 
 for nom, contenu in cibles:

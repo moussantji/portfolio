@@ -7,7 +7,7 @@
   'use strict';
 
   /* ═══════════════ 1. Outils ═══════════════ */
-  var CLE = { panier: 'bt_panier_v1', favoris: 'bt_favoris_v1', promo: 'bt_promo_v1', commandes: 'bt_commandes_v1', compte: 'bt_compte_v1' };
+  var CLE = { panier: 'bt_panier_v1', favoris: 'bt_favoris_v1', promo: 'bt_promo_v1', commandes: 'bt_commandes_v1', compte: 'bt_compte_v1', stocks: 'bt_stocks_v1', demo: 'bt_demo_v1' };
 
   function lire(c, d) { try { var r = localStorage.getItem(c); return r ? JSON.parse(r) : d; } catch (e) { return d; } }
   function ecrire(c, v) { try { localStorage.setItem(c, JSON.stringify(v)); } catch (e) {} }
@@ -41,6 +41,19 @@
     paiement: 'Orange Money'
   };
   Etat.panier = Etat.panier.filter(function (l) { return !!getProduit(l.slug); });
+
+  /* Statuts de commande (suivi client + admin) */
+  var STATUTS = ['Confirmée', 'En préparation', 'Expédiée', 'Livrée'];
+  function etapeStatut(st) { var i = STATUTS.indexOf(st); return i < 0 ? 1 : i + 1; }
+
+  /* Stocks modifiés depuis l'admin (persistés) */
+  Etat.stocks = lire(CLE.stocks, {}) || {};
+  (function appliquerStocks() {
+    Object.keys(Etat.stocks).forEach(function (slug) {
+      var p = getProduit(slug);
+      if (p) p.stock = Math.max(0, parseInt(Etat.stocks[slug], 10) || 0);
+    });
+  })();
   if (Etat.promo && !PROMOS[Etat.promo.code]) Etat.promo = null;
 
   function cleLigne(slug, choix) {
@@ -289,6 +302,75 @@
   }
 
   /* ═══════════════ 8. Page DÉTAIL ═══════════════ */
+  /* ── Commandes : numérotation, tri, jeu de démonstration ── */
+  function prochainNumero() {
+    var annee = new Date().getFullYear(), max = 0;
+    Etat.commandes.forEach(function (c) {
+      var m = /-(\d+)$/.exec(c.id || '');
+      if (m) max = Math.max(max, parseInt(m[1], 10));
+    });
+    return 'CMD-' + annee + '-' + String(max + 1).padStart(4, '0');
+  }
+  function joursAvant(n) { var d = new Date(); d.setDate(d.getDate() - n); return d.toISOString(); }
+  /* Données d'exemple : remplies une seule fois, pour que les tableaux de bord
+     ne soient pas vides au premier affichage. */
+  function seedDemo() {
+    if (Etat.commandes.length) return;
+    try { if (localStorage.getItem(CLE.demo)) return; } catch (e) {}
+    var jeux = [
+      { nom: 'Client Démo', mail: 'demo@boutique.ml', ville: 'Bamako', det: 'Hamdallaye ACI', jours: 7, statut: 'Livrée', paiement: 'Orange Money',
+        lignes: [['telephone-mobile-4g', { Stockage: '128 Go', Coloris: 'Noir' }, 1], ['batterie-externe', { Modèle: '20 000 mAh' }, 2]] },
+      { nom: 'Client Démo', mail: 'demo@boutique.ml', ville: 'Bamako', det: 'Hamdallaye ACI', jours: 2, statut: 'Expédiée', paiement: 'Moov Money',
+        lignes: [['casque-audio', { Coloris: 'Noir mat' }, 1]] },
+      { nom: 'Fatoumata Diarra', mail: 'fatou.diarra@example.com', ville: 'Ségou', det: 'Quartier Administratif', jours: 1, statut: 'En préparation', paiement: 'Wave',
+        lignes: [['ventilateur', { Taille: '43 cm' }, 2]] },
+      { nom: 'Oumar Traoré', mail: 'oumar.traore@example.com', ville: 'Sikasso', det: 'Wayerma II', jours: 0, statut: 'Confirmée', paiement: 'Espèces à la livraison',
+        lignes: [['machine-a-laver', { 'Capacité': '8 kg', Coloris: 'Blanc' }, 1]] },
+      { nom: 'Aminata Koné', mail: 'aminata.kone@example.com', ville: 'Mopti', det: 'Komoguel', jours: 14, statut: 'Livrée', paiement: 'Orange Money',
+        lignes: [['montre-connectee', { Bracelet: 'Noir' }, 1], ['enceinte-bluetooth', { Coloris: 'Anthracite' }, 1]] }
+    ];
+    jeux.slice().reverse().forEach(function (j, idx) {
+      var lignes = [], sousTotal = 0;
+      j.lignes.forEach(function (l) {
+        var p = getProduit(l[0]); if (!p) return;
+        var choix = l[1] || choixDefaut(p), qte = l[2] || 1;
+        var prix = prixUnitaire(p, choix);
+        sousTotal += prix * qte;
+        lignes.push({ nom: p.nom, choix: choix, qte: qte, prix: prix });
+      });
+      var liv = sousTotal >= BOUTIQUE.franco ? 0 : BOUTIQUE.livraison;
+      Etat.commandes.unshift({
+        id: 'CMD-' + new Date().getFullYear() + '-' + String(5 - idx).padStart(4, '0'),
+        date: joursAvant(j.jours), email: j.mail, client: j.nom,
+        lignes: lignes, sousTotal: sousTotal, remise: 0, promo: null,
+        livraison: liv, total: sousTotal + liv,
+        paiement: j.paiement, mobil: '', statut: j.statut,
+        livraison_adr: { nom: j.nom, tel: '+223 70 00 00 0' + (idx + 1), mail: j.mail, ville: j.ville, det: j.det }
+      });
+    });
+    /* les stocks d'exemple reflètent les ventes */
+    Etat.commandes.forEach(function (c) {
+      c.lignes.forEach(function (l) {
+        var p = CATALOGUE.filter(function (x) { return x.nom === l.nom; })[0];
+        if (p && p.stock > 0) p.stock = Math.max(1, p.stock - l.qte);
+      });
+    });
+    ecrire(CLE.commandes, Etat.commandes);
+    try { localStorage.setItem(CLE.demo, '1'); } catch (e) {}
+  }
+  function commandesDuCompte() {
+    if (!Etat.compte) return [];
+    return Etat.commandes.filter(function (c) { return c.email === Etat.compte.email; });
+  }
+  function dateFr(iso) {
+    try { return new Date(iso).toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric' }); }
+    catch (e) { return iso; }
+  }
+  function pastilleStatut(st) {
+    var cls = st === 'Livrée' ? 'ok' : st === 'Expédiée' ? 'exp' : st === 'En préparation' ? 'prep' : 'conf';
+    return '<span class="st ' + cls + '">' + echappe(st || 'Confirmée') + '</span>';
+  }
+
   /* Barre « Produit précédent / suivant » (même catégorie, sinon tout le catalogue) */
   function navSiblings(p) {
     var groupe = CATALOGUE.filter(function (x) { return x.cat === p.cat; });
@@ -678,12 +760,13 @@
           toast('Numéro manquant', 'Saisissez le numéro ' + Etat.paiement + '.', 'ko'); return;
         }
         Etat.derniere = {
-          id: 'CMD-' + new Date().getFullYear() + '-' + String(Etat.commandes.length + 1).padStart(4, '0'),
+          id: prochainNumero(),
           date: new Date().toISOString(),
           lignes: Etat.panier.map(function (l) { return { nom: l.nom, choix: l.choix, qte: l.qte, prix: l.prix }; }),
           sousTotal: sousTotal(), remise: remise(), promo: Etat.promo ? Etat.promo.code : null,
           livraison: frais(), total: total(),
           paiement: Etat.paiement, mobil: num ? num.value.trim() : '',
+          statut: 'Confirmée', email: Etat.compte ? Etat.compte.email : (Etat.livraison.mail || ''),
           livraison_adr: Etat.livraison
         };
         Etat.commandes.unshift(Etat.derniere);
@@ -749,6 +832,405 @@
     }
 
     _relance.panier = rendre;
+    rendre();
+  }
+
+  /* ═══════════════ 9bis. ESPACE CLIENT (tableau de bord) ═══════════════ */
+  function pageCompte() {
+    var zone = document.getElementById('compte');
+    if (!zone) return;
+
+    function rendre() {
+      zone.innerHTML = Etat.compte ? tableauDeBord() : connexion();
+    }
+
+    function connexion() {
+      return '<div class="dash-narrow">' +
+        '<div class="panel">' +
+          '<h2>' + ic('i-user') + ' Mon espace client</h2>' +
+          '<p style="font-size:13.5px;color:var(--grey);margin-bottom:16px">Connectez-vous pour suivre vos commandes, retrouver vos favoris et vos informations de livraison.</p>' +
+          '<form id="loginForm">' +
+            '<div class="field" id="lf-mail"><label for="lMail">Adresse email</label><input class="ctrl" id="lMail" type="email" placeholder="vous@email.com" autocomplete="email"><div class="err">Adresse email invalide.</div></div>' +
+            '<div class="field" id="lf-mdp"><label for="lMdp">Mot de passe</label><input class="ctrl" id="lMdp" type="password" placeholder="••••••••" autocomplete="current-password"><div class="err">4 caractères minimum.</div></div>' +
+            '<label class="switch" style="margin-bottom:14px"><input type="checkbox" checked> Se souvenir de moi</label>' +
+            '<div class="pdp-actions"><button class="btn-solid" style="flex:1" type="submit">' + ic('i-user') + ' Se connecter</button></div>' +
+          '</form>' +
+          '<div class="demo" style="margin-top:16px;border:1px dashed #ddd6fe;background:var(--lav-1);border-radius:12px;padding:13px;font-size:12.5px;color:#4c1d95">' +
+            '<b>Compte de démonstration</b><br>Email : <code style="background:#fff;border-radius:6px;padding:2px 7px">demo@boutique.ml</code> — mot de passe : <code style="background:#fff;border-radius:6px;padding:2px 7px">demo1234</code>' +
+            '<div style="margin-top:9px"><button class="btn-ghost-sm" type="button" id="preRemplir">Remplir automatiquement</button></div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="panel"><h2>' + ic('i-b2-info') + ' À quoi ça sert ?</h2>' +
+          '<ul class="liste-check">' +
+            '<li>Suivre l\'avancement de chaque commande (confirmée → préparée → expédiée → livrée)</li>' +
+            '<li>Retrouver vos favoris enregistrés sur cet appareil</li>' +
+            '<li>Voir le détail de vos achats et vos points de fidélité</li>' +
+          '</ul>' +
+        '</div>' +
+      '</div>';
+    }
+
+    function tableauDeBord() {
+      var cmds = commandesDuCompte();
+      var total = cmds.reduce(function (a, c) { return a + c.total; }, 0);
+      var enCours = cmds.filter(function (c) { return c.statut !== 'Livrée'; }).length;
+      var favs = Etat.favoris.map(getProduit).filter(Boolean);
+      var points = Math.min(100, cmds.length * 15);
+      return '<div class="dash-head">' +
+          '<div class="dash-who">' +
+            '<span class="av-lg">' + initiales(Etat.compte.prenom) + '</span>' +
+            '<div><h1>Bonjour ' + echappe(Etat.compte.prenom) + '</h1>' +
+            '<p>' + echappe(Etat.compte.email) + ' · client depuis ' + dateFr(new Date().toISOString()) + '</p></div>' +
+          '</div>' +
+          '<div class="pdp-actions" style="margin:0">' +
+            '<a class="btn-line" href="ecommerce-suivi.html">' + ic('i-truck') + ' Suivre une commande</a>' +
+            '<button class="btn-line" type="button" id="deco">' + ic('i-user') + ' Se déconnecter</button>' +
+          '</div>' +
+        '</div>' +
+
+        '<div class="kpis">' +
+          kpi('Commandes', cmds.length, 'passées avec ce compte') +
+          kpi('En cours', enCours, 'en préparation ou expédiées') +
+          kpi('Total dépensé', fm(total), 'livraison comprise') +
+          kpi('Fidélité', points + ' / 100', 'points cumulés') +
+        '</div>' +
+
+        '<div class="dash-grid">' +
+          '<div class="panel">' +
+            '<h2>' + ic('i-bag') + ' Mes commandes</h2>' +
+            (cmds.length ? cmds.map(function (c) {
+              return '<div class="ocmd">' +
+                '<div class="ocmd-top">' +
+                  '<div><b>' + echappe(c.id) + '</b> <span class="muted-sm">' + dateFr(c.date) + '</span></div>' +
+                  pastilleStatut(c.statut) +
+                '</div>' +
+                '<div class="ocmd-lignes">' + c.lignes.map(function (l) {
+                  return echappe(l.nom) + ' ×' + l.qte;
+                }).join(' · ') + '</div>' +
+                '<div class="ocmd-foot">' +
+                  '<span>' + echappe(c.paiement) + ' · ' + echappe(c.livraison_adr.ville) + '</span>' +
+                  '<b>' + fm(c.total) + '</b>' +
+                '</div>' +
+                '<div class="pdp-actions" style="margin-top:10px">' +
+                  '<a class="btn-ghost-sm" href="ecommerce-suivi.html?cmd=' + encodeURIComponent(c.id) + '">' + ic('i-b2-info') + ' Suivre cette commande</a>' +
+                '</div>' +
+              '</div>';
+            }).join('') : etatVide('Vous n\'avez pas encore de commande.', 'Vos commandes apparaîtront ici avec leur suivi.', 'produits.html', 'Commander')) +
+          '</div>' +
+
+          '<div class="panel">' +
+            '<h2>' + ic('i-heart') + ' Mes favoris <span class="badge-nb">' + favs.length + '</span></h2>' +
+            (favs.length ? favs.map(function (p) {
+              return '<div class="dligne">' +
+                '<a class="th" href="ecommerce-produit.html?p=' + p.slug + '" style="background-image:url(\'' + p.image + '\')"></a>' +
+                '<div><b><a href="ecommerce-produit.html?p=' + p.slug + '">' + echappe(p.nom) + '</a></b>' +
+                '<small>' + fm(p.prix) + ' · ' + echappe(p.cat) + '</small></div>' +
+                '<a class="btn-ghost-sm" href="ecommerce-produit.html?p=' + p.slug + '">Voir</a>' +
+              '</div>';
+            }).join('') : '<p class="muted-sm">Aucun favori. Cliquez sur le cœur d\'un produit pour l\'enregistrer.</p>') +
+          '</div>' +
+        '</div>' +
+
+        '<div class="dash-grid">' +
+          '<div class="panel">' +
+            '<h2>' + ic('i-user') + ' Mes informations</h2>' +
+            '<table class="spec"><tbody>' +
+              '<tr><td>Nom</td><td>' + echappe(cmds.length ? cmds[0].livraison_adr.nom : Etat.compte.prenom) + '</td></tr>' +
+              '<tr><td>Email</td><td>' + echappe(Etat.compte.email) + '</td></tr>' +
+              '<tr><td>Ville de livraison</td><td>' + echappe(cmds.length ? cmds[0].livraison_adr.ville : '—') + '</td></tr>' +
+              '<tr><td>Adresse</td><td>' + echappe(cmds.length ? cmds[0].livraison_adr.det : '—') + '</td></tr>' +
+              '<tr><td>Téléphone</td><td>' + echappe(cmds.length ? cmds[0].livraison_adr.tel : '—') + '</td></tr>' +
+            '</tbody></table>' +
+          '</div>' +
+          '<div class="panel">' +
+            '<h2>' + ic('i-headset') + ' Besoin d\'aide ?</h2>' +
+            '<p style="font-size:13.5px;color:#374151;line-height:1.75">Notre service client répond en moins d\'une heure du lundi au samedi, de 8 h à 20 h.</p>' +
+            '<div class="pdp-actions" style="margin-top:14px">' +
+              '<a class="btn-solid" href="https://wa.me/' + BOUTIQUE.whatsapp + '" target="_blank" rel="noopener">' + ic('i-headset') + ' ' + BOUTIQUE.telephone + '</a>' +
+            '</div>' +
+            '<div class="demo" style="margin-top:16px;border:1px dashed #ddd6fe;background:var(--lav-1);border-radius:12px;padding:12px;font-size:12.5px;color:#4c1d95">' +
+              'Démo : les comptes et commandes sont stockés dans votre navigateur, aucune donnée n\'est envoyée.' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+    }
+
+    function kpi(libelle, valeur, note) {
+      return '<div class="kpi"><span class="kpi-l">' + echappe(libelle) + '</span>' +
+        '<b>' + valeur + '</b><span class="kpi-n">' + echappe(note) + '</span></div>';
+    }
+    function etatVide(titre, texte, lien, action) {
+      return '<div class="empty" style="border:0;padding:26px 10px">' + ic('i-bag') + '<h3>' + titre + '</h3><p>' + texte + '</p>' +
+        '<div class="pdp-actions" style="justify-content:center;margin-top:14px"><a class="btn-solid" href="' + lien + '">' + action + '</a></div></div>';
+    }
+
+    zone.addEventListener('submit', function (e) {
+      if (e.target.id !== 'loginForm') return;
+      e.preventDefault();
+      var mail = document.getElementById('lMail').value.trim();
+      var mdp = document.getElementById('lMdp').value;
+      var ok = true;
+      function test(id, valide) { var f = document.getElementById(id); f.classList.toggle('bad', !valide); if (!valide) ok = false; }
+      test('lf-mail', /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(mail));
+      test('lf-mdp', mdp.length >= 4);
+      if (!ok) { toast('Connexion impossible', 'Vérifiez vos identifiants.', 'ko'); return; }
+      var prenom = mail.split('@')[0].split(/[._-]/)[0].replace(/^\w/, function (c) { return c.toUpperCase(); });
+      if (mail === 'demo@boutique.ml') prenom = 'Client Démo';
+      Etat.compte = { email: mail, nom: prenom, prenom: prenom };
+      ecrire(CLE.compte, Etat.compte);
+      majEntete(); rendre();
+      toast('Connexion réussie', 'Bienvenue ' + prenom + ' !', 'ok');
+    });
+    zone.addEventListener('click', function (e) {
+      if (e.target.closest('#deco')) {
+        Etat.compte = null; ecrire(CLE.compte, null); majEntete(); rendre(); toast('Déconnecté');
+      }
+      if (e.target.closest('#preRemplir')) {
+        document.getElementById('lMail').value = 'demo@boutique.ml';
+        document.getElementById('lMdp').value = 'demo1234';
+        toast('Identifiants remplis', 'Cliquez sur « Se connecter ».');
+      }
+    });
+    _relance.compte = rendre;
+    rendre();
+  }
+
+  /* ═══════════════ 9ter. SUIVI DE COMMANDE ═══════════════ */
+  function pageSuivi() {
+    var zone = document.getElementById('suivi');
+    if (!zone) return;
+    var recherche = param('cmd') || param('q') || '';
+
+    function trouver(q) {
+      q = String(q || '').trim().toLowerCase();
+      if (!q) return [];
+      if (q.indexOf('@') !== -1) return Etat.commandes.filter(function (c) { return (c.email || '').toLowerCase() === q; });
+      return Etat.commandes.filter(function (c) { return c.id.toLowerCase() === q || c.id.toLowerCase().indexOf(q) !== -1; });
+    }
+
+    function rendre() {
+      var resultats = recherche ? trouver(recherche) : (Etat.commandes.length ? [Etat.commandes[0]] : []);
+      zone.innerHTML =
+        '<div class="panel">' +
+          '<h2>' + ic('i-truck') + ' Où est ma commande ?</h2>' +
+          '<p class="muted-sm" style="margin-bottom:12px">Saisissez votre numéro de commande (ex. <b>CMD-2026-0002</b>) ou l\'adresse email utilisée lors de l\'achat.</p>' +
+          '<form id="suiviForm" class="suivi-form">' +
+            '<input class="ctrl" id="sQ" value="' + echappe(recherche) + '" placeholder="CMD-2026-0002 ou vous@email.com" aria-label="Numéro de commande ou email">' +
+            '<button class="btn-solid" type="submit">' + ic('i-search') + ' Rechercher</button>' +
+          '</form>' +
+          (Etat.commandes.length ? '<p class="muted-sm" style="margin-top:10px">Dernière commande : <button class="lien" type="button" id="lastCmd">' + echappe(Etat.commandes[0].id) + '</button></p>' : '') +
+        '</div>' +
+        (resultats.length ? resultats.map(fiche).join('') :
+          '<div class="panel">' + (recherche
+            ? '<div class="empty" style="border:0;padding:30px 10px">' + ic('i-b2-alert') + '<h3>Aucune commande trouvée</h3><p>Vérifiez le numéro (ex. CMD-2026-0002) ou l\'email saisi.</p></div>'
+            : '<div class="empty" style="border:0;padding:30px 10px">' + ic('i-bag') + '<h3>Aucune commande à suivre</h3><p>Passez une commande pour voir son suivi ici.</p><div class="pdp-actions" style="justify-content:center;margin-top:14px"><a class="btn-solid" href="produits.html">Voir les produits</a></div></div>') + '</div>');
+    }
+
+    function fiche(c) {
+      var etape = etapeStatut(c.statut);
+      var etapes = [
+        ['Confirmée', 'Commande reçue et enregistrée'],
+        ['En préparation', 'Colis en cours de préparation'],
+        ['Expédiée', 'Remis au livreur'],
+        ['Livrée', 'Colis remis au client']
+      ];
+      return '<div class="panel">' +
+        '<div class="ocmd-top" style="margin-bottom:6px">' +
+          '<div><h2 style="margin:0">' + ic('i-bag') + ' Commande ' + echappe(c.id) + '</h2>' +
+          '<span class="muted-sm">' + dateFr(c.date) + ' · ' + echappe(c.paiement) + '</span></div>' +
+          pastilleStatut(c.statut) +
+        '</div>' +
+        '<div class="timeline">' + etapes.map(function (e, i) {
+          var etat = (i + 1) < etape ? 'fait' : (i + 1) === etape ? 'actuel' : 'a-venir';
+          return '<div class="tl-step ' + etat + '">' +
+            '<span class="tl-dot">' + ((i + 1) <= etape ? ic('i-b2-check') : (i + 1)) + '</span>' +
+            '<div class="tl-txt"><b>' + echappe(e[0]) + '</b><small>' + echappe(e[1]) + '</small></div>' +
+            (i < etapes.length - 1 ? '<span class="tl-bar"></span>' : '') +
+          '</div>';
+        }).join('') + '</div>' +
+        '<div class="dash-grid" style="margin-top:16px">' +
+          '<div>' +
+            '<h3 class="h3-mini">Articles</h3>' +
+            '<table class="spec"><tbody>' + c.lignes.map(function (l) {
+              return '<tr><td>' + echappe(l.nom) + '<br><small class="muted-sm">' + echappe(Object.keys(l.choix || {}).map(function (k) { return l.choix[k]; }).join(' · ')) + ' · ×' + l.qte + '</small></td>' +
+                '<td style="text-align:right"><b>' + fm(l.prix * l.qte) + '</b></td></tr>';
+            }).join('') +
+            '<tr><td>Sous-total</td><td style="text-align:right">' + fm(c.sousTotal) + '</td></tr>' +
+            (c.remise ? '<tr><td>Remise ' + echappe(c.promo || '') + '</td><td style="text-align:right">− ' + fm(c.remise) + '</td></tr>' : '') +
+            '<tr><td>Livraison</td><td style="text-align:right">' + (c.livraison ? fm(c.livraison) : 'Offerte') + '</td></tr>' +
+            '<tr><td><b>Total</b></td><td style="text-align:right"><b style="color:var(--pink)">' + fm(c.total) + '</b></td></tr>' +
+            '</tbody></table>' +
+          '</div>' +
+          '<div>' +
+            '<h3 class="h3-mini">Livraison</h3>' +
+            '<table class="spec"><tbody>' +
+              '<tr><td>Destinataire</td><td>' + echappe(c.livraison_adr ? c.livraison_adr.nom : '—') + '</td></tr>' +
+              '<tr><td>Téléphone</td><td>' + echappe(c.livraison_adr ? c.livraison_adr.tel : '—') + '</td></tr>' +
+              '<tr><td>Adresse</td><td>' + echappe(c.livraison_adr ? c.livraison_adr.det + ', ' + c.livraison_adr.ville : '—') + '</td></tr>' +
+              '<tr><td>Délai estimé</td><td>' + (c.livraison_adr && c.livraison_adr.ville.toLowerCase().indexOf('bamako') !== -1 ? '24 h' : '48 à 72 h') + '</td></tr>' +
+            '</tbody></table>' +
+            '<div class="pdp-actions" style="margin-top:14px">' +
+              '<a class="btn-line" href="https://wa.me/' + BOUTIQUE.whatsapp + '?text=' + encodeURIComponent('Bonjour, je souhaite suivre ma commande ' + c.id) + '" target="_blank" rel="noopener">' + ic('i-headset') + ' Contacter le service client</a>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    }
+
+    zone.addEventListener('submit', function (e) {
+      if (e.target.id !== 'suiviForm') return;
+      e.preventDefault();
+      recherche = document.getElementById('sQ').value;
+      rendre();
+      reveler();
+    });
+    zone.addEventListener('click', function (e) {
+      if (e.target.closest('#lastCmd')) {
+        recherche = Etat.commandes[0].id;
+        document.getElementById('sQ').value = recherche;
+        rendre();
+      }
+    });
+    _relance.suivi = rendre;
+    rendre();
+  }
+
+  /* ═══════════════ 9quater. ADMIN ═══════════════ */
+  function pageAdmin() {
+    var zone = document.getElementById('admin');
+    if (!zone) return;
+
+    function rendre() {
+      var cmds = Etat.commandes;
+      var ca = cmds.reduce(function (a, c) { return a + c.total; }, 0);
+      var panier = cmds.length ? Math.round(ca / cmds.length) : 0;
+      var clients = {}; cmds.forEach(function (c) { clients[c.email || c.client] = 1; });
+      var ruptures = CATALOGUE.filter(function (p) { return p.stock <= 5; }).length;
+
+      zone.innerHTML =
+        '<div class="kpis">' +
+          kpiAdmin('Chiffre d\'affaires', fm(ca), cmds.length + ' commandes') +
+          kpiAdmin('Panier moyen', fm(panier), 'sur la période') +
+          kpiAdmin('Clients', Object.keys(clients).length, 'comptes distincts') +
+          kpiAdmin('Alertes stock', ruptures, 'produits à ≤ 5 unités') +
+        '</div>' +
+
+        '<div class="panel">' +
+          '<h2>' + ic('i-bag') + ' Commandes <span class="badge-nb">' + cmds.length + '</span></h2>' +
+          (cmds.length ? '<div class="table-scroll"><table class="tbl"><thead><tr>' +
+            '<th>N°</th><th>Date</th><th>Client</th><th>Ville</th><th>Paiement</th><th>Total</th><th>Statut</th><th></th></tr></thead><tbody>' +
+            cmds.map(function (c) {
+              return '<tr>' +
+                '<td><b>' + echappe(c.id) + '</b></td>' +
+                '<td>' + dateFr(c.date) + '</td>' +
+                '<td>' + echappe(c.client || (c.livraison_adr ? c.livraison_adr.nom : '—')) + '<br><small class="muted-sm">' + echappe(c.email || '') + '</small></td>' +
+                '<td>' + echappe(c.livraison_adr ? c.livraison_adr.ville : '—') + '</td>' +
+                '<td>' + echappe(c.paiement) + '</td>' +
+                '<td><b>' + fm(c.total) + '</b></td>' +
+                '<td>' + pastilleStatut(c.statut) + '</td>' +
+                '<td><select class="ctrl ctrl-sm" data-statut="' + echappe(c.id) + '" aria-label="Changer le statut">' +
+                  STATUTS.map(function (st) { return '<option' + (st === c.statut ? ' selected' : '') + '>' + st + '</option>'; }).join('') +
+                '</select></td>' +
+              '</tr>';
+            }).join('') + '</tbody></table></div>'
+            : '<p class="muted-sm">Aucune commande pour le moment.</p>') +
+        '</div>' +
+
+        '<div class="dash-grid">' +
+          '<div class="panel">' +
+            '<h2>' + ic('i-store') + ' Stocks</h2>' +
+            '<div class="table-scroll"><table class="tbl"><thead><tr><th>Produit</th><th>Catégorie</th><th>Prix</th><th>Stock</th><th>Vendus</th></tr></thead><tbody>' +
+            CATALOGUE.map(function (p) {
+              var cls = p.stock <= 0 ? 'out' : p.stock <= 5 ? 'low' : 'ok';
+              return '<tr>' +
+                '<td><b>' + echappe(p.nom) + '</b><br><small class="muted-sm">Réf. ' + echappe(p.ref) + '</small></td>' +
+                '<td>' + echappe(p.cat) + '</td>' +
+                '<td>' + fm(p.prix) + '</td>' +
+                '<td><div class="stock-ctl">' +
+                  '<button type="button" class="mini-btn" data-stock="-1" data-slug="' + p.slug + '" aria-label="Retirer">−</button>' +
+                  '<span class="stk ' + cls + '">' + p.stock + '</span>' +
+                  '<button type="button" class="mini-btn" data-stock="1" data-slug="' + p.slug + '" aria-label="Ajouter">+</button>' +
+                '</div></td>' +
+                '<td>' + p.vendus + '</td>' +
+              '</tr>';
+            }).join('') + '</tbody></table></div>' +
+          '</div>' +
+          '<div class="panel">' +
+            '<h2>' + ic('i-bolt') + ' Meilleures ventes</h2>' +
+            CATALOGUE.slice().sort(function (a, b) { return b.vendus - a.vendus; }).slice(0, 5).map(function (p, i) {
+              var max = CATALOGUE.slice().sort(function (a, b) { return b.vendus - a.vendus; })[0].vendus;
+              return '<div class="top-prod">' +
+                '<span class="rang">' + (i + 1) + '</span>' +
+                '<div class="tp-info"><b>' + echappe(p.nom) + '</b>' +
+                  '<div class="bar"><i style="width:' + Math.round(p.vendus / max * 100) + '%"></i></div>' +
+                '</div>' +
+                '<span class="tp-nb">' + p.vendus + '</span>' +
+              '</div>';
+            }).join('') +
+            '<div class="pdp-actions" style="margin-top:16px">' +
+              '<a class="btn-line" href="ecommerce-panier.html">' + ic('i-bag') + ' Voir le panier</a>' +
+              '<button class="btn-ghost-sm" type="button" id="resetDemo">' + ic('i-b2-alert') + ' Réinitialiser les données de démo</button>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+
+        '<div class="panel">' +
+          '<h2>' + ic('i-b2-info') + ' Clients</h2>' +
+          '<div class="table-scroll"><table class="tbl"><thead><tr><th>Client</th><th>Email</th><th>Ville</th><th>Commandes</th><th>Total</th><th>Dernier statut</th></tr></thead><tbody>' +
+          (function () {
+            var par = {};
+            cmds.forEach(function (c) {
+              var k = c.email || c.client;
+              par[k] = par[k] || { nom: c.client || k, email: c.email || '—', ville: c.livraison_adr ? c.livraison_adr.ville : '—', nb: 0, total: 0, statut: c.statut };
+              par[k].nb++; par[k].total += c.total;
+              par[k].statut = c.statut; /* la plus récente (tableau trié du plus récent au plus ancien) */
+            });
+            return Object.keys(par).map(function (k) {
+              var c = par[k];
+              return '<tr><td><b>' + echappe(c.nom) + '</b></td><td>' + echappe(c.email) + '</td><td>' + echappe(c.ville) + '</td>' +
+                '<td>' + c.nb + '</td><td><b>' + fm(c.total) + '</b></td><td>' + pastilleStatut(c.statut) + '</td></tr>';
+            }).join('') || '<tr><td colspan="6" class="muted-sm">Aucun client.</td></tr>';
+          })() +
+          '</tbody></table></div>' +
+        '</div>';
+    }
+
+    function kpiAdmin(libelle, valeur, note) {
+      return '<div class="kpi"><span class="kpi-l">' + echappe(libelle) + '</span><b>' + valeur + '</b><span class="kpi-n">' + echappe(note) + '</span></div>';
+    }
+
+    zone.addEventListener('change', function (e) {
+      var sel = e.target.closest('[data-statut]');
+      if (!sel) return;
+      var id = sel.getAttribute('data-statut');
+      var c = Etat.commandes.filter(function (x) { return x.id === id; })[0];
+      if (!c) return;
+      c.statut = sel.value;
+      ecrire(CLE.commandes, Etat.commandes);
+      toast('Statut mis à jour', id + ' → ' + sel.value, 'ok');
+      rendre();
+    });
+    zone.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-stock]');
+      if (b) {
+        var p = getProduit(b.getAttribute('data-slug'));
+        if (!p) return;
+        p.stock = Math.max(0, p.stock + parseInt(b.getAttribute('data-stock'), 10));
+        Etat.stocks[p.slug] = p.stock;
+        ecrire(CLE.stocks, Etat.stocks);
+        rendre(); reveler();
+        return;
+      }
+      if (e.target.closest('#resetDemo')) {
+        if (confirm('Effacer commandes, panier, favoris et comptes de démonstration ?')) {
+          [CLE.panier, CLE.favoris, CLE.promo, CLE.commandes, CLE.compte, CLE.stocks, CLE.demo].forEach(function (k) {
+            try { localStorage.removeItem(k); } catch (err) {}
+          });
+          location.reload();
+        }
+      }
+    });
+    _relance.admin = rendre;
     rendre();
   }
 
@@ -869,7 +1351,7 @@
   }
 
   /* Re-rendus ciblés */
-  var _relance = { detail: null, liste: null, panier: null };
+  var _relance = { detail: null, liste: null, panier: null, compte: null, suivi: null, admin: null };
   function pageDetailReload() { if (_relance.detail) _relance.detail(); }
   function pageListeReload() { if (_relance.liste) _relance.liste(); }
   function pagePanierReload() { if (_relance.panier) _relance.panier(); }
@@ -914,6 +1396,7 @@
 
   /* ═══════════════ 13. Démarrage ═══════════════ */
   document.addEventListener('DOMContentLoaded', function () {
+    seedDemo();
     majEntete();
     rendreTiroir();
     brancherRecherche();
@@ -931,6 +1414,15 @@
       reveler();
     } else if (page === 'panier') {
       pagePanier();
+      reveler();
+    } else if (page === 'compte') {
+      pageCompte();
+      reveler();
+    } else if (page === 'suivi') {
+      pageSuivi();
+      reveler();
+    } else if (page === 'admin') {
+      pageAdmin();
       reveler();
     }
   });
